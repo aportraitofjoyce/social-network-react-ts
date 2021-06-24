@@ -5,7 +5,7 @@ type RatingPropsType = {
     value: 0 | 1 | 2 | 3 | 4 | 5
 }
 
-export function Rating(props: RatingPropsType) {
+function Rating(props: RatingPropsType) {
     // Replace many if else declarations
     return props.value === 1 ? (
         <div className={'rating'}>

@@ -16,14 +16,11 @@
 }
 
 body {
-  margin: 0 auto;
-  max-width: 1280px;
-  display: flex;
-
   background-color: #F4F3EE;
   font-family: var(--fira-sans);
   color: var(--black);
 }
+
 
 h1 {
   font-size: 56px;

@@ -39,6 +39,3 @@ function AccordionBody() {
         </div>
     )
 }
-
-
-export default Accordion;

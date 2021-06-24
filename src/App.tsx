@@ -1,13 +1,30 @@
 import React from 'react';
 import './App.css';
-import Accordion from "./components/Accordion/Accordion";
-import {Rating} from "./components/Rating/Rating";
+import {Header} from "./components/Header/Header";
+import {Content} from "./components/Content/Content";
 
 
-function App() {
+export function App() {
     return (
-        <div>
-            <PageTitle title={'Social Network'}/>
+        <div className={'App'}>
+            <Header/>
+            <Content/>
+        </div>
+    )
+}
+
+
+/*
+type PageTitlePropsType = {
+    title: string
+}
+
+function PageTitle(props: PageTitlePropsType) {
+    return <h1>{props.title}</h1>
+}*/
+
+
+{/*<PageTitle title={'Social Network'}/>
             <Accordion title={'First Accordion Title'} collapsed={false}/>
             <Accordion title={'Second Accordion Title'} collapsed={true}/>
             <Rating value={0}/>
@@ -16,19 +33,5 @@ function App() {
             <Rating value={3}/>
             <Rating value={4}/>
             <Rating value={5}/>
-            <PageTitle title={'React JS'}/>
-        </div>
-    )
+            <PageTitle title={'React JS'}/>*/
 }
-
-
-type PageTitlePropsType = {
-    title: string
-}
-
-function PageTitle(props: PageTitlePropsType) {
-    return <h1>{props.title}</h1>
-}
-
-
-export default App;
