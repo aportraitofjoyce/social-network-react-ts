@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.avatar_container {
+    max-width: 64px;
+    margin-right: 24px;
+}
+.avatar_container img {
+    max-width: inherit;
+    border-radius: 50%;
+}
+
+.content_container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

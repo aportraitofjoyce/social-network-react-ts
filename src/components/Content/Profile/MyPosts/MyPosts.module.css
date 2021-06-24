@@ -4,3 +4,16 @@
     border-radius: var(--border-radius);
     background: white;
 }
+
+.control_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.control_wrapper textarea {
+    width: 100%;
+    height: 80px;
+}

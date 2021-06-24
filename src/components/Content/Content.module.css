@@ -2,6 +2,6 @@
     display: flex;
     flex-direction: row;
     gap: 24px;
-    max-width: 1280px;
+    max-width: 1024px;
     margin: 24px auto;
 }
