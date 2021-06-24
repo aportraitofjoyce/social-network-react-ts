@@ -1,4 +1,7 @@
-main {
+.wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 24px auto;
 }

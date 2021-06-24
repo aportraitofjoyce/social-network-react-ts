@@ -1,4 +1,36 @@
-header {
+.wrapper {
+    background: white;
+    position: sticky;
+    top: 0;
+    box-shadow: var(--box-shadow);
+}
+
+.container {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 80px;
+}
+
+.container a {
+    text-decoration: none;
+    color: var(--text);
+    padding-right: 16px;
+}
+
+.container a:hover {
+    color: var(--primary);
+}
+
+.mini_profile {
+    height: inherit;
+}
+
+.mini_profile img {
+    height: inherit;
+    padding: 8px 0;
+    object-fit: cover;
+    border-radius: 50%;
 }
