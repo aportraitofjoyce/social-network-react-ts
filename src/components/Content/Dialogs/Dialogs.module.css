@@ -1,0 +1,60 @@
+.wrapper {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    padding: 24px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+.dialogsContainer {
+    flex-grow: 1;
+}
+.friendsContainer {
+    display: flex;
+    flex-direction: column;
+}
+.friendsContainer a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.friendsContainer a:hover {
+    background: #e639461f;
+}
+
+.friendsContainer a.active {
+    color: var(--primary);
+}
+
+.friendSay {
+    display: flex;
+    max-width: fit-content;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--border-radius);
+    margin: 8px 0;
+    background: #fff4f4;
+}
+
+.meSay {
+    display: flex;
+    max-width: fit-content;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--border-radius);
+    margin: 8px 0;
+    background: #eaffea;
+}
+
+.avatar {
+    width: 80px;
+}
+
+.avatar img {
+    width: inherit;
+}
+

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import s from './Sidebar.module.css'
 
 type dataForSidebarType = {
@@ -6,33 +7,33 @@ type dataForSidebarType = {
     link: string
 }
 
+type SidebarItemPropsType = {
+    link: string
+    name: string
+}
+
 const dataForSidebar: Array<dataForSidebarType> = [
-    {name: 'My profile', link: '#'},
-    {name: 'Friends', link: '#'},
-    {name: 'Messages', link: '#'},
-    {name: 'Settings', link: '#'}
+    {name: 'My profile', link: '/profile'},
+    {name: 'Messages', link: '/dialogs'},
+    {name: 'Friends', link: '/friends'},
+    {name: 'News', link: '/news'},
+    {name: 'Settings', link: '/settings'}
 ]
 
 export function Sidebar() {
+    const mappedSidebarItems = dataForSidebar.map(item => {
+        return <SidebarItem name={item.name} link={item.link}/>
+    })
+
     return (
         <aside className={s.wrapper}>
             <nav className={s.container}>
-            <SidebarItem name={dataForSidebar[0].name} link={dataForSidebar[0].link}/>
-            <SidebarItem name={dataForSidebar[1].name} link={dataForSidebar[1].link}/>
-            <SidebarItem name={dataForSidebar[2].name} link={dataForSidebar[2].link}/>
-            <SidebarItem name={dataForSidebar[3].name} link={dataForSidebar[3].link}/>
+                {mappedSidebarItems}
             </nav>
         </aside>
     )
 }
 
-type SidebarItemPropsType = {
-    link: string
-    name: string
-}
 export function SidebarItem(props: SidebarItemPropsType) {
-    return (
-        <a href={props.link}>{props.name}</a>
-    )
+    return <NavLink to={props.link} activeClassName={s.active}>{props.name}</NavLink>
 }
-

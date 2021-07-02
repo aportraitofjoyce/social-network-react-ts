@@ -1,42 +1,47 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {dataForMyProfile} from "../MyProfile/MyProfile";
 
-const dataForMyPosts: dataForMyPostsType = {
-    src: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album',
-    alt: 'Post name',
-}
-
-const textForMyPosts: textForMyPostsType = {
-    text1: 'Helloooo',
-    text2: 'Byeeeeee',
-    text3: 'Animeeee',
-    text4: 'Looooool',
-    text5: 'Zzzzzzzz'
-}
+const dataForMyPosts: Array<dataForMyPostsType> = [
+    {
+        src: dataForMyProfile.src,
+        alt: dataForMyProfile.alt,
+        text: 'Helloooo'
+    },
+    {
+        src: dataForMyProfile.src,
+        alt: dataForMyProfile.alt,
+        text: 'Byeeeeee'
+    },
+    {
+        src: dataForMyProfile.src,
+        alt: dataForMyProfile.alt,
+        text: 'Animeeee'
+    },
+    {
+        src: dataForMyProfile.src,
+        alt: dataForMyProfile.alt,
+        text: 'Looooool'
+    }
+]
 
 type dataForMyPostsType = {
     src: string
     alt: string
-}
-
-type textForMyPostsType = {
-    text1: string,
-    text2: string,
-    text3: string,
-    text4: string,
-    text5: string
+    text: string
 }
 
 export function MyPosts() {
+
+    const mappedPosts = dataForMyPosts.map(item => {
+        return <Post text={item.text} src={item.src} alt={item.alt}/>
+    })
+
     return (
         <section className={s.wrapper}>
             <PostsControl/>
-            <Post text={textForMyPosts.text1} src={dataForMyPosts.src} alt={dataForMyPosts.alt}/>
-            <Post text={textForMyPosts.text2} src={dataForMyPosts.src} alt={dataForMyPosts.alt}/>
-            <Post text={textForMyPosts.text3} src={dataForMyPosts.src} alt={dataForMyPosts.alt}/>
-            <Post text={textForMyPosts.text4} src={dataForMyPosts.src} alt={dataForMyPosts.alt}/>
-            <Post text={textForMyPosts.text5} src={dataForMyPosts.src} alt={dataForMyPosts.alt}/>
+            {mappedPosts}
         </section>
     )
 }
