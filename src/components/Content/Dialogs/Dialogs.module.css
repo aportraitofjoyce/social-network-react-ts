@@ -30,24 +30,14 @@
     color: var(--primary);
 }
 
-.friendSay {
+.messageWrapper {
     display: flex;
     max-width: fit-content;
     gap: 16px;
     padding: 16px;
     border-radius: var(--border-radius);
     margin: 8px 0;
-    background: #fff4f4;
-}
-
-.meSay {
-    display: flex;
-    max-width: fit-content;
-    gap: 16px;
-    padding: 16px;
-    border-radius: var(--border-radius);
-    margin: 8px 0;
-    background: #eaffea;
+    background: #fff6f6;
 }
 
 .avatar {

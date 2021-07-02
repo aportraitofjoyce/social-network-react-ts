@@ -7,7 +7,6 @@ type PostPropsType = {
     text: string
 }
 
-
 export function Post(props: PostPropsType) {
     return (
         <div className={s.wrapper}>

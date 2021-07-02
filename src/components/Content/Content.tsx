@@ -10,17 +10,16 @@ export function Content() {
         <BrowserRouter>
             <main className={s.wrapper}>
                 <Sidebar/>
-                <Route path='/dialogs' component={Dialogs}/>
-                <Route path='/profile' component={Profile}/>
-                <Route path='/friends' component={Friends}/>
-                <Route path='/news' component={News}/>
-                <Route path='/settings' component={Settings}/>
+                <Route path='/dialogs' render={ () => <Dialogs/>}/>
+                <Route path='/profile' render={ () => <Profile/>}/>
+                <Route path='/friends' render={ () => <Friends/>}/>
+                <Route path='/news' render={ () => <News/>}/>
+                <Route path='/settings' render={ () => <Settings/>}/>
             </main>
         </BrowserRouter>
     )
 }
 
-// Заглушки
 function Friends() {
     return <div>Friends</div>
 }

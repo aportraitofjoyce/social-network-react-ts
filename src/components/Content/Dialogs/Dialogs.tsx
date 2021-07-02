@@ -1,59 +1,43 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import s from './Dialogs.module.css'
-import {dataForMyProfile} from "../Profile/MyProfile/MyProfile";
+import {FriendsContainer} from "./FriendsContainer/FriendsContainer";
+import {DialogsContainer} from "./DialogsContainer/DialogsContainer";
+
+const dataForFriends: Array<DataForFriendsType> = [
+    {id: 1, name: 'Me'},
+    {id: 2, name: 'Maxim'},
+    {id: 3, name: 'Andrei'},
+    {id: 4, name: 'Yura'}
+]
+
+export type DataForFriendsType = {
+    id: number
+    name: string
+}
+
+const messagesData: Array<MessagesDataType> = [
+    {id: 1, from: 'Me', message: 'А собаку выебал бы?'},
+    {id: 2, from: 'Andrei', message: 'Ну еще бы))))'},
+    {id: 3, from: 'Me', message: 'Крассссиво!'},
+    {id: 4, from: 'Me', message: 'А собаку выебал бы?'},
+    {id: 5, from: 'Andrei', message: 'Ну еще бы))))'},
+    {id: 6, from: 'Me', message: 'Крассссиво!'},
+    {id: 7, from: 'Me', message: 'А собаку выебал бы?'},
+    {id: 8, from: 'Andrei', message: 'Ну еще бы))))'},
+    {id: 9, from: 'Me', message: 'Крассссиво!'},
+]
+
+export type MessagesDataType = {
+    id: number
+    from: string
+    message: string
+}
 
 export function Dialogs() {
     return (
         <main className={s.wrapper}>
-            <FriendsContainer/>
-            <DialogsContainer/>
+            <FriendsContainer data={dataForFriends}/>
+            <DialogsContainer data={messagesData}/>
         </main>
-    )
-}
-
-function FriendsContainer() {
-    return (
-        <div className={s.friendsContainer}>
-            <NavLink to='/dialogs/1' className={s.friend} activeClassName={s.active}>Me</NavLink>
-            <NavLink to='/dialogs/2' className={s.friend} activeClassName={s.active}>Maxim</NavLink>
-            <NavLink to='/dialogs/3' className={s.friend} activeClassName={s.active}>Andrei</NavLink>
-            <NavLink to='/dialogs/4' className={s.friend} activeClassName={s.active}>Yura</NavLink>
-        </div>
-    )
-}
-
-function DialogsContainer() {
-    return (
-        <div className={s.dialogsContainer}>
-            <MeSay/>
-            <FriendSay/>
-        </div>
-    )
-}
-
-function MeSay() {
-    return (
-        <div className={s.meSay}>
-            <div className={s.avatar}>
-                <img src={dataForMyProfile.src} alt={dataForMyProfile.alt}/>
-            </div>
-            <div className={s.myMessage}>
-                Я: Собаку выебал бы?
-            </div>
-        </div>
-    )
-}
-
-function FriendSay() {
-    return (
-        <div className={s.friendSay}>
-            <div className={s.avatar}>
-                <img src={dataForMyProfile.src} alt={dataForMyProfile.alt}/>
-            </div>
-            <div className={s.friendMessage}>
-                Andrei: Еще бы)))))
-            </div>
-        </div>
     )
 }

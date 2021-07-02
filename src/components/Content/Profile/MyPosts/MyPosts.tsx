@@ -1,40 +1,15 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {dataForMyProfile} from "../MyProfile/MyProfile";
+import {PostsControl} from "./PostControl/PostControl";
+import {dataForMyPostsType} from "../Profile";
 
-const dataForMyPosts: Array<dataForMyPostsType> = [
-    {
-        src: dataForMyProfile.src,
-        alt: dataForMyProfile.alt,
-        text: 'Helloooo'
-    },
-    {
-        src: dataForMyProfile.src,
-        alt: dataForMyProfile.alt,
-        text: 'Byeeeeee'
-    },
-    {
-        src: dataForMyProfile.src,
-        alt: dataForMyProfile.alt,
-        text: 'Animeeee'
-    },
-    {
-        src: dataForMyProfile.src,
-        alt: dataForMyProfile.alt,
-        text: 'Looooool'
-    }
-]
-
-type dataForMyPostsType = {
-    src: string
-    alt: string
-    text: string
+type MyPostsPropsType = {
+    data: Array<dataForMyPostsType>
 }
 
-export function MyPosts() {
-
-    const mappedPosts = dataForMyPosts.map(item => {
+export function MyPosts(props: MyPostsPropsType) {
+    const mappedPosts = props.data.map((item: dataForMyPostsType) => {
         return <Post text={item.text} src={item.src} alt={item.alt}/>
     })
 
@@ -43,14 +18,5 @@ export function MyPosts() {
             <PostsControl/>
             {mappedPosts}
         </section>
-    )
-}
-
-function PostsControl() {
-    return (
-        <div className={s.control_wrapper}>
-            <textarea placeholder={'Say something'}/>
-            <button>Add</button>
-        </div>
     )
 }
