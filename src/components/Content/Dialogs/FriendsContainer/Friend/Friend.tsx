@@ -1,16 +1,16 @@
-import {DataForFriendsType} from "../../Dialogs";
 import {NavLink} from "react-router-dom";
 import s from "../../Dialogs.module.css";
 import React from "react";
 
-type FriendPropsTypes = {
-    data: DataForFriendsType
+type FriendPropsType = {
+    id: number
+    name: string
 }
 
-export function Friend(props: FriendPropsTypes) {
+export function Friend(props: FriendPropsType) {
     return (
-        <NavLink key={props.data.id} to={'/dialogs/' + props.data.id} className={s.friend} activeClassName={s.active}>
-            {props.data.name}
+        <NavLink key={props.id} to={'/dialogs/' + props.id} className={s.friend} activeClassName={s.active}>
+            {props.name}
         </NavLink>
     )
 }

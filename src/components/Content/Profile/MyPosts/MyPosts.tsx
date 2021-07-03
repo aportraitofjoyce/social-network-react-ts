@@ -2,14 +2,18 @@ import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostsControl} from "./PostControl/PostControl";
-import {dataForMyPostsType} from "../Profile";
 
 type MyPostsPropsType = {
-    data: Array<dataForMyPostsType>
+    dataForMyPosts: Array<MyPostsDataForMyPostsPropsType>
+}
+type MyPostsDataForMyPostsPropsType = {
+    text: string
+    src: string
+    alt: string
 }
 
 export function MyPosts(props: MyPostsPropsType) {
-    const mappedPosts = props.data.map((item: dataForMyPostsType) => {
+    const mappedPosts = props.dataForMyPosts.map((item: MyPostsDataForMyPostsPropsType) => {
         return <Post text={item.text} src={item.src} alt={item.alt}/>
     })
 

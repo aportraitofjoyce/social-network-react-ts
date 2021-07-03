@@ -1,6 +1,6 @@
-import {NavLink} from "react-router-dom";
-import s from "../Sidebar.module.css";
 import React from "react";
+import s from "../Sidebar.module.css";
+import {NavLink} from "react-router-dom";
 
 type SidebarItemPropsType = {
     link: string

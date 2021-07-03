@@ -2,17 +2,20 @@ import React from "react";
 import s from './MyProfile.module.css'
 import {MyAvatar} from "./MyAvatar/MyAvatar";
 import {MyInfo} from "./MyInfo/MyInfo";
-import {dataForMyProfileType} from "../Profile";
 
 type MyProfilePropsType = {
-    data: dataForMyProfileType
+    dataForMyProfile: {
+        src: string
+        alt: string
+        title: string
+    }
 }
 
 export function MyProfile(props: MyProfilePropsType) {
     return (
         <section className={s.wrapper}>
-            <MyAvatar src={props.data.src} alt={props.data.alt}/>
-            <MyInfo title={props.data.title}/>
+            <MyAvatar src={props.dataForMyProfile.src} alt={props.dataForMyProfile.alt}/>
+            <MyInfo title={props.dataForMyProfile.title}/>
         </section>
     )
 }
