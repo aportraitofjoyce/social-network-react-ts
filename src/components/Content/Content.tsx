@@ -8,6 +8,7 @@ import {ContentType} from "../../redux/state";
 
 type ContentPropsType = {
     contentData: ContentType
+    addPost: (postText: string) => void
 }
 
 export function Content(props: ContentPropsType) {
@@ -26,6 +27,7 @@ export function Content(props: ContentPropsType) {
                        render={() => <Profile
                            dataForMyProfile={props.contentData.profile.dataForMyProfile}
                            dataForMyPosts={props.contentData.profile.dataForMyPosts}
+                           addPost={props.addPost}
                        />}/>
 
                 <Route path='/friends' render={() => <Friends/>}/>

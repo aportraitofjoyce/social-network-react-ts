@@ -1,3 +1,6 @@
+import {rerenderEntireTree} from "../render";
+
+
 export const state: StateType = {
     header: {
         dataForHeader: {
@@ -58,18 +61,25 @@ export const state: StateType = {
             ],
 
             dataForMessages: [
-                {id: 1, from: 'Me', message: 'А собаку выебал бы?'},
-                {id: 2, from: 'Andrei', message: 'Ну еще бы))))'},
-                {id: 3, from: 'Me', message: 'Крассссиво!'},
-                {id: 4, from: 'Me', message: 'А собаку выебал бы?'},
-                {id: 5, from: 'Andrei', message: 'Ну еще бы))))'},
-                {id: 6, from: 'Me', message: 'Крассссиво!'},
-                {id: 7, from: 'Me', message: 'А собаку выебал бы?'},
-                {id: 8, from: 'Andrei', message: 'Ну еще бы))))'},
-                {id: 9, from: 'Me', message: 'Крассссиво!'},
+                {id: 1, from: 'Me', message: 'Привет, как дела?'},
+                {id: 2, from: 'Andrei', message: 'Ку-ку, отлично. А у тебя?'},
+                {id: 3, from: 'Me', message: 'Плохо, монитор из сервисного центре не отдают!'},
+                {id: 4, from: 'Me', message: 'Пользуются им уже дольше чем я'},
+                {id: 5, from: 'Andrei', message: 'Козлы'},
+                {id: 6, from: 'Me', message: 'Ага!'},
             ]
         }
     }
+}
+
+export const addPost = (postText: string) => {
+    const newPost: dataForMyPostsType = {
+        src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+        alt: "My profile",
+        text: postText
+    }
+    state.content.profile.dataForMyPosts.unshift(newPost)
+    rerenderEntireTree(state)
 }
 
 export type StateType = {
@@ -96,7 +106,6 @@ export type ContentType = {
 export type SidebarType = {
     dataForSidebar: Array<dataForSidebarType>
 }
-
 
 export type ProfileType = {
     dataForMyProfile: dataForMyProfileType

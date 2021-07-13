@@ -6,6 +6,7 @@ import {StateType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType
+    addPost: (postText: string) => void
 }
 
 export function App(props: AppPropsType) {
@@ -13,7 +14,8 @@ export function App(props: AppPropsType) {
         <div className={'App'}>
             <Header headerData={props.state.header}/>
             <Content
-                contentData = {props.state.content}
+                contentData={props.state.content}
+                addPost={props.addPost}
             />
         </div>
     )
