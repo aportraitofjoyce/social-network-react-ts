@@ -1,15 +1,11 @@
 import {NavLink} from "react-router-dom";
 import s from "../../Dialogs.module.css";
 import React from "react";
+import {DataForFriendsType} from "../../../../../redux/state";
 
-type FriendPropsType = {
-    id: number
-    name: string
-}
-
-export function Friend(props: FriendPropsType) {
+export function Friend(props: DataForFriendsType) {
     return (
-        <NavLink key={props.id} to={'/dialogs/' + props.id} className={s.friend} activeClassName={s.active}>
+        <NavLink to={'/dialogs/' + props.id} className={s.friend} activeClassName={s.active}>
             {props.name}
         </NavLink>
     )

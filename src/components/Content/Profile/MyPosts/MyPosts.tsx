@@ -5,7 +5,9 @@ import {PostsControl} from "./PostControl/PostControl";
 
 type MyPostsPropsType = {
     dataForMyPosts: Array<MyPostsDataForMyPostsPropsType>
-    addPost: (postText: string) => void
+    addPost: () => void
+    updatePostText: (postText: string) => void
+    textForNewPost: string
 }
 type MyPostsDataForMyPostsPropsType = {
     text: string
@@ -20,7 +22,7 @@ export function MyPosts(props: MyPostsPropsType) {
 
     return (
         <section className={s.wrapper}>
-            <PostsControl addPost={props.addPost}/>
+            <PostsControl addPost={props.addPost} updatePostText={props.updatePostText} textForNewPost={props.textForNewPost}/>
             {mappedPosts}
         </section>
     )

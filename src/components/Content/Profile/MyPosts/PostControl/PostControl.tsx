@@ -1,22 +1,27 @@
 import s from "../MyPosts.module.css";
-import React, {createRef} from "react";
+import React, {ChangeEvent} from "react";
 
 type PostControlPropsType = {
-    addPost: (text: any) => void
+    addPost: () => void
+    updatePostText: (postText: string) => void
+    textForNewPost: string
 }
 
 export function PostsControl(props: PostControlPropsType) {
-    const newPostElement  = createRef<HTMLTextAreaElement>()
 
-    const addPost = () => {
-        let text: string | undefined = newPostElement.current?.value
-        props.addPost(text)
+    const addPostHandler = () => {
+        props.addPost()
+        props.updatePostText('')
+    }
+
+    const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updatePostText(e.currentTarget.value)
     }
 
     return (
         <div className={s.control_wrapper}>
-            <textarea placeholder={'Say something'} ref={newPostElement}/>
-            <button onClick={addPost}>Add</button>
+            <textarea placeholder={'Say something'} onChange={changePostHandler} value={props.textForNewPost}/>
+            <button onClick={addPostHandler}>Add</button>
         </div>
     )
 }

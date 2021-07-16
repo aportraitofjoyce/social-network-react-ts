@@ -2,7 +2,7 @@ import s from "../../Dialogs.module.css";
 import React from "react";
 
 type MessagePropsType = {
-    id: number
+    id: string
     from: string
     message: string
 }
