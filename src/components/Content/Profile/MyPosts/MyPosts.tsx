@@ -2,27 +2,28 @@ import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostsControl} from "./PostControl/PostControl";
+import {v1} from "uuid";
 
 type MyPostsPropsType = {
-    dataForMyPosts: Array<MyPostsDataForMyPostsPropsType>
-    addPost: () => void
-    updatePostText: (postText: string) => void
+    dataForMyPosts: MyPostsDataForMyPostsPropsType[]
+    dispatch: (action: any) => void
     textForNewPost: string
 }
 type MyPostsDataForMyPostsPropsType = {
     text: string
     src: string
     alt: string
+    likes: number
 }
 
-export function MyPosts(props: MyPostsPropsType) {
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     const mappedPosts = props.dataForMyPosts.map((item: MyPostsDataForMyPostsPropsType) => {
-        return <Post text={item.text} src={item.src} alt={item.alt}/>
+        return <Post key={v1()} text={item.text} src={item.src} alt={item.alt} likes={item.likes}/>
     })
 
     return (
         <section className={s.wrapper}>
-            <PostsControl addPost={props.addPost} updatePostText={props.updatePostText} textForNewPost={props.textForNewPost}/>
+            <PostsControl dispatch={props.dispatch} textForNewPost={props.textForNewPost}/>
             {mappedPosts}
         </section>
     )

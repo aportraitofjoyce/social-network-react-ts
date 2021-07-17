@@ -5,22 +5,19 @@ import {DialogsContainer} from "./DialogsContainer/DialogsContainer";
 import {DataForFriendsType, MessagesDataType} from "../../../redux/state";
 
 type DialogsPropsType = {
-    dataForFriends: Array<DataForFriendsType>
-    dataForMessages: Array<MessagesDataType>
-    sendMessage: () => void
-    updateMessageText: (text: string) => void
+    dataForFriends: DataForFriendsType[]
+    dataForMessages: MessagesDataType[]
+    dispatch: (action: object) => void
     textForNewMessage: string
-
 }
 
-export function Dialogs(props: DialogsPropsType) {
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     return (
         <main className={s.wrapper}>
             <FriendsContainer dataForFriends={props.dataForFriends}/>
             <DialogsContainer
                 dataForMessages={props.dataForMessages}
-                sendMessage={props.sendMessage}
-                updateMessageText={props.updateMessageText}
+                dispatch={props.dispatch}
                 textForNewMessage={props.textForNewMessage}
             />
         </main>

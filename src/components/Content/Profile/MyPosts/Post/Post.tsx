@@ -5,6 +5,7 @@ type PostPropsType = {
     src: string
     alt: string
     text: string
+    likes: number
 }
 
 export function Post(props: PostPropsType) {
@@ -17,7 +18,7 @@ export function Post(props: PostPropsType) {
 
             <div className={s.content_container}>
                 <div>{props.text}</div>
-                <div>Likes</div>
+                <div>Likes: {props.likes}</div>
             </div>
 
         </div>

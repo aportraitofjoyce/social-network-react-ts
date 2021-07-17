@@ -2,20 +2,19 @@ import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
 
 type DialogsControlPropsType = {
-    sendMessage: () => void
-    updateMessageText: (text: string) => void
+    dispatch: (action: object) => void
     textForNewMessage: string
 }
 
-export function DialogsControl(props: DialogsControlPropsType) {
-    
+export const DialogsControl: React.FC<DialogsControlPropsType> = (props) => {
+
     const sendNewMessage = () => {
-        props.sendMessage()
-        props.updateMessageText('')
+        props.dispatch({type: 'SEND-MESSAGE'})
+        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', text: ''})
     }
 
     const changeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateMessageText(e.currentTarget.value)
+        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', text: e.currentTarget.value})
     }
 
     return (

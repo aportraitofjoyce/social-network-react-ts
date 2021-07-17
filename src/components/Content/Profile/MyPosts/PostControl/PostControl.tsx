@@ -2,20 +2,19 @@ import s from "../MyPosts.module.css";
 import React, {ChangeEvent} from "react";
 
 type PostControlPropsType = {
-    addPost: () => void
-    updatePostText: (postText: string) => void
+    dispatch: (action: object) => void
     textForNewPost: string
 }
 
-export function PostsControl(props: PostControlPropsType) {
+export const PostsControl: React.FC<PostControlPropsType> = (props) => {
 
     const addPostHandler = () => {
-        props.addPost()
-        props.updatePostText('')
+        props.dispatch({type: 'ADD-POST'})
+        props.dispatch({type: 'UPDATE-POST-TEXT', postText: ''})
     }
 
     const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatePostText(e.currentTarget.value)
+        props.dispatch({type: 'UPDATE-POST-TEXT', postText: e.currentTarget.value})
     }
 
     return (

@@ -6,20 +6,18 @@ import {dataForMyPostsType, dataForMyProfileType} from "../../../redux/state";
 
 type ProfilePropsType = {
     dataForMyProfile: dataForMyProfileType
-    dataForMyPosts: Array<dataForMyPostsType>
-    addPost: () => void
-    updatePostText: (postText: string) => void
+    dataForMyPosts: dataForMyPostsType[]
+    dispatch: (action: object) => void
     textForNewPost: string
 }
 
-export function Profile(props: ProfilePropsType) {
+export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <main className={s.wrapper}>
             <MyProfile dataForMyProfile={props.dataForMyProfile}/>
             <MyPosts
                 dataForMyPosts={props.dataForMyPosts}
-                addPost={props.addPost}
-                updatePostText={props.updatePostText}
+                dispatch={props.dispatch}
                 textForNewPost={props.textForNewPost}
             />
         </main>

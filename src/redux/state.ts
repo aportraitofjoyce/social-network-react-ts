@@ -1,90 +1,137 @@
-import {rerenderEntireTree} from "../render";
 import {v1} from "uuid";
 
-export const state: StateType = {
-    sidebar: {
-        dataForSidebar: [
-            {name: 'My profile', link: '/profile'},
-            {name: 'Messages', link: '/dialogs'},
-        ]
+export const store: StoreType = {
+    _state: {
+        sidebar: {
+            dataForSidebar: [
+                {name: 'My profile', link: '/profile'},
+                {name: 'Messages', link: '/dialogs'},
+            ]
+        },
+
+        profile: {
+            dataForMyProfile: {
+                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                alt: "My profile",
+                title: 'Илья Садовский'
+            },
+            dataForMyPosts: [
+                {
+                    src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                    alt: "My profile",
+                    text: 'My first post',
+                    likes: 10
+                },
+                {
+                    src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                    alt: "My profile",
+                    text: 'My second post',
+                    likes: 5
+                },
+                {
+                    src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                    alt: "My profile",
+                    text: 'My third post',
+                    likes: 43
+                },
+                {
+                    src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                    alt: "My profile",
+                    text: 'My fourth post',
+                    likes: 0
+                }
+            ],
+            newPost: {
+                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
+                alt: "My profile",
+                text: '',
+                likes: 0
+            }
+        },
+
+        dialogs: {
+            dataForFriends: [
+                {id: v1(), name: 'Me'},
+                {id: v1(), name: 'Maxim'},
+                {id: v1(), name: 'Andrei'},
+                {id: v1(), name: 'Yura'}
+            ],
+
+            dataForMessages: [
+                {id: v1(), from: 'Me', message: 'Привет, как дела?'},
+                {id: v1(), from: 'Andrei', message: 'Ку-ку, отлично. А у тебя?'},
+                {id: v1(), from: 'Me', message: 'Плохо, монитор из сервисного центре не отдают!'},
+                {id: v1(), from: 'Me', message: 'Пользуются им уже дольше чем я'},
+                {id: v1(), from: 'Andrei', message: 'Козлы'},
+                {id: v1(), from: 'Me', message: 'Ага!'},
+            ],
+
+            newMessage: {id: v1(), from: 'Me', message: ''}
+        }
+    },
+    _callSubscriber() {
     },
 
-    profile: {
-        dataForMyProfile: {
-            src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-            alt: "My profile",
-            title: 'Илья Садовский'
-        },
-        dataForMyPosts: [
-            {
-                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-                alt: "My profile",
-                text: 'Helloooo'
-            },
-            {
-                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-                alt: "My profile",
-                text: 'Byeeeeee'
-            },
-            {
-                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-                alt: "My profile",
-                text: 'Animeeee'
-            },
-            {
-                src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-                alt: "My profile",
-                text: 'Looooool'
-            }
-        ],
-        newPost: {
-            src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
-            alt: "My profile",
-            text: ''
+    getState() {
+        return this._state
+    },
+    // Принимает rerenderEntireTree и дает привязку пустой функции _callSubscriber для перевызова и отрисовки
+    subscribe(observer: () => void) {
+        this._callSubscriber = observer
+    },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                this._addPost();
+                break
+            case 'UPDATE-POST-TEXT':
+                this._updatePostText(action.postText);
+                break
+            case 'SEND-MESSAGE':
+                this._sendMessage();
+                break
+            case 'UPDATE-MESSAGE-TEXT':
+                this._updateMessageText(action.text);
+                break
         }
     },
 
-    dialogs: {
-        dataForFriends: [
-            {id: v1(), name: 'Me'},
-            {id: v1(), name: 'Maxim'},
-            {id: v1(), name: 'Andrei'},
-            {id: v1(), name: 'Yura'}
-        ],
+    _addPost() {
+        const copyOfNewPost = {...this._state.profile.newPost}
+        this._state.profile.dataForMyPosts.unshift(copyOfNewPost)
+        this._callSubscriber()
+    },
 
-        dataForMessages: [
-            {id: v1(), from: 'Me', message: 'Привет, как дела?'},
-            {id: v1(), from: 'Andrei', message: 'Ку-ку, отлично. А у тебя?'},
-            {id: v1(), from: 'Me', message: 'Плохо, монитор из сервисного центре не отдают!'},
-            {id: v1(), from: 'Me', message: 'Пользуются им уже дольше чем я'},
-            {id: v1(), from: 'Andrei', message: 'Козлы'},
-            {id: v1(), from: 'Me', message: 'Ага!'},
-        ],
+    _updatePostText(postText: string) {
+        this._state.profile.newPost.text = postText
+        this._callSubscriber()
+    },
 
-        newMessage: {id: v1(), from: 'Me', message: ''}
+    _sendMessage() {
+        const copyOfNewMessage = {...this._state.dialogs.newMessage}
+        this._state.dialogs.dataForMessages.push(copyOfNewMessage)
+        this._callSubscriber()
+    },
+
+    _updateMessageText(text: string) {
+        store._state.dialogs.newMessage.message = text
+        store._callSubscriber()
     }
 }
 
-export const addPost = () => {
-    const copy = {...state.profile.newPost}
-    state.profile.dataForMyPosts.unshift(copy)
-    rerenderEntireTree(state)
-}
 
-export const updatePostText = (postText: string) => {
-    state.profile.newPost.text = postText
-    rerenderEntireTree(state)
-}
+type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    _callSubscriber: () => void
+    subscribe: (observer: () => void) => void
+    dispatch: (action: any) => void
+    _addPost: () => void
+    _updatePostText: (postText: string) => void
+    _sendMessage: () => void
+    _updateMessageText: (text: string) => void
 
-export const sendMessage = () => {
-    const copy = {...state.dialogs.newMessage}
-    state.dialogs.dataForMessages.push(copy)
-    rerenderEntireTree(state)
-}
-
-export const updateMessageText = (text: string) => {
-    state.dialogs.newMessage.message = text
-    rerenderEntireTree(state)
 }
 
 export type StateType = {
@@ -94,18 +141,18 @@ export type StateType = {
 }
 
 export type SidebarType = {
-    dataForSidebar: Array<dataForSidebarType>
+    dataForSidebar: dataForSidebarType[]
 }
 
 export type ProfileType = {
     dataForMyProfile: dataForMyProfileType
-    dataForMyPosts: Array<dataForMyPostsType>
+    dataForMyPosts: dataForMyPostsType[]
     newPost: dataForMyPostsType
 }
 
 export type DialogsType = {
-    dataForFriends: Array<DataForFriendsType>
-    dataForMessages: Array<MessagesDataType>
+    dataForFriends: DataForFriendsType[]
+    dataForMessages: MessagesDataType[]
     newMessage: MessagesDataType
 }
 
@@ -124,6 +171,7 @@ export type dataForMyPostsType = {
     src: string
     alt: string
     text: string
+    likes: number
 }
 
 export type DataForFriendsType = {

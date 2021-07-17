@@ -2,11 +2,11 @@ import React from "react";
 import s from "../Dialogs.module.css";
 import {Message} from "./Message/Message";
 import {DialogsControl} from "./DialogsControl/DialogsControl";
+import {v1} from "uuid";
 
 type DialogsContainerPropsType = {
-    dataForMessages: Array<DialogsContainerDataForMessagesPropsType>
-    sendMessage: () => void
-    updateMessageText: (text: string) => void
+    dataForMessages: DialogsContainerDataForMessagesPropsType[]
+    dispatch: (action: object) => void
     textForNewMessage: string
 }
 
@@ -16,10 +16,10 @@ type DialogsContainerDataForMessagesPropsType = {
     message: string
 }
 
-export function DialogsContainer(props: DialogsContainerPropsType) {
+export const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
 
     const mappedMessages = props.dataForMessages.map((item: DialogsContainerDataForMessagesPropsType) => <Message
-        from={item.from} message={item.message} id={item.id}/>)
+        key={v1()} from={item.from} message={item.message} id={item.id}/>)
 
     return (
         <div className={s.dialogsWrapper}>
@@ -27,8 +27,7 @@ export function DialogsContainer(props: DialogsContainerPropsType) {
                 {mappedMessages}
             </div>
             <DialogsControl
-                sendMessage={props.sendMessage}
-                updateMessageText={props.updateMessageText}
+                dispatch={props.dispatch}
                 textForNewMessage={props.textForNewMessage}
             />
         </div>
