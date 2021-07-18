@@ -24,7 +24,8 @@ export const App: React.FC<AppPropsType> = (props) => {
                            dataForMessages={props.state.dialogs.dataForMessages}
                            textForNewMessage={props.state.dialogs.newMessage.message}
                            dispatch={props.dispatch}
-                       />}/>
+                       />}
+                />
 
                 <Route path='/profile'
                        render={() => <Profile
@@ -32,7 +33,8 @@ export const App: React.FC<AppPropsType> = (props) => {
                            dataForMyPosts={props.state.profile.dataForMyPosts}
                            dispatch={props.dispatch}
                            textForNewPost={props.state.profile.newPost.text}
-                       />}/>
+                       />}
+                />
             </main>
         </div>
     )

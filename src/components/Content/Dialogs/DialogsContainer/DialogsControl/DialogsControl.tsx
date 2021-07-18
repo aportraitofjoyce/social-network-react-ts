@@ -1,5 +1,6 @@
 import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
+import {sendMessageActionCreator, updateMessageTextActionCreator} from "../../../../../redux/state";
 
 type DialogsControlPropsType = {
     dispatch: (action: object) => void
@@ -9,12 +10,12 @@ type DialogsControlPropsType = {
 export const DialogsControl: React.FC<DialogsControlPropsType> = (props) => {
 
     const sendNewMessage = () => {
-        props.dispatch({type: 'SEND-MESSAGE'})
-        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', text: ''})
+        props.dispatch(sendMessageActionCreator())
+        props.dispatch(updateMessageTextActionCreator(''))
     }
 
     const changeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'UPDATE-MESSAGE-TEXT', text: e.currentTarget.value})
+        props.dispatch(updateMessageTextActionCreator(e.currentTarget.value))
     }
 
     return (

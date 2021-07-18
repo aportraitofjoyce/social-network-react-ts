@@ -25,8 +25,3 @@ rerenderEntireTree()
 store.subscribe(rerenderEntireTree)
 
 reportWebVitals()
-
-/*addPost={store.addPost.bind(store)}
-                    updatePostText={store.updatePostText.bind(store)}
-                    sendMessage={store.sendMessage.bind(store)}
-                    updateMessageText={store.updateMessageText.bind(store)}*/

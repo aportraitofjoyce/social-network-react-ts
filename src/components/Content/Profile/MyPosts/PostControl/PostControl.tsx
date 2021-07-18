@@ -1,5 +1,6 @@
 import s from "../MyPosts.module.css";
 import React, {ChangeEvent} from "react";
+import {addPostActionCreator, updatePostActionCreator} from "../../../../../redux/state";
 
 type PostControlPropsType = {
     dispatch: (action: object) => void
@@ -9,12 +10,12 @@ type PostControlPropsType = {
 export const PostsControl: React.FC<PostControlPropsType> = (props) => {
 
     const addPostHandler = () => {
-        props.dispatch({type: 'ADD-POST'})
-        props.dispatch({type: 'UPDATE-POST-TEXT', postText: ''})
+        props.dispatch(addPostActionCreator())
+        props.dispatch(updatePostActionCreator(''))
     }
 
     const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'UPDATE-POST-TEXT', postText: e.currentTarget.value})
+        props.dispatch(updatePostActionCreator(e.currentTarget.value))
     }
 
     return (

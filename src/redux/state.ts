@@ -1,5 +1,10 @@
 import {v1} from "uuid";
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE'
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+
 export const store: StoreType = {
     _state: {
         sidebar: {
@@ -44,7 +49,7 @@ export const store: StoreType = {
             newPost: {
                 src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
                 alt: "My profile",
-                text: '',
+                text: 'Что-то чтобы не вводить для тестов',
                 likes: 0
             }
         },
@@ -69,29 +74,32 @@ export const store: StoreType = {
             newMessage: {id: v1(), from: 'Me', message: ''}
         }
     },
-    _callSubscriber() {
-    },
 
-    getState() {
+    getState(): StateType {
         return this._state
     },
+
     // Принимает rerenderEntireTree и дает привязку пустой функции _callSubscriber для перевызова и отрисовки
     subscribe(observer: () => void) {
         this._callSubscriber = observer
+        console.log('subscribe')
+    },
+
+    _callSubscriber() {
     },
 
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ADD_POST:
                 this._addPost();
                 break
-            case 'UPDATE-POST-TEXT':
-                this._updatePostText(action.postText);
+            case UPDATE_POST_TEXT:
+                this._updatePostText(action.text);
                 break
-            case 'SEND-MESSAGE':
+            case SEND_MESSAGE:
                 this._sendMessage();
                 break
-            case 'UPDATE-MESSAGE-TEXT':
+            case UPDATE_MESSAGE_TEXT:
                 this._updateMessageText(action.text);
                 break
         }
@@ -103,8 +111,8 @@ export const store: StoreType = {
         this._callSubscriber()
     },
 
-    _updatePostText(postText: string) {
-        this._state.profile.newPost.text = postText
+    _updatePostText(text: string) {
+        this._state.profile.newPost.text = text
         this._callSubscriber()
     },
 
@@ -120,12 +128,30 @@ export const store: StoreType = {
     }
 }
 
+// Action Creators
+export const addPostActionCreator = () => {
+    return {type: ADD_POST}
+}
 
+export const updatePostActionCreator = (text: string) => {
+    return {type: UPDATE_POST_TEXT, text: text}
+}
+
+export const sendMessageActionCreator = () => {
+    return {type: SEND_MESSAGE}
+}
+
+export const updateMessageTextActionCreator = (text: string) => {
+    return {type: UPDATE_MESSAGE_TEXT, text: text}
+}
+
+
+// TypeScript
 type StoreType = {
     _state: StateType
     getState: () => StateType
-    _callSubscriber: () => void
     subscribe: (observer: () => void) => void
+    _callSubscriber: () => void
     dispatch: (action: any) => void
     _addPost: () => void
     _updatePostText: (postText: string) => void
