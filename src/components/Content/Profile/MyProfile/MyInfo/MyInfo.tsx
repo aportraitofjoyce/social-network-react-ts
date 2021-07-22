@@ -5,7 +5,7 @@ type MyInfoPropsType = {
     title: string
 }
 
-export function MyInfo(props: MyInfoPropsType) {
+export const MyInfo: React.FC<MyInfoPropsType> = (props) => {
     return (
         <div className={s.info_wrapper}>
             <h3>{props.title}</h3>

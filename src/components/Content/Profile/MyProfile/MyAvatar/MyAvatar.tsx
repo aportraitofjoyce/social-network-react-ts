@@ -6,7 +6,7 @@ type MyAvatarPropsType = {
     alt: string
 }
 
-export function MyAvatar(props: MyAvatarPropsType) {
+export const MyAvatar: React.FC<MyAvatarPropsType> = (props) => {
     return (
         <div className={s.avatar_wrapper}>
             <img

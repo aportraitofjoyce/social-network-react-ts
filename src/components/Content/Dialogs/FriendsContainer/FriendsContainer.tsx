@@ -7,8 +7,8 @@ type FriendsContainerPropsType = {
     dataForFriends: DataForFriendsType[]
 }
 
-export function FriendsContainer(props: FriendsContainerPropsType) {
-    const dialogWithFriend = props.dataForFriends.map((item: DataForFriendsType) => <Friend key={item.id} id={item.id} name={item.name}/>)
+export const FriendsContainer: React.FC<FriendsContainerPropsType> = (props) => {
+    const dialogWithFriend = props.dataForFriends.map((item) => <Friend key={item.id} id={item.id} name={item.name}/>)
 
     return (
         <div className={s.friendsContainer}>

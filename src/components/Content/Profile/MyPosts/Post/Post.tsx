@@ -8,7 +8,7 @@ type PostPropsType = {
     likes: number
 }
 
-export function Post(props: PostPropsType) {
+export const Post: React.FC<PostPropsType> = (props) => {
     return (
         <div className={s.wrapper}>
 

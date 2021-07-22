@@ -3,9 +3,11 @@ import s from "../../Dialogs.module.css";
 import React from "react";
 import {DataForFriendsType} from "../../../../../redux/state";
 
-export function Friend(props: DataForFriendsType) {
+export const Friend: React.FC<DataForFriendsType> = (props) => {
     return (
-        <NavLink to={'/dialogs/' + props.id} className={s.friend} activeClassName={s.active}>
+        <NavLink to={'/dialogs/' + props.id}
+                 className={s.friend}
+                 activeClassName={s.active}>
             {props.name}
         </NavLink>
     )
