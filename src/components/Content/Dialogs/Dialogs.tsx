@@ -2,12 +2,12 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {FriendsContainer} from "./FriendsContainer/FriendsContainer";
 import {DialogsContainer} from "./DialogsContainer/DialogsContainer";
-import {DataForFriendsType, MessagesDataType} from "../../../redux/state";
+import {ActionsType, DataForFriendsType, MessagesDataType} from "../../../redux/state";
 
 type DialogsPropsType = {
     dataForFriends: DataForFriendsType[]
     dataForMessages: MessagesDataType[]
-    dispatch: (action: object) => void
+    dispatch: (action: ActionsType) => void
     textForNewMessage: string
 }
 

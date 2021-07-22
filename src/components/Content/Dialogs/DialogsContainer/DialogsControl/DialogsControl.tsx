@@ -1,21 +1,21 @@
 import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
-import {sendMessageActionCreator, updateMessageTextActionCreator} from "../../../../../redux/state";
+import {ActionsType, sendMessageAC, updateMessageTextAC} from "../../../../../redux/state";
 
 type DialogsControlPropsType = {
-    dispatch: (action: object) => void
+    dispatch: (action: ActionsType) => void
     textForNewMessage: string
 }
 
 export const DialogsControl: React.FC<DialogsControlPropsType> = (props) => {
 
     const sendNewMessage = () => {
-        props.dispatch(sendMessageActionCreator())
-        props.dispatch(updateMessageTextActionCreator(''))
+        props.dispatch(sendMessageAC())
+        props.dispatch(updateMessageTextAC(''))
     }
 
     const changeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateMessageTextActionCreator(e.currentTarget.value))
+        props.dispatch(updateMessageTextAC(e.currentTarget.value))
     }
 
     return (

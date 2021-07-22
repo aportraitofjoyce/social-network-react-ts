@@ -2,12 +2,12 @@ import React from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {MyProfile} from "./MyProfile/MyProfile";
-import {dataForMyPostsType, dataForMyProfileType} from "../../../redux/state";
+import {ActionsType, dataForMyPostsType, dataForMyProfileType} from "../../../redux/state";
 
 type ProfilePropsType = {
     dataForMyProfile: dataForMyProfileType
     dataForMyPosts: dataForMyPostsType[]
-    dispatch: (action: object) => void
+    dispatch: (action: ActionsType) => void
     textForNewPost: string
 }
 

@@ -1,21 +1,21 @@
 import s from "../MyPosts.module.css";
 import React, {ChangeEvent} from "react";
-import {addPostActionCreator, updatePostActionCreator} from "../../../../../redux/state";
+import {ActionsType, addPostAC, updatePostAC} from "../../../../../redux/state";
 
 type PostControlPropsType = {
-    dispatch: (action: object) => void
+    dispatch: (action: ActionsType) => void
     textForNewPost: string
 }
 
 export const PostsControl: React.FC<PostControlPropsType> = (props) => {
 
     const addPostHandler = () => {
-        props.dispatch(addPostActionCreator())
-        props.dispatch(updatePostActionCreator(''))
+        props.dispatch(addPostAC())
+        props.dispatch(updatePostAC(''))
     }
 
     const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updatePostActionCreator(e.currentTarget.value))
+        props.dispatch(updatePostAC(e.currentTarget.value))
     }
 
     return (

@@ -73,16 +73,17 @@ export const store: StoreType = {
             newMessage: {
                 id: v1(),
                 from: 'Me',
-                message: ''}
+                message: ''
+            }
         }
     },
 
-    getState(): StateType {
+    _getState(): StateType {
         return this._state
     },
 
     // Принимает rerenderEntireTree и дает привязку пустой функции _callSubscriber для перевызова и отрисовки
-    subscribe(observer: () => void) {
+    _subscribe(observer) {
         this._callSubscriber = observer
     },
 
@@ -130,36 +131,38 @@ export const store: StoreType = {
 }
 
 // Action Creators
-export const addPostActionCreator = () => {
-    return {type: ADD_POST}
+export const addPostAC = () => {
+    return {type: ADD_POST} as const
 }
-
-export const updatePostActionCreator = (text: string) => {
-    return {type: UPDATE_POST_TEXT, text: text}
+export const updatePostAC = (text: string) => {
+    return {type: UPDATE_POST_TEXT, text: text} as const
 }
-
-export const sendMessageActionCreator = () => {
-    return {type: SEND_MESSAGE}
+export const sendMessageAC = () => {
+    return {type: SEND_MESSAGE} as const
 }
-
-export const updateMessageTextActionCreator = (text: string) => {
-    return {type: UPDATE_MESSAGE_TEXT, text: text}
+export const updateMessageTextAC = (text: string) => {
+    return {type: UPDATE_MESSAGE_TEXT, text: text} as const
 }
-
 
 // TypeScript
 type StoreType = {
     _state: StateType
-    getState: () => StateType
-    subscribe: (observer: () => void) => void
+    _getState: () => StateType
+    _subscribe: (observer: () => void) => void
     _callSubscriber: () => void
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
     _addPost: () => void
     _updatePostText: (postText: string) => void
     _sendMessage: () => void
     _updateMessageText: (text: string) => void
-
 }
+
+export type ActionsType =
+    ReturnType<typeof addPostAC> |
+    ReturnType<typeof updatePostAC> |
+    ReturnType<typeof sendMessageAC> |
+    ReturnType<typeof updateMessageTextAC>
+
 
 export type StateType = {
     sidebar: SidebarType

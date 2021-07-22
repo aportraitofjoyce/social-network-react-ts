@@ -3,10 +3,11 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostsControl} from "./PostControl/PostControl";
 import {v1} from "uuid";
+import {ActionsType} from "../../../../redux/state";
 
 type MyPostsPropsType = {
     dataForMyPosts: MyPostsDataForMyPostsPropsType[]
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
     textForNewPost: string
 }
 type MyPostsDataForMyPostsPropsType = {
