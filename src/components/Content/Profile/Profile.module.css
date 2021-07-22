@@ -1,7 +1,6 @@
 .wrapper {
-    max-width: inherit;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    flex: 1;
+    flex: 1 1 auto;
 }

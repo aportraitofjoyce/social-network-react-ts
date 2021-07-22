@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
+    flex: 1 1 auto;
     gap: 24px;
-    width: 100%;
     padding: 24px;
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);

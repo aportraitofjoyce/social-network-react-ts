@@ -70,8 +70,10 @@ export const store: StoreType = {
                 {id: v1(), from: 'Andrei', message: 'Козлы'},
                 {id: v1(), from: 'Me', message: 'Ага!'},
             ],
-
-            newMessage: {id: v1(), from: 'Me', message: ''}
+            newMessage: {
+                id: v1(),
+                from: 'Me',
+                message: ''}
         }
     },
 
@@ -82,7 +84,6 @@ export const store: StoreType = {
     // Принимает rerenderEntireTree и дает привязку пустой функции _callSubscriber для перевызова и отрисовки
     subscribe(observer: () => void) {
         this._callSubscriber = observer
-        console.log('subscribe')
     },
 
     _callSubscriber() {

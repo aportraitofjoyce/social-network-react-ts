@@ -1,7 +1,8 @@
 .wrapper {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    margin: 40px auto;
     max-width: 1024px;
-    margin: 24px auto;
+    width: 100%;
+    gap: 40px;
 }

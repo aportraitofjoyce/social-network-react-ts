@@ -1,13 +1,14 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    width: 140px;
+    flex: 0 0 140px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
 }
+
 .container a {
     text-decoration: none;
     color: var(--text);
@@ -16,7 +17,7 @@
 }
 
 .container a:hover {
-    background: #e639461f;
+    color: var(--primary);
 }
 
 .container a.active {
