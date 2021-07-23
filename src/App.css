@@ -2,8 +2,8 @@
 
 :root {
     --text: #333;
-    --primary: #673ab7;
-    --primary-light: rgba(103, 58, 183, 0.75);
+    --primary: #2f635e;
+    --primary-light: rgba(47, 99, 94, 0.75);
     --secondary: #ffc443;
 
     --border: 1px solid lightgrey;

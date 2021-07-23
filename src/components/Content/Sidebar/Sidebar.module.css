@@ -22,4 +22,5 @@
 
 .container a.active {
     color: var(--primary);
+    font-weight: 500;
 }
