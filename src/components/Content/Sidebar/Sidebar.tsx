@@ -4,8 +4,14 @@ import {SidebarItem} from "./SidebarItem/SidebarItem";
 import {SidebarType} from "../../../redux/redux-store";
 import {v1} from "uuid";
 
-export const Sidebar: React.FC<SidebarType> = (props) => {
-    const mappedSidebarItems = props.dataForSidebar.map((item) => {
+type SidebarPropsType = {
+    store: any
+}
+
+export const Sidebar: React.FC<SidebarPropsType> = (props) => {
+    const state: SidebarType = props.store.getState().sidebar
+
+    const mappedSidebarItems = state.dataForSidebar.map(item => {
         return <SidebarItem key={v1()} name={item.name} link={item.link}/>
     })
 

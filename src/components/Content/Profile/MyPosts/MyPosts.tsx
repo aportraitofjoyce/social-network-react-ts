@@ -2,16 +2,18 @@ import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {v1} from "uuid";
-import {ActionsType, ProfileType} from "../../../../redux/redux-store";
-import {PostControlContainer} from "./PostControl/PostControlContainer";
+import {PostsControl} from "./PostControl/PostControl";
+import {dataForMyPostsType} from "../../../../redux/redux-store";
 
 type MyPostsPropsType = {
-    dispatch: (action: ActionsType) => void
-    state: ProfileType
+    addPost: () => void
+    updatePost: (text: string) => void
+    textForNewPost: string
+    dataForMyPosts: dataForMyPostsType[]
 }
 
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-    const mappedPosts = props.state.dataForMyPosts.map((item) => {
+    const mappedPosts = props.dataForMyPosts.map((item) => {
         return <Post key={v1()}
                      text={item.text}
                      src={item.src}
@@ -21,7 +23,9 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     return (
         <section className={s.wrapper}>
-            <PostControlContainer dispatch={props.dispatch} textForNewPost={props.state.newPost.text}/>
+            <PostsControl textForNewPost={props.textForNewPost}
+                          addPost={props.addPost}
+                          updatePost={props.updatePost}/>
             {mappedPosts}
         </section>
     )

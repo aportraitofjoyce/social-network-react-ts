@@ -15,7 +15,7 @@ export const store = createStore(reducers)
 
 
 export type StoreType = {
-    state: StateType
+    _state: StateType
     getState: () => StateType
     subscribe: (observer: () => void) => void
     callSubscriber: () => void

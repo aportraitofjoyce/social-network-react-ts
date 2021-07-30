@@ -20,5 +20,3 @@ let rerenderEntireTree = () => {
 rerenderEntireTree()
 store.subscribe(rerenderEntireTree)
 reportWebVitals()
-
-{/*state={store.getState()}*/}

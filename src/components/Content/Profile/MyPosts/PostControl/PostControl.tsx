@@ -3,8 +3,8 @@ import React, {ChangeEvent} from "react";
 
 type PostControlPropsType = {
     textForNewPost: string
-    addPost: any
-    updatePost: any
+    addPost: () => void
+    updatePost: (text: string) => void
 }
 
 export const PostsControl: React.FC<PostControlPropsType> = (props) => {
@@ -19,7 +19,9 @@ export const PostsControl: React.FC<PostControlPropsType> = (props) => {
 
     return (
         <div className={s.control_wrapper}>
-            <textarea placeholder={'Say something'} onChange={updatePostHandler} value={props.textForNewPost}/>
+            <textarea placeholder={'Say something'}
+                      onChange={updatePostHandler}
+                      value={props.textForNewPost}/>
             <button onClick={addPostHandler}>Add</button>
         </div>
     )

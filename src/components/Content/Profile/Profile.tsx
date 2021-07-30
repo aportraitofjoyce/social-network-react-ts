@@ -3,6 +3,7 @@ import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {MyProfile} from "./MyProfile/MyProfile";
 import {ProfileType} from "../../../redux/redux-store";
+import {addPostAC, updatePostAC} from "../../../redux/profile-reducer";
 
 type ProfilePropsType = {
     store: any
@@ -11,14 +12,24 @@ type ProfilePropsType = {
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     const state: ProfileType = props.store.getState().profile
 
+    const addPost = () => {
+        props.store.dispatch(addPostAC())
+        props.store.dispatch(updatePostAC(''))
+    }
+
+    const updatePost = (text: string) => {
+        props.store.dispatch(updatePostAC(text))
+    }
+
     return (
         <main className={s.wrapper}>
-            <MyProfile state={state.dataForMyProfile}/>
+            <MyProfile dataForMyProfile={state.dataForMyProfile}/>
 
             <MyPosts
-                dispatch={props.store.dispatch}
-                state={state}
-            />
+                dataForMyPosts={state.dataForMyPosts}
+                textForNewPost={state.newPost.text}
+                addPost={addPost}
+                updatePost={updatePost}/>
         </main>
     )
 }

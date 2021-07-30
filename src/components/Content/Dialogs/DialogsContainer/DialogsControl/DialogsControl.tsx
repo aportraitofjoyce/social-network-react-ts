@@ -1,27 +1,28 @@
 import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
-import {ActionsType} from "../../../../../redux/redux-store";
-import {sendMessageAC, updateMessageTextAC} from "../../../../../redux/dialogs-reducer";
 
 type DialogsControlPropsType = {
-    dispatch: (action: ActionsType) => void
+    sendNewMessage: () => void
+    updateMessageHandler: (text: string) => void
     textForNewMessage: string
 }
 
 export const DialogsControl: React.FC<DialogsControlPropsType> = (props) => {
 
     const sendNewMessage = () => {
-        props.dispatch(sendMessageAC())
-        props.dispatch(updateMessageTextAC(''))
+        props.sendNewMessage()
+        props.updateMessageHandler('')
     }
 
     const changeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateMessageTextAC(e.currentTarget.value))
+        props.updateMessageHandler(e.currentTarget.value)
     }
 
     return (
         <div className={s.controlContainer}>
-            <textarea placeholder={'Say something'} onChange={changeMessageHandler} value={props.textForNewMessage}/>
+            <textarea placeholder={'Say something'}
+                      onChange={changeMessageHandler}
+                      value={props.textForNewMessage}/>
             <button onClick={sendNewMessage}>Add</button>
         </div>
     )

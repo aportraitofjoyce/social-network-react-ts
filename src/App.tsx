@@ -16,24 +16,16 @@ const PATH = {
 }
 
 export const App: React.FC<AppPropsType> = (props) => {
-    const state = props.store.getState()
-
     return (
         <div className={'App'}>
             <Header/>
             <div className={'contentWrapper'}>
-                <Sidebar dataForSidebar={state.sidebar.dataForSidebar}/>
+                <Sidebar store={props.store}/>
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
 
                     <Route path={PATH.DIALOGS}
-                           render={() => <Dialogs
-                               dataForFriends={state.dialogs.dataForFriends}
-                               dataForMessages={state.dialogs.dataForMessages}
-                               textForNewMessage={state.dialogs.newMessage.message}
-                               dispatch={props.store.dispatch}
-                               store={props.store}
-                           />}
+                           render={() => <Dialogs store={props.store}/>}
                     />
 
                     <Route path={PATH.PROFILE}
