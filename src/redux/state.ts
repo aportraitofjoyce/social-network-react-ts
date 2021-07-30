@@ -1,9 +1,7 @@
 import {v1} from "uuid";
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+import {addPostAC, profileReducer, updatePostAC} from "./profile-reducer";
+import {dialogsReducer, sendMessageAC, updateMessageTextAC} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 export const store: StoreType = {
     _state: {
@@ -82,7 +80,6 @@ export const store: StoreType = {
         return this._state
     },
 
-    // Принимает rerenderEntireTree и дает привязку пустой функции _callSubscriber для перевызова и отрисовки
     _subscribe(observer) {
         this._callSubscriber = observer
     },
@@ -91,70 +88,20 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                this._addPost();
-                break
-            case UPDATE_POST_TEXT:
-                this._updatePostText(action.text);
-                break
-            case SEND_MESSAGE:
-                this._sendMessage();
-                break
-            case UPDATE_MESSAGE_TEXT:
-                this._updateMessageText(action.text);
-                break
-        }
-    },
-
-    _addPost() {
-        const copyOfNewPost = {...this._state.profile.newPost}
-        this._state.profile.dataForMyPosts.unshift(copyOfNewPost)
+        this._state.profile = profileReducer(this._state.profile, action)
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._callSubscriber()
     },
-
-    _updatePostText(text: string) {
-        this._state.profile.newPost.text = text
-        this._callSubscriber()
-    },
-
-    _sendMessage() {
-        const copyOfNewMessage = {...this._state.dialogs.newMessage}
-        this._state.dialogs.dataForMessages.push(copyOfNewMessage)
-        this._callSubscriber()
-    },
-
-    _updateMessageText(text: string) {
-        store._state.dialogs.newMessage.message = text
-        store._callSubscriber()
-    }
-}
-
-// Action Creators
-export const addPostAC = () => {
-    return {type: ADD_POST} as const
-}
-export const updatePostAC = (text: string) => {
-    return {type: UPDATE_POST_TEXT, text: text} as const
-}
-export const sendMessageAC = () => {
-    return {type: SEND_MESSAGE} as const
-}
-export const updateMessageTextAC = (text: string) => {
-    return {type: UPDATE_MESSAGE_TEXT, text: text} as const
 }
 
 // TypeScript
-type StoreType = {
+export type StoreType = {
     _state: StateType
     _getState: () => StateType
     _subscribe: (observer: () => void) => void
     _callSubscriber: () => void
     dispatch: (action: ActionsType) => void
-    _addPost: () => void
-    _updatePostText: (postText: string) => void
-    _sendMessage: () => void
-    _updateMessageText: (text: string) => void
 }
 
 export type ActionsType =

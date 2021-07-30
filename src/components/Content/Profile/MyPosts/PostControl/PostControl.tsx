@@ -1,6 +1,7 @@
 import s from "../MyPosts.module.css";
 import React, {ChangeEvent} from "react";
-import {ActionsType, addPostAC, updatePostAC} from "../../../../../redux/state";
+import {ActionsType} from "../../../../../redux/state";
+import {addPostAC, updatePostAC} from "../../../../../redux/profile-reducer";
 
 type PostControlPropsType = {
     dispatch: (action: ActionsType) => void

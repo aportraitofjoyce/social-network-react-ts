@@ -1,6 +1,7 @@
 import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
-import {ActionsType, sendMessageAC, updateMessageTextAC} from "../../../../../redux/state";
+import {ActionsType} from "../../../../../redux/state";
+import {sendMessageAC, updateMessageTextAC} from "../../../../../redux/dialogs-reducer";
 
 type DialogsControlPropsType = {
     dispatch: (action: ActionsType) => void
