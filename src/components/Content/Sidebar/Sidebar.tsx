@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Sidebar.module.css'
 import {SidebarItem} from "./SidebarItem/SidebarItem";
-import {SidebarType} from "../../../redux/state";
+import {SidebarType} from "../../../redux/redux-store";
 import {v1} from "uuid";
 
 export const Sidebar: React.FC<SidebarType> = (props) => {

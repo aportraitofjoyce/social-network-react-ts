@@ -3,7 +3,7 @@ import s from "../Dialogs.module.css";
 import {Message} from "./Message/Message";
 import {DialogsControl} from "./DialogsControl/DialogsControl";
 import {v1} from "uuid";
-import {ActionsType} from "../../../../redux/state";
+import {ActionsType} from "../../../../redux/redux-store";
 
 type DialogsContainerPropsType = {
     dataForMessages: DialogsContainerDataForMessagesPropsType[]

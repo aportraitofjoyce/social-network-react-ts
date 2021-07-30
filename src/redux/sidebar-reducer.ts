@@ -1,5 +1,12 @@
-import {ActionsType, StoreType} from "./state";
+import {ActionsType} from "./redux-store";
 
-export const sidebarReducer = (state: any, action: ActionsType): any => {
+const initialState = {
+    dataForSidebar: [
+        {name: 'My profile', link: '/profile'},
+        {name: 'Messages', link: '/dialogs'},
+    ]
+}
+
+export const sidebarReducer = (state: any = initialState, action: ActionsType): any => {
     return state
 }

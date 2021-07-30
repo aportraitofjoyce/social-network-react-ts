@@ -1,9 +1,87 @@
-import {v1} from "uuid";
+import {combineReducers, createStore} from "redux";
 import {addPostAC, profileReducer, updatePostAC} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC, updateMessageTextAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-export const store: StoreType = {
+const reducers = combineReducers(
+    {
+        profile: profileReducer,
+        dialogs: dialogsReducer,
+        sidebar: sidebarReducer
+    }
+)
+
+export const store = createStore(reducers)
+
+
+export type StoreType = {
+    state: StateType
+    getState: () => StateType
+    subscribe: (observer: () => void) => void
+    callSubscriber: () => void
+    dispatch: (action: ActionsType) => void
+}
+
+export type ActionsType =
+    ReturnType<typeof addPostAC> |
+    ReturnType<typeof updatePostAC> |
+    ReturnType<typeof sendMessageAC> |
+    ReturnType<typeof updateMessageTextAC>
+
+export type StateType = {
+    sidebar: SidebarType
+    profile: ProfileType
+    dialogs: DialogsType
+}
+
+export type SidebarType = {
+    dataForSidebar: dataForSidebarType[]
+}
+
+export type ProfileType = {
+    dataForMyProfile: dataForMyProfileType
+    dataForMyPosts: dataForMyPostsType[]
+    newPost: dataForMyPostsType
+}
+
+export type DialogsType = {
+    dataForFriends: DataForFriendsType[]
+    dataForMessages: MessagesDataType[]
+    newMessage: MessagesDataType
+}
+
+export type dataForSidebarType = {
+    name: string
+    link: string
+}
+
+export type dataForMyProfileType = {
+    src: string
+    alt: string
+    title: string
+}
+
+export type dataForMyPostsType = {
+    src: string
+    alt: string
+    text: string
+    likes: number
+}
+
+export type DataForFriendsType = {
+    id: string
+    name: string
+}
+
+export type MessagesDataType = {
+    id: string
+    from: string
+    message: string
+}
+
+
+
+/*const store: StoreType = {
     _state: {
         sidebar: {
             dataForSidebar: [
@@ -76,7 +154,7 @@ export const store: StoreType = {
         }
     },
 
-    _getState(): StateType {
+    getState(): StateType {
         return this._state
     },
 
@@ -93,71 +171,4 @@ export const store: StoreType = {
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._callSubscriber()
     },
-}
-
-// TypeScript
-export type StoreType = {
-    _state: StateType
-    _getState: () => StateType
-    _subscribe: (observer: () => void) => void
-    _callSubscriber: () => void
-    dispatch: (action: ActionsType) => void
-}
-
-export type ActionsType =
-    ReturnType<typeof addPostAC> |
-    ReturnType<typeof updatePostAC> |
-    ReturnType<typeof sendMessageAC> |
-    ReturnType<typeof updateMessageTextAC>
-
-
-export type StateType = {
-    sidebar: SidebarType
-    profile: ProfileType
-    dialogs: DialogsType
-}
-
-export type SidebarType = {
-    dataForSidebar: dataForSidebarType[]
-}
-
-export type ProfileType = {
-    dataForMyProfile: dataForMyProfileType
-    dataForMyPosts: dataForMyPostsType[]
-    newPost: dataForMyPostsType
-}
-
-export type DialogsType = {
-    dataForFriends: DataForFriendsType[]
-    dataForMessages: MessagesDataType[]
-    newMessage: MessagesDataType
-}
-
-export type dataForSidebarType = {
-    name: string
-    link: string
-}
-
-export type dataForMyProfileType = {
-    src: string
-    alt: string
-    title: string
-}
-
-export type dataForMyPostsType = {
-    src: string
-    alt: string
-    text: string
-    likes: number
-}
-
-export type DataForFriendsType = {
-    id: string
-    name: string
-}
-
-export type MessagesDataType = {
-    id: string
-    from: string
-    message: string
-}
+}*/

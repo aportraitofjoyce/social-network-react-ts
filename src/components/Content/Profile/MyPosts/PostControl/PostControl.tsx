@@ -1,27 +1,25 @@
 import s from "../MyPosts.module.css";
 import React, {ChangeEvent} from "react";
-import {ActionsType} from "../../../../../redux/state";
-import {addPostAC, updatePostAC} from "../../../../../redux/profile-reducer";
 
 type PostControlPropsType = {
-    dispatch: (action: ActionsType) => void
     textForNewPost: string
+    addPost: any
+    updatePost: any
 }
 
 export const PostsControl: React.FC<PostControlPropsType> = (props) => {
-
     const addPostHandler = () => {
-        props.dispatch(addPostAC())
-        props.dispatch(updatePostAC(''))
+        props.addPost()
+        props.updatePost('')
     }
 
-    const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updatePostAC(e.currentTarget.value))
+    const updatePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updatePost(e.currentTarget.value)
     }
 
     return (
         <div className={s.control_wrapper}>
-            <textarea placeholder={'Say something'} onChange={changePostHandler} value={props.textForNewPost}/>
+            <textarea placeholder={'Say something'} onChange={updatePostHandler} value={props.textForNewPost}/>
             <button onClick={addPostHandler}>Add</button>
         </div>
     )

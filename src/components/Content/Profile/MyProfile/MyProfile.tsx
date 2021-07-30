@@ -2,17 +2,17 @@ import React from "react";
 import s from './MyProfile.module.css'
 import {MyAvatar} from "./MyAvatar/MyAvatar";
 import {MyInfo} from "./MyInfo/MyInfo";
-import {dataForMyProfileType} from "../../../../redux/state";
+import {dataForMyProfileType} from "../../../../redux/redux-store";
 
 type MyProfilePropsType = {
-    dataForMyProfile: dataForMyProfileType
+    state: dataForMyProfileType
 }
 
 export const MyProfile: React.FC<MyProfilePropsType> = (props) => {
     return (
         <section className={s.wrapper}>
-            <MyAvatar src={props.dataForMyProfile.src} alt={props.dataForMyProfile.alt}/>
-            <MyInfo title={props.dataForMyProfile.title}/>
+            <MyAvatar src={props.state.src} alt={props.state.alt}/>
+            <MyInfo title={props.state.title}/>
         </section>
     )
 }

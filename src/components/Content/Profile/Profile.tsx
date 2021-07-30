@@ -2,23 +2,22 @@ import React from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {MyProfile} from "./MyProfile/MyProfile";
-import {ActionsType, dataForMyPostsType, dataForMyProfileType} from "../../../redux/state";
+import {ProfileType} from "../../../redux/redux-store";
 
 type ProfilePropsType = {
-    dataForMyProfile: dataForMyProfileType
-    dataForMyPosts: dataForMyPostsType[]
-    dispatch: (action: ActionsType) => void
-    textForNewPost: string
+    store: any
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
+    const state: ProfileType = props.store.getState().profile
+
     return (
         <main className={s.wrapper}>
-            <MyProfile dataForMyProfile={props.dataForMyProfile}/>
+            <MyProfile state={state.dataForMyProfile}/>
+
             <MyPosts
-                dataForMyPosts={props.dataForMyPosts}
-                dispatch={props.dispatch}
-                textForNewPost={props.textForNewPost}
+                dispatch={props.store.dispatch}
+                state={state}
             />
         </main>
     )
