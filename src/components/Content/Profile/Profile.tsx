@@ -2,11 +2,11 @@ import React from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {MyProfile} from "./MyProfile/MyProfile";
-import {ProfileType} from "../../../redux/redux-store";
+import {ProfileType, StoreType} from "../../../redux/redux-store";
 import {addPostAC, updatePostAC} from "../../../redux/profile-reducer";
 
 type ProfilePropsType = {
-    store: any
+    store: StoreType
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {

@@ -3,7 +3,7 @@ import {ActionsType, ProfileType} from "./redux-store";
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 
-const initialState =  {
+const initialState: ProfileType =  {
     dataForMyProfile: {
         src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
         alt: "My profile",

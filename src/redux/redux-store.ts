@@ -13,13 +13,11 @@ const reducers = combineReducers(
 
 export const store = createStore(reducers)
 
-
 export type StoreType = {
-    _state: StateType
     getState: () => StateType
     subscribe: (observer: () => void) => void
-    callSubscriber: () => void
     dispatch: (action: ActionsType) => void
+    // callSubscriber: () => void
 }
 
 export type ActionsType =

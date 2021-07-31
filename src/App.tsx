@@ -5,9 +5,10 @@ import {Sidebar} from "./components/Content/Sidebar/Sidebar";
 import {Dialogs} from "./components/Content/Dialogs/Dialogs";
 import {Profile} from "./components/Content/Profile/Profile";
 import {Header} from "./components/Content/Header/Header";
+import {StoreType} from "./redux/redux-store";
 
 type AppPropsType = {
-    store: any
+    store: StoreType
 }
 
 const PATH = {

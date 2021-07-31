@@ -1,6 +1,6 @@
-import {ActionsType} from "./redux-store";
+import {ActionsType, SidebarType} from "./redux-store";
 
-const initialState = {
+const initialState: SidebarType = {
     dataForSidebar: [
         {name: 'My profile', link: '/profile'},
         {name: 'Messages', link: '/dialogs'},

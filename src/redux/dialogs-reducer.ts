@@ -4,7 +4,7 @@ import {v1} from "uuid";
 const SEND_MESSAGE = 'SEND-MESSAGE'
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 
-const initialState = {
+const initialState: DialogsType = {
     dataForFriends: [
         {id: v1(), name: 'Me'},
         {id: v1(), name: 'Maxim'},

@@ -2,11 +2,11 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {FriendsContainer} from "./FriendsContainer/FriendsContainer";
 import {DialogsContainer} from "./DialogsContainer/DialogsContainer";
-import {DialogsType} from "../../../redux/redux-store";
+import {DialogsType, StoreType} from "../../../redux/redux-store";
 import {sendMessageAC, updateMessageTextAC} from "../../../redux/dialogs-reducer";
 
 type DialogsPropsType = {
-    store: any
+    store: StoreType
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
