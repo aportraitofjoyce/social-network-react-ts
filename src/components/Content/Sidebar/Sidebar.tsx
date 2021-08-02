@@ -1,11 +1,11 @@
 import React from "react";
 import s from './Sidebar.module.css'
 import {SidebarItem} from "./SidebarItem/SidebarItem";
-import {SidebarType} from "../../../redux/redux-store";
+import {SidebarType, StoreType} from "../../../redux/redux-store";
 import {v1} from "uuid";
 
 type SidebarPropsType = {
-    store: any
+    store: StoreType
 }
 
 export const Sidebar: React.FC<SidebarPropsType> = (props) => {

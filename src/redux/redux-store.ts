@@ -3,6 +3,7 @@ import {addPostAC, profileReducer, updatePostAC} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC, updateMessageTextAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
+// Reducers
 const reducers = combineReducers(
     {
         profile: profileReducer,
@@ -11,13 +12,14 @@ const reducers = combineReducers(
     }
 )
 
-export const store = createStore(reducers)
+// Store
+export const store: StoreType = createStore(reducers)
 
-export type StoreType = {
+// Types
+export type StoreType = ReturnType<typeof reducers> & {
     getState: () => StateType
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsType) => void
-    // callSubscriber: () => void
 }
 
 export type ActionsType =
@@ -80,6 +82,23 @@ export type MessagesDataType = {
 
 
 /*const store: StoreType = {
+    getState(): StateType {
+        return this._state
+    },
+
+    subscribe(observer) {
+        this._callSubscriber = observer
+    },
+
+    callSubscriber() {
+    },
+
+    dispatch(action) {
+        this._state.profile = profileReducer(this._state.profile, action)
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber()
+    },
     _state: {
         sidebar: {
             dataForSidebar: [
@@ -150,23 +169,5 @@ export type MessagesDataType = {
                 message: ''
             }
         }
-    },
-
-    getState(): StateType {
-        return this._state
-    },
-
-    _subscribe(observer) {
-        this._callSubscriber = observer
-    },
-
-    _callSubscriber() {
-    },
-
-    dispatch(action) {
-        this._state.profile = profileReducer(this._state.profile, action)
-        this._state.dialogs = dialogsReducer(this._state.dialogs, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-        this._callSubscriber()
     },
 }*/
