@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import {HashRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals'
 import './index.css';
-import {store} from "./redux/redux-store";
+import {store} from "./redux/store";
 import {App} from "./App";
+import {Provider} from "react-redux";
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <HashRouter>
-                <App store={store}/>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
             </HashRouter>
         </React.StrictMode>,
         document.getElementById('root')
@@ -18,6 +21,8 @@ let rerenderEntireTree = () => {
 }
 
 rerenderEntireTree()
+
+// Подписываем рендер App на изменение store
 store.subscribe(rerenderEntireTree)
 
 reportWebVitals()

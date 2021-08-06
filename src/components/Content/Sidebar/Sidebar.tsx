@@ -1,17 +1,15 @@
 import React from "react";
 import s from './Sidebar.module.css'
 import {SidebarItem} from "./SidebarItem/SidebarItem";
-import {SidebarType, StoreType} from "../../../redux/redux-store";
+import {dataForSidebarType} from "../../../redux/store";
 import {v1} from "uuid";
 
 type SidebarPropsType = {
-    store: StoreType
+    dataForSidebar: dataForSidebarType[]
 }
 
 export const Sidebar: React.FC<SidebarPropsType> = (props) => {
-    const state: SidebarType = props.store.getState().sidebar
-
-    const mappedSidebarItems = state.dataForSidebar.map(item => {
+    const mappedSidebarItems = props.dataForSidebar.map(item => {
         return <SidebarItem key={v1()} name={item.name} link={item.link}/>
     })
 

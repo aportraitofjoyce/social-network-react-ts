@@ -1,40 +1,30 @@
 import React from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import './App.css';
-import {Sidebar} from "./components/Content/Sidebar/Sidebar";
-import {Dialogs} from "./components/Content/Dialogs/Dialogs";
-import {Profile} from "./components/Content/Profile/Profile";
 import {Header} from "./components/Content/Header/Header";
-import {StoreType} from "./redux/redux-store";
-
-type AppPropsType = {
-    store: StoreType
-}
+import {DialogsContainer} from "./components/Content/Dialogs/DialogsContainer";
+import {ProfileContainer} from "./components/Content/Profile/ProfileContainer";
+import {SidebarContainer} from "./components/Content/Sidebar/SidebarContainer";
 
 const PATH = {
     PROFILE: '/profile',
     DIALOGS: '/dialogs',
 }
 
-export const App: React.FC<AppPropsType> = (props) => {
+export const App = () => {
     return (
         <div className={'App'}>
             <Header/>
             <div className={'contentWrapper'}>
-                <Sidebar store={props.store}/>
+                <SidebarContainer/>
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
-
-                    <Route path={PATH.DIALOGS}
-                           render={() => <Dialogs store={props.store}/>}
-                    />
-
                     <Route path={PATH.PROFILE}
-                           render={() => <Profile store={props.store}/>}
-                    />
+                           render={() => <ProfileContainer/>}/>
+                    <Route path={PATH.DIALOGS}
+                           render={() => <DialogsContainer/>}/>
                 </Switch>
             </div>
         </div>
     )
 }
-

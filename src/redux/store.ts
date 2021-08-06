@@ -1,9 +1,9 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, createStore, Store} from "redux";
 import {addPostAC, profileReducer, updatePostAC} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC, updateMessageTextAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-// Reducers
+// Reducers собираются в один объект, ключ каждого редьюсера - часть из подходящего стейта
 const reducers = combineReducers(
     {
         profile: profileReducer,
@@ -12,15 +12,11 @@ const reducers = combineReducers(
     }
 )
 
-// Store
 export const store: StoreType = createStore(reducers)
 
-// Types
-export type StoreType = ReturnType<typeof reducers> & {
-    getState: () => StateType
-    subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsType) => void
-}
+export type StoreType = Store & ReducersType
+
+export type ReducersType = ReturnType<typeof reducers>
 
 export type ActionsType =
     ReturnType<typeof addPostAC> |
@@ -80,8 +76,15 @@ export type MessagesDataType = {
 }
 
 
+/*
 
-/*const store: StoreType = {
+export type StoreType = ReturnType<typeof reducers> & {
+    getState: () => StateType
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionsType) => void
+}
+
+const store: StoreType = {
     getState(): StateType {
         return this._state
     },
@@ -152,7 +155,7 @@ export type MessagesDataType = {
                 {id: v1(), name: 'Me'},
                 {id: v1(), name: 'Maxim'},
                 {id: v1(), name: 'Andrei'},
-                {id: v1(), name: 'Yura'}
+                {id: v1(), name: 'Yuri'}
             ],
 
             dataForMessages: [

@@ -2,7 +2,7 @@ import React from "react";
 import s from './MyProfile.module.css'
 import {MyAvatar} from "./MyAvatar/MyAvatar";
 import {MyInfo} from "./MyInfo/MyInfo";
-import {dataForMyProfileType} from "../../../../redux/redux-store";
+import {dataForMyProfileType} from "../../../../redux/store";
 
 type MyProfilePropsType = {
     dataForMyProfile: dataForMyProfileType

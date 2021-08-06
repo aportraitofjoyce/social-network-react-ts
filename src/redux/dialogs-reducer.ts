@@ -1,4 +1,4 @@
-import {ActionsType, DialogsType} from "./redux-store";
+import {ActionsType, DialogsType} from "./store";
 import {v1} from "uuid";
 
 const SEND_MESSAGE = 'SEND-MESSAGE'

@@ -3,16 +3,16 @@ import s from "../Dialogs.module.css";
 import {Message} from "./Message/Message";
 import {DialogsControl} from "./DialogsControl/DialogsControl";
 import {v1} from "uuid";
-import {MessagesDataType} from "../../../../redux/redux-store";
+import {MessagesDataType} from "../../../../redux/store";
 
 type DialogsContainerPropsType = {
     dataForMessages: MessagesDataType[]
     sendNewMessage: () => void
-    updateMessageHandler: (text: string) => void
+    updateMessage: (text: string) => void
     textForNewMessage: string
 }
 
-export const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
+export const DialogsChat: React.FC<DialogsContainerPropsType> = (props) => {
     const mappedMessages = props.dataForMessages.map(item => <Message
         key={v1()} from={item.from} message={item.message} id={item.id}/>)
 
@@ -24,7 +24,7 @@ export const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => 
             <DialogsControl
                 textForNewMessage={props.textForNewMessage}
                 sendNewMessage={props.sendNewMessage}
-                updateMessageHandler={props.updateMessageHandler}
+                updateMessageHandler={props.updateMessage}
             />
         </div>
     )

@@ -1,4 +1,4 @@
-import {ActionsType, SidebarType} from "./redux-store";
+import {ActionsType, SidebarType} from "./store";
 
 const initialState: SidebarType = {
     dataForSidebar: [

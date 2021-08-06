@@ -1,16 +1,20 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {FriendsContainer} from "./FriendsContainer/FriendsContainer";
-import {DialogsContainer} from "./DialogsContainer/DialogsContainer";
-import {DialogsType, StoreType} from "../../../redux/redux-store";
+import {DataForFriendsType, DialogsType, MessagesDataType, StoreType} from "../../../redux/store";
 import {sendMessageAC, updateMessageTextAC} from "../../../redux/dialogs-reducer";
+import {FriendsToChat} from "./FriendsToChat/FriendsToChat";
+import {DialogsChat} from "./DialogsChat/DialogsChat";
 
 type DialogsPropsType = {
-    store: StoreType
+    dataForMessages: MessagesDataType[]
+    sendNewMessage: () => void
+    updateMessage: (text: string) => void
+    textForNewMessage: string
+    dataForFriends: DataForFriendsType[]
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const state: DialogsType = props.store.getState().dialogs
+ /*   const state: DialogsType = props.store.getState().dialogs
 
     const sendNewMessage = () => {
         props.store.dispatch(sendMessageAC())
@@ -19,16 +23,16 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const updateMessageHandler = (text: string) => {
         props.store.dispatch(updateMessageTextAC(text))
-    }
+    }*/
 
     return (
         <main className={s.wrapper}>
-            <FriendsContainer dataForFriends={state.dataForFriends}/>
-            <DialogsContainer
-                dataForMessages={state.dataForMessages}
-                textForNewMessage={state.newMessage.message}
-                sendNewMessage={sendNewMessage}
-                updateMessageHandler={updateMessageHandler}
+            <FriendsToChat dataForFriends={props.dataForFriends}/>
+            <DialogsChat
+                dataForMessages={props.dataForMessages}
+                textForNewMessage={props.textForNewMessage}
+                sendNewMessage={props.sendNewMessage}
+                updateMessage={props.updateMessage}
             />
         </main>
     )

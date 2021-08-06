@@ -1,13 +1,13 @@
 import s from "../Dialogs.module.css";
 import React from "react";
 import {Friend} from "./Friend/Friend";
-import {DataForFriendsType} from "../../../../redux/redux-store";
+import {DataForFriendsType} from "../../../../redux/store";
 
 type FriendsContainerPropsType = {
     dataForFriends: DataForFriendsType[]
 }
 
-export const FriendsContainer: React.FC<FriendsContainerPropsType> = (props) => {
+export const FriendsToChat: React.FC<FriendsContainerPropsType> = (props) => {
     const dialogWithFriend = props.dataForFriends.map((item) => <Friend key={item.id} id={item.id} name={item.name}/>)
 
     return (
