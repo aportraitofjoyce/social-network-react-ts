@@ -2,28 +2,21 @@ import s from "../../Dialogs.module.css";
 import React, {ChangeEvent} from "react";
 
 type DialogsControlPropsType = {
-    sendNewMessage: () => void
-    updateMessageHandler: (text: string) => void
+    sendMessage: () => void
+    updateMessage: (text: string) => void
     textForNewMessage: string
 }
 
 export const DialogsControl: React.FC<DialogsControlPropsType> = (props) => {
-
-    const sendNewMessage = () => {
-        props.sendNewMessage()
-        props.updateMessageHandler('')
-    }
-
-    const changeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateMessageHandler(e.currentTarget.value)
-    }
+    const sendMessageHandler = () => props.sendMessage()
+    const updateMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.updateMessage(e.currentTarget.value)
 
     return (
         <div className={s.controlContainer}>
             <textarea placeholder={'Say something'}
-                      onChange={changeMessageHandler}
+                      onChange={updateMessageHandler}
                       value={props.textForNewMessage}/>
-            <button onClick={sendNewMessage}>Add</button>
+            <button onClick={sendMessageHandler}>Add</button>
         </div>
     )
 }

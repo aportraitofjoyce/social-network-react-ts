@@ -24,6 +24,8 @@ export type ActionsType =
     ReturnType<typeof sendMessageAC> |
     ReturnType<typeof updateMessageTextAC>
 
+export type DispatchType = (action: ActionsType) => void
+
 export type StateType = {
     sidebar: SidebarType
     profile: ProfileType

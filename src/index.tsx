@@ -7,22 +7,16 @@ import {store} from "./redux/store";
 import {App} from "./App";
 import {Provider} from "react-redux";
 
-let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <HashRouter>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </HashRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-rerenderEntireTree()
+ReactDOM.render(
+    <React.StrictMode>
+        <HashRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </HashRouter>
+    </React.StrictMode>, document.getElementById('root'))
 
 // Подписываем рендер App на изменение store
-store.subscribe(rerenderEntireTree)
+// store.subscribe(rerenderEntireTree)
 
 reportWebVitals()

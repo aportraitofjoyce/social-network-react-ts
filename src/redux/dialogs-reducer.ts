@@ -1,8 +1,8 @@
 import {ActionsType, DialogsType} from "./store";
 import {v1} from "uuid";
 
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
+const SEND_MESSAGE = 'App/Dialogs/SEND-MESSAGE'
+const UPDATE_MESSAGE_TEXT = 'App/Dialogs/UPDATE-MESSAGE-TEXT'
 
 const initialState: DialogsType = {
     dataForFriends: [
@@ -28,16 +28,22 @@ const initialState: DialogsType = {
 }
 
 export const dialogsReducer = (state: DialogsType = initialState, action: ActionsType): DialogsType => {
-    const _sendMessage = () => state.dataForMessages = [...state.dataForMessages, {...state.newMessage}]
-    const _updateMessageText = (text: string) => state.newMessage.message = text
+    const sendMessage = () => ({
+        ...state,
+        dataForMessages: [...state.dataForMessages, {...state.newMessage}],
+        newMessage: {...state.newMessage, message: ''}
+    })
+
+    const updateMessageText = (text: string) => ({
+        ...state,
+        newMessage: {...state.newMessage, message: text}
+    })
 
     switch (action.type) {
         case SEND_MESSAGE:
-            _sendMessage()
-            return state
+            return sendMessage()
         case UPDATE_MESSAGE_TEXT:
-            _updateMessageText(action.text)
-            return state
+            return updateMessageText(action.text)
         default:
             return state
     }

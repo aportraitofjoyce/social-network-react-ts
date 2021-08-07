@@ -8,14 +8,8 @@ type PostControlPropsType = {
 }
 
 export const PostsControl: React.FC<PostControlPropsType> = (props) => {
-    const addPostHandler = () => {
-        props.addPost()
-        props.updatePost('')
-    }
-
-    const updatePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatePost(e.currentTarget.value)
-    }
+    const addPostHandler = () => props.addPost()
+    const updatePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.updatePost(e.currentTarget.value)
 
     return (
         <div className={s.control_wrapper}>

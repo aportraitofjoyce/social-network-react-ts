@@ -1,10 +1,9 @@
 import {ActionsType, ProfileType} from "./store";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const ADD_POST = 'App/Profile/ADD-POST';
+const UPDATE_POST_TEXT = 'App/Profile/UPDATE-POST-TEXT';
 
-// Дэфолтное состояние стейта для редьсюера. Должно быть обязательно
-const initialState: ProfileType =  {
+const initialState: ProfileType = {
     dataForMyProfile: {
         src: "https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album",
         alt: "My profile",
@@ -45,22 +44,26 @@ const initialState: ProfileType =  {
 }
 
 export const profileReducer = (state: ProfileType = initialState, action: ActionsType): ProfileType => {
-    // Actions, скорее всего придется их выносить в отдельный файл
-    const _addPost = () => state.dataForMyPosts = [{...state.newPost}, ...state.dataForMyPosts]
-    const _updatePostText = (text: string) => state.newPost.text = text
+    const addPost = () => ({
+        ...state,
+        dataForMyPosts: [{...state.newPost}, ...state.dataForMyPosts],
+        newPost: {...state.newPost, text: ''}
+    })
+
+    const updatePostText = (text: string) => ({
+        ...state,
+        newPost: {...state.newPost, text: text}
+    })
 
     switch (action.type) {
         case ADD_POST:
-            _addPost()
-            return state
+            return addPost()
         case UPDATE_POST_TEXT:
-            _updatePostText(action.text)
-            return state
+            return updatePostText(action.text)
         default:
             return state
     }
 }
 
-// Action Creators диспатчатся в компонентах и попадают в редьюсеры до совпадения case
 export const addPostAC = () => ({type: ADD_POST}) as const
 export const updatePostAC = (text: string) => ({type: UPDATE_POST_TEXT, text: text}) as const

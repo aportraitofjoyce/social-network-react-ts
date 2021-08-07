@@ -7,7 +7,7 @@ import {MessagesDataType} from "../../../../redux/store";
 
 type DialogsContainerPropsType = {
     dataForMessages: MessagesDataType[]
-    sendNewMessage: () => void
+    sendMessage: () => void
     updateMessage: (text: string) => void
     textForNewMessage: string
 }
@@ -23,8 +23,8 @@ export const DialogsChat: React.FC<DialogsContainerPropsType> = (props) => {
             </div>
             <DialogsControl
                 textForNewMessage={props.textForNewMessage}
-                sendNewMessage={props.sendNewMessage}
-                updateMessageHandler={props.updateMessage}
+                sendMessage={props.sendMessage}
+                updateMessage={props.updateMessage}
             />
         </div>
     )
