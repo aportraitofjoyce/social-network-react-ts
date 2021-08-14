@@ -17,7 +17,7 @@ export const App = () => {
     return (
         <div className={'App'}>
             <Header/>
-            <div className={'contentWrapper'}>
+            <div className={'ContentWrapper'}>
                 <SidebarContainer/>
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>

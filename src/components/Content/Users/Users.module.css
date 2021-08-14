@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1 1 auto;
+}
+
+.userContainer {
+    display: flex;
+    gap: 24px;
+}
+
+.avatarAndFollowContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.avatar {
+    width: 128px;
+    height: 128px;
+}
+
+.avatar img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.userInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-basis: 320px;
+}
+
+.nameAndLocationContainer {
+    display: flex;
+    justify-content: space-between;
+}

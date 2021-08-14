@@ -31,7 +31,7 @@ body {
     position: relative;
 }
 
-.contentWrapper {
+.ContentWrapper {
     display: flex;
     flex-direction: row;
     margin: 40px auto;

@@ -2,6 +2,7 @@ import {Store} from 'redux'
 import {reducers} from '../redux/store'
 import {addPostAC, updatePostAC} from '../redux/actionCreators/profileAC'
 import {sendMessageAC, updateMessageTextAC} from '../redux/actionCreators/dialogsAC'
+import {followAC, setUsersAC} from '../redux/actionCreators/usersAC'
 
 // Store
 export type StoreType = Store & ReducersType
@@ -12,7 +13,10 @@ export type ActionsType =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updatePostAC> |
     ReturnType<typeof sendMessageAC> |
-    ReturnType<typeof updateMessageTextAC>
+    ReturnType<typeof updateMessageTextAC> |
+    ReturnType<typeof followAC> |
+    ReturnType<typeof setUsersAC>
+
 
 export type DispatchType = (action: ActionsType) => void
 
@@ -73,14 +77,17 @@ export type MessagesDataType = {
 
 // Users
 export type UsersType = {
-    userData: UserType[]
+    usersData: UserType[]
 }
 
 export type UserType = {
     id: string
     name: string
-    country: string
-    city: string
+    location: {
+        country: string
+        city: string
+    }
     avatar: string
     status: string
+    follow: boolean
 }
