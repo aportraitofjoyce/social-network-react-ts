@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import s from './Sidebar.module.css'
-import {SidebarItem} from "./SidebarItem/SidebarItem";
-import {dataForSidebarType} from "../../../redux/store";
-import {v1} from "uuid";
+import {SidebarItem} from './SidebarItem/SidebarItem'
+import {v1} from 'uuid'
+import {dataForSidebarType} from '../../../types/types'
 
 type SidebarPropsType = {
     dataForSidebar: dataForSidebarType[]

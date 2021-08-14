@@ -1,7 +1,7 @@
-import {NavLink} from "react-router-dom";
-import s from "../../Dialogs.module.css";
-import React from "react";
-import {DataForFriendsType} from "../../../../../redux/store";
+import {NavLink} from 'react-router-dom'
+import s from '../../Dialogs.module.css'
+import React from 'react'
+import {DataForFriendsType} from '../../../../../types/types'
 
 export const Friend: React.FC<DataForFriendsType> = (props) => {
     return (

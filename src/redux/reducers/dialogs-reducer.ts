@@ -1,8 +1,6 @@
-import {ActionsType, DialogsType} from "./store";
-import {v1} from "uuid";
-
-const SEND_MESSAGE = 'App/Dialogs/SEND-MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'App/Dialogs/UPDATE-MESSAGE-TEXT'
+import {v1} from 'uuid'
+import {ActionsType, DialogsType} from '../../types/types'
+import {SEND_MESSAGE, UPDATE_MESSAGE_TEXT} from '../actions/dialogsActions'
 
 const initialState: DialogsType = {
     dataForFriends: [
@@ -18,7 +16,7 @@ const initialState: DialogsType = {
         {id: v1(), from: 'Me', message: 'Плохо, монитор из сервисного центре не отдают!'},
         {id: v1(), from: 'Me', message: 'Пользуются им уже дольше чем я'},
         {id: v1(), from: 'Andrei', message: 'Козлы'},
-        {id: v1(), from: 'Me', message: 'Ага!'},
+        {id: v1(), from: 'Me', message: 'Ага!'}
     ],
     newMessage: {
         id: v1(),
@@ -28,26 +26,19 @@ const initialState: DialogsType = {
 }
 
 export const dialogsReducer = (state: DialogsType = initialState, action: ActionsType): DialogsType => {
-    const sendMessage = () => ({
-        ...state,
-        dataForMessages: [...state.dataForMessages, {...state.newMessage}],
-        newMessage: {...state.newMessage, message: ''}
-    })
-
-    const updateMessageText = (text: string) => ({
-        ...state,
-        newMessage: {...state.newMessage, message: text}
-    })
-
     switch (action.type) {
         case SEND_MESSAGE:
-            return sendMessage()
+            return {
+                ...state,
+                dataForMessages: [...state.dataForMessages, {...state.newMessage}],
+                newMessage: {...state.newMessage, message: ''}
+            }
         case UPDATE_MESSAGE_TEXT:
-            return updateMessageText(action.text)
+            return {
+                ...state,
+                newMessage: {...state.newMessage, message: action.text}
+            }
         default:
             return state
     }
 }
-
-export const sendMessageAC = () => ({type: SEND_MESSAGE}) as const
-export const updateMessageTextAC = (text: string) => ({type: UPDATE_MESSAGE_TEXT, text: text}) as const

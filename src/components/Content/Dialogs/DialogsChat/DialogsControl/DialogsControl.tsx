@@ -1,5 +1,5 @@
-import s from "../../Dialogs.module.css";
-import React, {ChangeEvent} from "react";
+import s from '../../Dialogs.module.css'
+import React, {ChangeEvent} from 'react'
 
 type DialogsControlPropsType = {
     sendMessage: () => void

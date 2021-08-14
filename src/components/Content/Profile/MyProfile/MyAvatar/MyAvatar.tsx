@@ -1,5 +1,5 @@
-import s from "../MyProfile.module.css";
-import React from "react";
+import s from '../MyProfile.module.css'
+import React from 'react'
 
 type MyAvatarPropsType = {
     src: string

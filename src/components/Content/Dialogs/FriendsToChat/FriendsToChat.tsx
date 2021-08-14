@@ -1,7 +1,7 @@
-import s from "../Dialogs.module.css";
-import React from "react";
-import {Friend} from "./Friend/Friend";
-import {DataForFriendsType} from "../../../../redux/store";
+import s from '../Dialogs.module.css'
+import React from 'react'
+import {Friend} from './Friend/Friend'
+import {DataForFriendsType} from '../../../../types/types'
 
 type FriendsContainerPropsType = {
     dataForFriends: DataForFriendsType[]

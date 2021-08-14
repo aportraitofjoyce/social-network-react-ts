@@ -1,7 +1,7 @@
-import {sendMessageAC, updateMessageTextAC} from "../../../redux/dialogs-reducer";
-import {connect} from "react-redux";
-import {Dialogs} from "./Dialogs";
-import {DispatchType, StateType} from "../../../redux/store";
+import {connect} from 'react-redux'
+import {Dialogs} from './Dialogs'
+import {DispatchType, StateType} from '../../../types/types'
+import {sendMessageAC, updateMessageTextAC} from '../../../redux/actionCreators/dialogsAC'
 
 const mapStateToProps = (state: StateType) => ({
     dataForMessages: state.dialogs.dataForMessages,

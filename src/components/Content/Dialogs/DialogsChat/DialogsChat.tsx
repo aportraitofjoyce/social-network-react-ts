@@ -1,9 +1,9 @@
-import React from "react";
-import s from "../Dialogs.module.css";
-import {Message} from "./Message/Message";
-import {DialogsControl} from "./DialogsControl/DialogsControl";
-import {v1} from "uuid";
-import {MessagesDataType} from "../../../../redux/store";
+import React from 'react'
+import s from '../Dialogs.module.css'
+import {Message} from './Message/Message'
+import {DialogsControl} from './DialogsControl/DialogsControl'
+import {v1} from 'uuid'
+import {MessagesDataType} from '../../../../types/types'
 
 type DialogsContainerPropsType = {
     dataForMessages: MessagesDataType[]

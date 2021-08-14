@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import s from './Dialogs.module.css'
-import {DataForFriendsType, MessagesDataType} from "../../../redux/store";
-import {FriendsToChat} from "./FriendsToChat/FriendsToChat";
-import {DialogsChat} from "./DialogsChat/DialogsChat";
+import {FriendsToChat} from './FriendsToChat/FriendsToChat'
+import {DialogsChat} from './DialogsChat/DialogsChat'
+import {DataForFriendsType, MessagesDataType} from '../../../types/types'
 
 type DialogsPropsType = {
     dataForMessages: MessagesDataType[]

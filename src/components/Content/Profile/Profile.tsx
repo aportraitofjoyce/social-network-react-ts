@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import s from './Profile.module.css'
-import {MyPosts} from "./MyPosts/MyPosts";
-import {MyProfile} from "./MyProfile/MyProfile";
-import {dataForMyPostsType, dataForMyProfileType} from "../../../redux/store";
+import {MyPosts} from './MyPosts/MyPosts'
+import {MyProfile} from './MyProfile/MyProfile'
+import {dataForMyPostsType, dataForMyProfileType} from '../../../types/types'
 
 type ProfilePropsType = {
     dataForMyProfile: dataForMyProfileType
