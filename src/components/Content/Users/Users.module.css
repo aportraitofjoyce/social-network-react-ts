@@ -35,7 +35,5 @@
     flex-basis: 320px;
 }
 
-.nameAndLocationContainer {
-    display: flex;
-    justify-content: space-between;
+.name {
 }

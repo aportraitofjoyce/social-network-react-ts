@@ -83,11 +83,14 @@ export type UsersType = {
 export type UserType = {
     id: string
     name: string
-    location: {
+    /*location: {
         country: string
         city: string
+    }*/
+    photos: {
+        small: string
+        large: string
     }
-    avatar: string
     status: string
-    follow: boolean
+    followed: boolean
 }

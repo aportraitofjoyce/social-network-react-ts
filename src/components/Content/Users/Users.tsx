@@ -1,64 +1,46 @@
 import React, {useEffect} from 'react'
 import {UserType} from '../../../types/types'
 import s from './Users.module.css'
-import {v1} from 'uuid'
+import axios from 'axios'
 
 type UsersPropsType = {
     usersData: UserType[]
-    follow: (id: string) => void
+    followed: (id: string) => void
     setUsers: (users: UserType[]) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-    useEffect( () => props.setUsers([
-        {
-            id: v1(),
-            name: 'Andrei Tretyakov',
-            location: {
-                country: 'Ukraine',
-                city: 'Kiev'
-            },
-            avatar: 'https://9tailedkitsune.com/wp-content/uploads/2021/04/zero-two_-cute.jpg',
-            status: 'LF DD 15+',
-            follow: false
-        },
-        {
-            id: v1(),
-            name: 'Yura Kereichyk',
-            location: {
-                country: 'Japan',
-                city: 'Tokio'
-            },
-            avatar: 'https://yt3.ggpht.com/uMUat6yJL2_Sk6Wg2-yn0fSIqUr_D6aKVNVoWbgeZ8N-edT5QJAusk4PI8nmPgT_DxFDTyl8=s900-c-k-c0x00ffffff-no-rj',
-            status: 'It\'s a Guuuura',
-            follow: false
-        }
-    ]), [])
+    if (!props.usersData.length) {
+        axios
+            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
+    }
 
     const users = props.usersData.map(user => (
-        <div key={user.id} className={s.userContainer}>
+        <div key={user.name} className={s.userContainer}>
 
             <div className={s.avatarAndFollowContainer}>
                 <div className={s.avatar}>
-                    <img src={user.avatar} alt={user.name}/>
+                    <img
+                        src={user.photos.small !== null ? user.photos.small : 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
+                        alt={user.name}/>
                 </div>
-                <button onClick={() => props.follow(user.id)}>
-                    {user.follow ? 'Unfollow' : 'Follow'}
+                <button onClick={() => props.followed(user.id)}>
+                    {user.followed ? 'Unfollow' : 'Follow'}
                 </button>
             </div>
 
             <div className={s.userInfoContainer}>
-                <div className={s.nameAndLocationContainer}>
-                    <span>
-                        {user.name}
-                    </span>
-                    <span>
-                        {user.location.country}/{user.location.city}
-                    </span>
+                <div className={s.name}>
+                    {user.name}
                 </div>
-
                 <div>
-                    {user.status}
+                    {user.followed ? 'Вы уже дружите' : 'Ждет дружбы'}
+                </div>
+                <div>
+                    {user.status !== null ? user.status : 'Место для вашего статуса'}
                 </div>
             </div>
 

@@ -1,10 +1,32 @@
-import {v1} from 'uuid'
 import {ActionsType, UsersType} from '../../types/types'
 import {FOLLOW, SET_USERS} from '../actions/usersActions'
 
 const initialState: UsersType = {
-    usersData: [
-        {
+    usersData: []
+}
+
+export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
+    switch (action.type) {
+        case FOLLOW:
+            return {
+                ...state,
+                usersData: state.usersData
+                    .map((user) => user.id === action.id
+                        ? {...user, followed: !user.followed}
+                        : user)
+            }
+
+        case SET_USERS:
+            return {...state, usersData: [...action.users, ...state.usersData]}
+
+        default:
+            return state
+    }
+}
+
+/*
+
+{
             id: v1(),
             name: 'Ilya Sadovskiy',
             location: {
@@ -48,24 +70,4 @@ const initialState: UsersType = {
             status: 'It\'s a Guuuura',
             follow: false
         }
-    ]
-}
-
-export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
-    switch (action.type) {
-        case FOLLOW:
-            return {
-                ...state,
-                usersData: state.usersData
-                    .map((user) => user.id === action.id
-                        ? {...user, follow: !user.follow}
-                        : user)
-            }
-
-        case SET_USERS:
-            return {...state, usersData: [...action.users, ...state.usersData]}
-
-        default:
-            return state
-    }
-}
+* */

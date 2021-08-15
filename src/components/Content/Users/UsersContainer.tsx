@@ -8,7 +8,7 @@ const mapStateToProps = (state: StateType) => ({
 })
 
 const mapDispatchToProps = (dispatch: DispatchType) => ({
-    follow: (id: string) => {
+    followed: (id: string) => {
         dispatch(followAC(id))
     },
     setUsers: (users: UserType[]) => {
