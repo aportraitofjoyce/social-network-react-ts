@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {UsersCC} from './Users'
+import {UsersCC, UsersFC} from './Users'
 import {DispatchType, StateType, UserType} from '../../../types/types'
 import {followAC, setUsersAC} from '../../../redux/actionCreators/usersAC'
 

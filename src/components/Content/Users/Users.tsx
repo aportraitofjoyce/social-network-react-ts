@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {UserType} from '../../../types/types'
 import s from './Users.module.css'
 import axios from 'axios'
@@ -10,9 +10,7 @@ type UsersPropsType = {
 }
 
 export class UsersCC extends React.Component<UsersPropsType> {
-
-    constructor(props: UsersPropsType) {
-        super(props)
+    componentDidMount() {
         axios
             .get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
@@ -60,10 +58,10 @@ export class UsersCC extends React.Component<UsersPropsType> {
     }
 }
 
-
 export const UsersFC: React.FC<UsersPropsType> = (props) => {
 
-    const getUsers = () => {
+    // for onClick
+    /*const getUsers = () => {
         if (!props.usersData.length) {
             axios
                 .get('https://social-network.samuraijs.com/api/1.0/users')
@@ -71,7 +69,15 @@ export const UsersFC: React.FC<UsersPropsType> = (props) => {
                     props.setUsers(response.data.items)
                 })
         }
-    }
+    }*/
+
+    useEffect( () => {
+        axios
+            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
+    }, [])
 
     const users = props.usersData.map(user => (
         <div key={user.name} className={s.userContainer}>
@@ -106,7 +112,6 @@ export const UsersFC: React.FC<UsersPropsType> = (props) => {
 
     return (
         <main className={s.wrapper}>
-            <button onClick={getUsers}>Get users</button>
             {users}
         </main>
     )
