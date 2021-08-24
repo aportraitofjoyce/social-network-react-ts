@@ -6,7 +6,7 @@ import {PostsControl} from "./PostControl/PostControl";
 import {dataForMyPostsType} from "../../../../types/types";
 
 type MyPostsPropsType = {
-    addPost: () => void
+    addPost: any
     updatePost: (text: string) => void
     textForNewPost: string
     dataForMyPosts: dataForMyPostsType[]

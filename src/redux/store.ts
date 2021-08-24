@@ -3,9 +3,8 @@ import {profileReducer} from './reducers/profile-reducer'
 import {dialogsReducer} from './reducers/dialogs-reducer'
 import {sidebarReducer} from './reducers/sidebar-reducer'
 import {usersReducer} from './reducers/users-reducer'
-import {StoreType} from '../types/types'
 
-export const reducers = combineReducers(
+export const rootReducer = combineReducers(
     {
         profile: profileReducer,
         dialogs: dialogsReducer,
@@ -14,4 +13,4 @@ export const reducers = combineReducers(
     }
 )
 
-export const store: StoreType = createStore(reducers)
+export const store = createStore(rootReducer)

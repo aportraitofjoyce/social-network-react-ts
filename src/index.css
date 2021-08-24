@@ -2,9 +2,9 @@
 
 :root {
     --text: #333;
-    --primary: #2f635e;
-    --primary-light: rgba(47, 99, 94, 0.75);
-    --secondary: #ffc443;
+    --primary: #4a5877;
+    --primary-light: rgba(77, 88, 119, 0.75);
+    --secondary: #f5a417;
 
     --border: 1px solid lightgrey;
     --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -66,6 +66,16 @@ button {
     color: white;
     font-size: 16px;
     line-height: 1;
+}
+
+input {
+    font-family: "Fira Sans", sans-serif;
+
+}
+
+textarea {
+    font-family: "Fira Sans", sans-serif;
+    padding: 8px;
 }
 
 button:hover {

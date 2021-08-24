@@ -1,13 +1,11 @@
-import {Store} from 'redux'
-import {reducers} from '../redux/store'
-import {addPostAC, updatePostAC} from '../redux/actionCreators/profileAC'
-import {sendMessageAC, updateMessageTextAC} from '../redux/actionCreators/dialogsAC'
-import {followAC, setUsersAC} from '../redux/actionCreators/usersAC'
+import {rootReducer, store} from '../redux/store'
+import {sendMessageAC, updateMessageTextAC} from '../redux/actions/dialogsActions'
+import {addPostAC, updatePostAC} from '../redux/actions/profileActions'
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC} from '../redux/actions/usersActions'
 
-// Store
-export type StoreType = Store & ReducersType
+export type StoreType = typeof store
 
-export type ReducersType = ReturnType<typeof reducers>
+export type ReducersType = ReturnType<typeof rootReducer>
 
 export type ActionsType =
     ReturnType<typeof addPostAC> |
@@ -15,17 +13,13 @@ export type ActionsType =
     ReturnType<typeof sendMessageAC> |
     ReturnType<typeof updateMessageTextAC> |
     ReturnType<typeof followAC> |
-    ReturnType<typeof setUsersAC>
-
+    ReturnType<typeof setUsersAC> |
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setTotalUsersCountAC>
 
 export type DispatchType = (action: ActionsType) => void
 
-export type StateType = {
-    sidebar: SidebarType
-    profile: ProfileType
-    dialogs: DialogsType
-    users: UsersType
-}
+export type StateType = ReturnType<typeof rootReducer>
 
 // Sidebar
 export type SidebarType = {
@@ -78,15 +72,14 @@ export type MessagesDataType = {
 // Users
 export type UsersType = {
     usersData: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export type UserType = {
     id: string
     name: string
-    /*location: {
-        country: string
-        city: string
-    }*/
     photos: {
         small: string
         large: string
