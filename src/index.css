@@ -68,13 +68,10 @@ button {
     line-height: 1;
 }
 
-input {
+input, textarea {
     font-family: "Fira Sans", sans-serif;
-
-}
-
-textarea {
-    font-family: "Fira Sans", sans-serif;
+    font-size: 16px;
+    color: var(--text);
     padding: 8px;
 }
 
