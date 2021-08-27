@@ -1,7 +1,7 @@
 import {rootReducer, store} from '../redux/store'
 import {sendMessageAC, updateMessageTextAC} from '../redux/actions/dialogsActions'
 import {addPostAC, updatePostAC} from '../redux/actions/profileActions'
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC} from '../redux/actions/usersActions'
+import {followAC, setCurrentPageAC, toggleLoaderAC, setTotalUsersCountAC, setUsersAC} from '../redux/actions/usersActions'
 
 export type StoreType = typeof store
 
@@ -15,7 +15,8 @@ export type ActionsType =
     ReturnType<typeof followAC> |
     ReturnType<typeof setUsersAC> |
     ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setTotalUsersCountAC>
+    ReturnType<typeof setTotalUsersCountAC> |
+    ReturnType<typeof toggleLoaderAC>
 
 export type DispatchType = (action: ActionsType) => void
 
@@ -75,6 +76,7 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isLoading: boolean
 }
 
 export type UserType = {

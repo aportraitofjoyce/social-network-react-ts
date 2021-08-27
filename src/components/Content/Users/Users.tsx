@@ -8,7 +8,7 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    onPageClickHandler: (page: number) => void
+    onPaginationPageClickHandler: (page: number) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -57,7 +57,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     pages.map(p => (
                         <span className={props.currentPage === p ? s.currentPage : ''}
                               key={p}
-                              onClick={() => props.onPageClickHandler(p)}
+                              onClick={() => props.onPaginationPageClickHandler(p)}
                         >
                                 {p}
                             </span>
