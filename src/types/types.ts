@@ -1,26 +1,22 @@
 import {rootReducer, store} from '../redux/store'
-import {sendMessageAC, updateMessageTextAC} from '../redux/actions/dialogsActions'
-import {addPostAC, updatePostAC} from '../redux/actions/profileActions'
-import {followAC, setCurrentPageAC, toggleLoaderAC, setTotalUsersCountAC, setUsersAC} from '../redux/actions/usersActions'
+import {sendMessage, updateMessage} from '../redux/actions/dialogsActions'
+import {addPost, updatePost} from '../redux/actions/profileActions'
+import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleLoader} from '../redux/actions/usersActions'
 
 export type StoreType = typeof store
-
-export type ReducersType = ReturnType<typeof rootReducer>
-
-export type ActionsType =
-    ReturnType<typeof addPostAC> |
-    ReturnType<typeof updatePostAC> |
-    ReturnType<typeof sendMessageAC> |
-    ReturnType<typeof updateMessageTextAC> |
-    ReturnType<typeof followAC> |
-    ReturnType<typeof setUsersAC> |
-    ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setTotalUsersCountAC> |
-    ReturnType<typeof toggleLoaderAC>
-
+export type StateType = ReturnType<typeof rootReducer>
 export type DispatchType = (action: ActionsType) => void
 
-export type StateType = ReturnType<typeof rootReducer>
+export type ActionsType =
+    ReturnType<typeof addPost> |
+    ReturnType<typeof updatePost> |
+    ReturnType<typeof sendMessage> |
+    ReturnType<typeof updateMessage> |
+    ReturnType<typeof follow> |
+    ReturnType<typeof setUsers> |
+    ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setTotalUsersCount> |
+    ReturnType<typeof toggleLoader>
 
 // Sidebar
 export type SidebarType = {

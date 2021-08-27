@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Dialogs} from './Dialogs'
-import {DispatchType, StateType} from '../../../types/types'
-import {sendMessageAC, updateMessageTextAC} from '../../../redux/actions/dialogsActions'
+import {StateType} from '../../../types/types'
+import {sendMessage, updateMessage} from '../../../redux/actions/dialogsActions'
 
 
 const mapStateToProps = (state: StateType) => ({
@@ -10,9 +10,9 @@ const mapStateToProps = (state: StateType) => ({
     dataForFriends: state.dialogs.dataForFriends
 })
 
-const mapDispatchToProps = (dispatch: DispatchType) => ({
-    sendMessage: () => dispatch(sendMessageAC()),
-    updateMessage: (text: string) => dispatch(updateMessageTextAC(text))
-})
+const mapDispatchToProps = {
+    sendMessage,
+    updateMessage
+}
 
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

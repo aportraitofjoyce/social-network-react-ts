@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
-import {DispatchType, StateType, UserType} from '../../../types/types'
+import {StateType, UserType} from '../../../types/types'
 import {
-    followAC,
-    setCurrentPageAC,
-    toggleLoaderAC,
-    setTotalUsersCountAC,
-    setUsersAC
+    follow,
+    setCurrentPage,
+    toggleLoader,
+    setTotalUsersCount,
+    setUsers
 } from '../../../redux/actions/usersActions'
 import React from 'react'
 import axios from 'axios'
@@ -14,7 +14,7 @@ import {Loader} from '../../UI/Loader/Loader'
 
 type UsersContainerPropsType = {
     usersData: UserType[]
-    followed: (id: string) => void
+    follow: (id: string) => void
     setUsers: (users: UserType[]) => void
     pageSize: number
     totalUsersCount: number
@@ -53,7 +53,7 @@ export class UsersAPIContainer extends React.Component<UsersContainerPropsType> 
             <div>
                 {this.props.isLoading && <Loader/>}
                 <Users usersData={this.props.usersData}
-                       followed={this.props.followed}
+                       follow={this.props.follow}
                        pageSize={this.props.pageSize}
                        totalUsersCount={this.props.totalUsersCount}
                        currentPage={this.props.currentPage}
@@ -71,12 +71,12 @@ const mapStateToProps = (state: StateType) => ({
     isLoading: state.users.isLoading
 })
 
-const mapDispatchToProps = (dispatch: DispatchType) => ({
-    followed: (id: string) => dispatch(followAC(id)),
-    setUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
-    setCurrentPage: (page: number) => dispatch(setCurrentPageAC(page)),
-    setTotalUsersCount: (total: number) => dispatch(setTotalUsersCountAC(total)),
-    toggleLoader: (status: boolean) => dispatch(toggleLoaderAC(status))
-})
+const mapDispatchToProps = {
+    follow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleLoader
+}
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)

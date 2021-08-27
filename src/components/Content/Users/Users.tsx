@@ -4,7 +4,7 @@ import {UserType} from '../../../types/types'
 
 type UsersPropsType = {
     usersData: UserType[]
-    followed: (id: string) => void
+    follow: (id: string) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -32,7 +32,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                         : 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
                                     alt={user.name}/>
                             </div>
-                            <button onClick={() => props.followed(user.id)}>
+                            <button onClick={() => props.follow(user.id)}>
                                 {user.followed ? 'Unfollow' : 'Follow'}
                             </button>
                         </div>
