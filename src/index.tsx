@@ -16,4 +16,7 @@ ReactDOM.render(
         </HashRouter>
     </React.StrictMode>, document.getElementById('root'))
 
+// @ts-ignore
+window.store = store
+
 reportWebVitals()

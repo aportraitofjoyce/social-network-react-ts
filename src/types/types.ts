@@ -1,15 +1,14 @@
-import {rootReducer, store} from '../redux/store'
+import {rootReducer} from '../redux/store'
 import {sendMessage, updateMessage} from '../redux/actions/dialogsActions'
-import {addPost, updatePost} from '../redux/actions/profileActions'
+import {addPost, setUserProfile, updatePost} from '../redux/actions/profileActions'
 import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleLoader} from '../redux/actions/usersActions'
 
-export type StoreType = typeof store
 export type StateType = ReturnType<typeof rootReducer>
-export type DispatchType = (action: ActionsType) => void
 
 export type ActionsType =
     ReturnType<typeof addPost> |
     ReturnType<typeof updatePost> |
+    ReturnType<typeof setUserProfile> |
     ReturnType<typeof sendMessage> |
     ReturnType<typeof updateMessage> |
     ReturnType<typeof follow> |
@@ -33,12 +32,17 @@ export type ProfileType = {
     dataForMyProfile: dataForMyProfileType
     dataForMyPosts: dataForMyPostsType[]
     newPost: dataForMyPostsType
+    userProfile: any
 }
 
 export type dataForMyProfileType = {
-    src: string
-    alt: string
-    title: string
+    userId: string
+    fullName: string
+    aboutMe: string
+    photos: {
+        small: string
+        large: string
+    }
 }
 
 export type dataForMyPostsType = {

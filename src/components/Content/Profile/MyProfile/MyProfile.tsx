@@ -11,8 +11,11 @@ type MyProfilePropsType = {
 export const MyProfile: React.FC<MyProfilePropsType> = (props) => {
     return (
         <section className={s.wrapper}>
-            <MyAvatar src={props.dataForMyProfile.src} alt={props.dataForMyProfile.alt}/>
-            <MyInfo title={props.dataForMyProfile.title}/>
+            <MyAvatar src={props.dataForMyProfile.photos.large}
+                      alt={props.dataForMyProfile.fullName}/>
+            <MyInfo title={props.dataForMyProfile.fullName}
+                    aboutMe={props.dataForMyProfile.aboutMe}
+            />
         </section>
     )
 }

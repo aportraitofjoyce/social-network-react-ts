@@ -25,7 +25,7 @@ type UsersContainerPropsType = {
     toggleLoader: (status: boolean) => void
 }
 
-export class UsersAPIContainer extends React.Component<UsersContainerPropsType> {
+export class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
         this.props.toggleLoader(true)
         axios
@@ -79,4 +79,4 @@ const mapDispatchToProps = {
     toggleLoader
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

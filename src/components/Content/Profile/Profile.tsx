@@ -2,26 +2,20 @@ import React from 'react'
 import s from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts'
 import {MyProfile} from './MyProfile/MyProfile'
-import {dataForMyPostsType, dataForMyProfileType} from '../../../types/types'
-
-type ProfilePropsType = {
-    dataForMyProfile: dataForMyProfileType
-    addPost: () => void
-    updatePost: (text: string) => void
-    textForNewPost: string
-    dataForMyPosts: dataForMyPostsType[]
-}
+import {ProfilePropsType} from './ProfileContainer'
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <main className={s.wrapper}>
-            <MyProfile dataForMyProfile={props.dataForMyProfile}/>
-
-            <MyPosts
+            {!props.userProfile
+                ? <MyProfile dataForMyProfile={props.dataForMyProfile}/>
+                : <MyProfile dataForMyProfile={props.userProfile}/>
+            }
+            {!props.userProfile && <MyPosts
                 dataForMyPosts={props.dataForMyPosts}
                 textForNewPost={props.textForNewPost}
                 addPost={props.addPost}
-                updatePost={props.updatePost}/>
+                updatePost={props.updatePost}/>}
         </main>
     )
 }

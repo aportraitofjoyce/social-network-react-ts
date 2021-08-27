@@ -8,7 +8,7 @@ type MyAvatarPropsType = {
 
 export const MyAvatar: React.FC<MyAvatarPropsType> = (props) => {
     return (
-        <div className={s.avatar_wrapper}>
+        <div className={s.avatarWrapper}>
             <img
                 src={props.src}
                 alt={props.alt}/>

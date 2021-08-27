@@ -4,8 +4,8 @@ import './index.css'
 import {Header} from './components/Content/Header/Header'
 import {DialogsContainer} from './components/Content/Dialogs/DialogsContainer'
 import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
-import {ProfileContainer} from './components/Content/Profile/ProfileContainer'
-import {UsersContainer} from './components/Content/Users/UsersContainer'
+import ProfileContainer from './components/Content/Profile/ProfileContainer'
+import UsersContainer from './components/Content/Users/UsersContainer'
 
 const PATH = {
     PROFILE: '/profile',

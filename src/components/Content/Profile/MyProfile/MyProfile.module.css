@@ -7,15 +7,15 @@
     background: white;
 }
 
-.avatar_wrapper {
+.avatarWrapper {
     max-width: 240px;
 }
 
-.avatar_wrapper img {
+.avatarWrapper img {
     max-width: inherit;
     border-radius: 4px;
 }
 
-.info_wrapper {
+.infoWrapper {
     flex: 1;
 }

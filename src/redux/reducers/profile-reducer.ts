@@ -1,11 +1,15 @@
 import {ActionsType, ProfileType} from '../../types/types'
-import {ADD_POST, UPDATE_POST_TEXT} from '../actions/profileActions'
+import {ADD_POST, SET_USER_PROFILE, UPDATE_POST_TEXT} from '../actions/profileActions'
 
 const initialState: ProfileType = {
     dataForMyProfile: {
-        src: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album',
-        alt: 'My profile',
-        title: 'Илья Садовский'
+        userId: '1',
+        fullName: 'Илья Садовский',
+        aboutMe: 'Blablabla',
+        photos: {
+            small: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album',
+            large: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album'
+        }
     },
     dataForMyPosts: [
         {
@@ -38,7 +42,8 @@ const initialState: ProfileType = {
         alt: 'My profile',
         text: 'Что-то чтобы не вводить для тестов',
         likes: 0
-    }
+    },
+    userProfile: null
 }
 
 export const profileReducer = (state: ProfileType = initialState, action: ActionsType): ProfileType => {
@@ -54,6 +59,12 @@ export const profileReducer = (state: ProfileType = initialState, action: Action
                 ...state,
                 newPost: {...state.newPost, text: action.text}
             }
+
+        case SET_USER_PROFILE:
+            return {
+                ...state, userProfile: action.userProfile
+            }
+
         default:
             return state
     }
