@@ -1,10 +1,11 @@
 import {ActionsType, SidebarType} from '../../types/types'
+import {PATH} from '../../App'
 
 const initialState: SidebarType = {
     dataForSidebar: [
-        {name: 'Profile', link: '/profile'},
-        {name: 'Dialogs', link: '/dialogs'},
-        {name: 'Users', link: '/users'}
+        {name: 'Profile', link: PATH.PROFILE_CLEAR},
+        {name: 'Dialogs', link: PATH.DIALOGS},
+        {name: 'Users', link: PATH.USERS}
     ]
 }
 

@@ -9,7 +9,7 @@ type MyInfoPropsType = {
 export const MyInfo: React.FC<MyInfoPropsType> = (props) => {
     return (
         <div className={s.infoWrapper}>
-            <h2>{props.title}</h2>
+            <h2 style={{marginBottom: 24}}>{props.title}</h2>
             <h4>{props.aboutMe}</h4>
         </div>
     )

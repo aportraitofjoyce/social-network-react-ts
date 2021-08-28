@@ -4,21 +4,33 @@ import {Profile} from './Profile'
 import {dataForMyPostsType, dataForMyProfileType, StateType} from '../../../types/types'
 import {addPost, setUserProfile, updatePost} from '../../../redux/actions/profileActions'
 import axios from 'axios'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
 
-export type ProfilePropsType = {
+export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
+
+type MSTPType = {
     dataForMyProfile: dataForMyProfileType
+    dataForMyPosts: dataForMyPostsType[]
+    textForNewPost: string
+    userProfile: dataForMyProfileType
+}
+
+type MDTPType = {
     addPost: () => void
     updatePost: (text: string) => void
-    textForNewPost: string
-    dataForMyPosts: dataForMyPostsType[]
-    setUserProfile: (userProfile: any) => void
-    userProfile: any
+    setUserProfile: (userProfile: dataForMyProfileType) => void
+}
+
+type PathParamsType = {
+    userId: string
 }
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
     componentDidMount() {
+        const userID = this.props.match.params.userId ? this.props.match.params.userId : 2
+
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/profile/2')
+            .get('https://social-network.samuraijs.com/api/1.0/profile/' + userID)
             .then(response => {
                 this.props.setUserProfile(response.data)
             })
@@ -44,4 +56,6 @@ const mapDispatchToProps = {
     setUserProfile
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)
+const ProfileContainerWithRouter = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithRouter)

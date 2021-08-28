@@ -5,16 +5,21 @@ import {MyInfo} from './MyInfo/MyInfo'
 import {dataForMyProfileType} from '../../../../types/types'
 
 type MyProfilePropsType = {
-    dataForMyProfile: dataForMyProfileType
+    dataForProfile: dataForMyProfileType
 }
 
 export const MyProfile: React.FC<MyProfilePropsType> = (props) => {
+    const avatarSRC = props.dataForProfile.photos.large !== null
+        ? props.dataForProfile.photos.large
+        : 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'
+
     return (
         <section className={s.wrapper}>
-            <MyAvatar src={props.dataForMyProfile.photos.large}
-                      alt={props.dataForMyProfile.fullName}/>
-            <MyInfo title={props.dataForMyProfile.fullName}
-                    aboutMe={props.dataForMyProfile.aboutMe}
+            <MyAvatar
+                src={avatarSRC}
+                alt={props.dataForProfile.fullName}/>
+            <MyInfo title={props.dataForProfile.fullName}
+                    aboutMe={props.dataForProfile.aboutMe}
             />
         </section>
     )

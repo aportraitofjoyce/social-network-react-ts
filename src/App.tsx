@@ -7,21 +7,23 @@ import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import ProfileContainer from './components/Content/Profile/ProfileContainer'
 import UsersContainer from './components/Content/Users/UsersContainer'
 
-const PATH = {
-    PROFILE: '/profile',
+export const PATH = {
+    PROFILE: '/profile/:userId?',
+    PROFILE_CLEAR: '/profile',
     DIALOGS: '/dialogs',
     USERS: '/users'
 }
 
 export const App = () => {
-
     return (
         <div className={'App'}>
             <Header/>
             <div className={'ContentWrapper'}>
                 <SidebarContainer/>
                 <Switch>
-                    <Route path={'/'} exact render={() => <Redirect to={PATH.PROFILE}/>}/>
+                    <Route path={'/'}
+                           exact
+                           render={() => <Redirect to={PATH.PROFILE_CLEAR}/>}/>
                     <Route path={PATH.PROFILE}
                            render={() => <ProfileContainer/>}/>
                     <Route path={PATH.DIALOGS}

@@ -8,8 +8,8 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <main className={s.wrapper}>
             {!props.userProfile
-                ? <MyProfile dataForMyProfile={props.dataForMyProfile}/>
-                : <MyProfile dataForMyProfile={props.userProfile}/>
+                ? <MyProfile dataForProfile={props.dataForMyProfile}/>
+                : <MyProfile dataForProfile={props.userProfile}/>
             }
             {!props.userProfile && <MyPosts
                 dataForMyPosts={props.dataForMyPosts}
