@@ -11,11 +11,11 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                 ? <MyProfile dataForProfile={props.dataForMyProfile}/>
                 : <MyProfile dataForProfile={props.userProfile}/>
             }
-            {!props.userProfile && <MyPosts
+            {props.userProfile && props.userProfile.userId === 18964 ? <MyPosts
                 dataForMyPosts={props.dataForMyPosts}
                 textForNewPost={props.textForNewPost}
                 addPost={props.addPost}
-                updatePost={props.updatePost}/>}
+                updatePost={props.updatePost}/> : ''}
         </main>
     )
 }

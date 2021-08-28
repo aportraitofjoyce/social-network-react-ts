@@ -1,6 +1,6 @@
 import {v1} from 'uuid'
 import {ActionsType, DialogsType} from '../../types/types'
-import {SEND_MESSAGE, UPDATE_MESSAGE_TEXT} from '../actions/dialogsActions'
+import {SEND_MESSAGE, UPDATE_MESSAGE_TEXT} from '../actions/dialogs-actions'
 
 const initialState: DialogsType = {
     dataForFriends: [

@@ -1,9 +1,9 @@
 import {ActionsType, ProfileType} from '../../types/types'
-import {ADD_POST, SET_USER_PROFILE, UPDATE_POST_TEXT} from '../actions/profileActions'
+import {ADD_POST, SET_USER_PROFILE, UPDATE_POST_TEXT} from '../actions/profile-actions'
 
 const initialState: ProfileType = {
     dataForMyProfile: {
-        userId: '1',
+        userId: '18964',
         fullName: 'Илья Садовский',
         aboutMe: 'Blablabla',
         photos: {

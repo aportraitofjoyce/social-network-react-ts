@@ -1,23 +1,24 @@
 import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import './index.css'
-import {Header} from './components/Content/Header/Header'
 import {DialogsContainer} from './components/Content/Dialogs/DialogsContainer'
 import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import ProfileContainer from './components/Content/Profile/ProfileContainer'
 import UsersContainer from './components/Content/Users/UsersContainer'
+import HeaderContainer from './components/Content/Header/HeaderContainer'
 
 export const PATH = {
     PROFILE: '/profile/:userId?',
     PROFILE_CLEAR: '/profile',
     DIALOGS: '/dialogs',
-    USERS: '/users'
+    USERS: '/users',
+    LOGIN: '/login'
 }
 
 export const App = () => {
     return (
         <div className={'App'}>
-            <Header/>
+            <HeaderContainer/>
             <div className={'ContentWrapper'}>
                 <SidebarContainer/>
                 <Switch>

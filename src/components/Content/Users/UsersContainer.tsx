@@ -6,7 +6,7 @@ import {
     toggleLoader,
     setTotalUsersCount,
     setUsers
-} from '../../../redux/actions/usersActions'
+} from '../../../redux/actions/users-actions'
 import React from 'react'
 import axios from 'axios'
 import {Users} from './Users'

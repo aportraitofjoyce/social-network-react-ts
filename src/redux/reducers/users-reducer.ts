@@ -1,5 +1,5 @@
 import {ActionsType, UsersType} from '../../types/types'
-import {FOLLOW, SET_CURRENT_PAGE, TOGGLE_LOADER, SET_TOTAL_USERS_COUNT, SET_USERS} from '../actions/usersActions'
+import {FOLLOW, SET_CURRENT_PAGE, TOGGLE_LOADER, SET_TOTAL_USERS_COUNT, SET_USERS} from '../actions/users-actions'
 
 const initialState: UsersType = {
     usersData: [],

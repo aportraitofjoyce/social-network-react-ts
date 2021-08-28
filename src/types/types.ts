@@ -1,7 +1,8 @@
 import {rootReducer} from '../redux/store'
-import {sendMessage, updateMessage} from '../redux/actions/dialogsActions'
-import {addPost, setUserProfile, updatePost} from '../redux/actions/profileActions'
-import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleLoader} from '../redux/actions/usersActions'
+import {sendMessage, updateMessage} from '../redux/actions/dialogs-actions'
+import {addPost, setUserProfile, updatePost} from '../redux/actions/profile-actions'
+import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleLoader} from '../redux/actions/users-actions'
+import {setAuthUserData, setAuthUserInfo} from '../redux/actions/auth-actions'
 
 export type StateType = ReturnType<typeof rootReducer>
 
@@ -15,7 +16,9 @@ export type ActionsType =
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
     ReturnType<typeof setTotalUsersCount> |
-    ReturnType<typeof toggleLoader>
+    ReturnType<typeof toggleLoader> |
+    ReturnType<typeof setAuthUserData> |
+    ReturnType<typeof setAuthUserInfo>
 
 // Sidebar
 export type SidebarType = {
@@ -88,4 +91,14 @@ export type UserType = {
     }
     status: string
     followed: boolean
+}
+
+// Auth
+export type AuthType = {
+    id: number | null
+    login: string | null
+    email: string | null
+    isAuth: boolean
+    name: string | null
+    avatar: string | null
 }

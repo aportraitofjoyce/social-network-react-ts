@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Dialogs} from './Dialogs'
 import {StateType} from '../../../types/types'
-import {sendMessage, updateMessage} from '../../../redux/actions/dialogsActions'
+import {sendMessage, updateMessage} from '../../../redux/actions/dialogs-actions'
 
 
 const mapStateToProps = (state: StateType) => ({
