@@ -1,3 +1,4 @@
+import React from 'react'
 import {connect} from 'react-redux'
 import {StateType, UserType} from '../../../types/types'
 import {
@@ -7,44 +8,48 @@ import {
     setTotalUsersCount,
     setUsers
 } from '../../../redux/actions/users-actions'
-import React from 'react'
-import axios from 'axios'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
+import {usersAPI} from '../../../api/users-api'
 
-type UsersContainerPropsType = {
+type UsersContainerPropsType = MSTPType & MDTPType
+
+type MSTPType = {
     usersData: UserType[]
-    follow: (id: string) => void
-    setUsers: (users: UserType[]) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isLoading: boolean
+}
+
+type MDTPType = {
+    follow: (id: string) => void
+    setUsers: (users: UserType[]) => void
     setCurrentPage: (page: number) => void
     setTotalUsersCount: (total: number) => void
-    isLoading: boolean
     toggleLoader: (status: boolean) => void
 }
 
 export class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
         this.props.toggleLoader(true)
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
+
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
             .then(response => {
                 this.props.toggleLoader(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+                this.props.setUsers(response.items)
+                this.props.setTotalUsersCount(response.totalCount)
             })
     }
 
     onPaginationPageClickHandler = (page: number) => {
         this.props.setCurrentPage(page)
         this.props.toggleLoader(true)
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${page}`)
+
+        usersAPI.getUsers(this.props.pageSize, page)
             .then(response => {
                 this.props.toggleLoader(false)
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(response.items)
             })
     }
 

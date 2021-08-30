@@ -4,6 +4,8 @@ import {Header} from './Header'
 import {AuthType, StateType} from '../../../types/types'
 import {connect} from 'react-redux'
 import {setAuthUserData, setAuthUserInfo} from '../../../redux/actions/auth-actions'
+import {authAPI} from '../../../api/auth-api'
+import {profileAPI} from '../../../api/profile-api'
 
 export type HeaderPropsType = MSTPType & MDTPType
 
@@ -18,18 +20,13 @@ type MDTPType = {
 
 class HeaderContainer extends React.Component<HeaderPropsType> {
     componentDidMount() {
-        const requestOne = axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true})
-        const requestTwo = axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + 18964)
-
-        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-
-            const {id, login, email} = responseOne.data.data
-            responseOne.data.resultCode === 0 && this.props.setAuthUserData(id, login, email)
-
-            responseOne && this.props.setAuthUserInfo(responseTwo.data.fullName, responseTwo.data.photos.small)
-        }))
+        axios
+            .all([authAPI.checkAuth(), profileAPI.getUserProfile('18964')])
+            .then(axios.spread((...responses) => {
+                const {id, login, email} = responses[0].data.data
+                responses[0].data.resultCode === 0 && this.props.setAuthUserData(id, login, email)
+                responses[0] && this.props.setAuthUserInfo(responses[1].data.fullName, responses[1].data.photos.small)
+            }))
     }
 
     render() {

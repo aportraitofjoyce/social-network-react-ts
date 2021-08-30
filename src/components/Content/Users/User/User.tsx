@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import s from '../Users.module.css'
+import {followAPI} from '../../../../api/follow-api'
 
 type UserPropsType = {
     name: string
@@ -12,6 +13,20 @@ type UserPropsType = {
 }
 
 export const User: React.FC<UserPropsType> = (props) => {
+    const onButtonClickHandler = () => {
+        if (!props.followed) {
+            followAPI.follow(props.id).then(() => {
+                props.follow(props.id)
+            })
+        }
+
+        if (props.followed) {
+            followAPI.unfollow(props.id).then(() => {
+                props.follow(props.id)
+            })
+        }
+    }
+
     return (
         <div key={props.name} className={s.userContainer}>
             <div className={s.avatarAndFollowContainer}>
@@ -25,7 +40,7 @@ export const User: React.FC<UserPropsType> = (props) => {
                     </div>
                 </Link>
 
-                <button onClick={() => props.follow(props.id)}>
+                <button onClick={onButtonClickHandler}>
                     {props.followed ? 'Unfollow' : 'Follow'}
                 </button>
             </div>
