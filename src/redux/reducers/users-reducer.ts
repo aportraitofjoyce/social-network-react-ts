@@ -1,12 +1,20 @@
 import {ActionsType, UsersType} from '../../types/types'
-import {FOLLOW, SET_CURRENT_PAGE, TOGGLE_LOADER, SET_TOTAL_USERS_COUNT, SET_USERS} from '../actions/users-actions'
+import {
+    FOLLOW,
+    SET_CURRENT_PAGE,
+    SET_TOTAL_USERS_COUNT,
+    SET_USERS,
+    TOGGLE_FOLLOW_LOADER,
+    TOGGLE_LOADER
+} from '../actions/users-actions'
 
 const initialState: UsersType = {
     usersData: [],
     pageSize: 25,
     totalUsersCount: 0,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followLoader: []
 }
 
 export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
@@ -30,6 +38,14 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
 
         case TOGGLE_LOADER:
             return {...state, isLoading: action.status}
+
+        case TOGGLE_FOLLOW_LOADER:
+            return {
+                ...state,
+                followLoader: action.status
+                    ? [...state.followLoader, action.id]
+                    : state.followLoader.filter(u => u !== action.id)
+            }
 
         default:
             return state

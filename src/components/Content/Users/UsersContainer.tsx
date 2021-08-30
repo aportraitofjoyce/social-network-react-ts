@@ -6,7 +6,7 @@ import {
     setCurrentPage,
     toggleLoader,
     setTotalUsersCount,
-    setUsers
+    setUsers, toggleFollowLoader
 } from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
@@ -20,6 +20,7 @@ type MSTPType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
+    followLoader: string[]
 }
 
 type MDTPType = {
@@ -28,6 +29,7 @@ type MDTPType = {
     setCurrentPage: (page: number) => void
     setTotalUsersCount: (total: number) => void
     toggleLoader: (status: boolean) => void
+    toggleFollowLoader: (status: boolean, id: string) => void
 }
 
 export class UsersContainer extends React.Component<UsersContainerPropsType> {
@@ -62,7 +64,10 @@ export class UsersContainer extends React.Component<UsersContainerPropsType> {
                        pageSize={this.props.pageSize}
                        totalUsersCount={this.props.totalUsersCount}
                        currentPage={this.props.currentPage}
-                       onPaginationPageClickHandler={this.onPaginationPageClickHandler}/>
+                       onPaginationPageClickHandler={this.onPaginationPageClickHandler}
+                       followLoader={this.props.followLoader}
+                       toggleFollowLoader={this.props.toggleFollowLoader}
+                />
             </div>
         )
     }
@@ -73,7 +78,8 @@ const mapStateToProps = (state: StateType) => ({
     pageSize: state.users.pageSize,
     totalUsersCount: state.users.totalUsersCount,
     currentPage: state.users.currentPage,
-    isLoading: state.users.isLoading
+    isLoading: state.users.isLoading,
+    followLoader: state.users.followLoader
 })
 
 const mapDispatchToProps = {
@@ -81,7 +87,8 @@ const mapDispatchToProps = {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleLoader
+    toggleLoader,
+    toggleFollowLoader
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

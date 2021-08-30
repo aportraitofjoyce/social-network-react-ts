@@ -55,3 +55,7 @@
 .currentPage {
     color: var(--secondary);
 }
+
+.userContainer button:disabled {
+    opacity: 0.2;
+}

@@ -1,7 +1,14 @@
 import {rootReducer} from '../redux/store'
 import {sendMessage, updateMessage} from '../redux/actions/dialogs-actions'
 import {addPost, setUserProfile, updatePost} from '../redux/actions/profile-actions'
-import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleLoader} from '../redux/actions/users-actions'
+import {
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleFollowLoader,
+    toggleLoader
+} from '../redux/actions/users-actions'
 import {setAuthUserData, setAuthUserInfo} from '../redux/actions/auth-actions'
 
 export type StateType = ReturnType<typeof rootReducer>
@@ -18,7 +25,8 @@ export type ActionsType =
     ReturnType<typeof setTotalUsersCount> |
     ReturnType<typeof toggleLoader> |
     ReturnType<typeof setAuthUserData> |
-    ReturnType<typeof setAuthUserInfo>
+    ReturnType<typeof setAuthUserInfo> |
+    ReturnType<typeof toggleFollowLoader>
 
 // Sidebar
 export type SidebarType = {
@@ -79,6 +87,7 @@ export type UsersType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
+    followLoader: string[]
 }
 
 export type UserType = {
@@ -93,9 +102,7 @@ export type UserType = {
 }
 
 // Auth
-export type AuthType = AuthTypeFull | null
-
-type AuthTypeFull = {
+export type AuthType = {
     id: number | null
     login: string | null
     email: string | null

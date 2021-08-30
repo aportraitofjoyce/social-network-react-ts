@@ -10,6 +10,8 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     onPaginationPageClickHandler: (page: number) => void
+    followLoader: string[]
+    toggleFollowLoader: (status: boolean, id: string) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -27,7 +29,10 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                                id={user.id}
                                                followed={user.followed}
                                                status={user.status}
-                                               follow={() => props.follow(user.id)}/>
+                                               follow={() => props.follow(user.id)}
+                                               followLoader={props.followLoader}
+                                               toggleFollowLoader={props.toggleFollowLoader}
+                />
             )}
 
             <div className={s.paginationContainer}>
