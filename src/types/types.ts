@@ -32,14 +32,13 @@ export type dataForSidebarType = {
 
 // Profile
 export type ProfileType = {
-    dataForMyProfile: dataForMyProfileType
     dataForMyPosts: dataForMyPostsType[]
     newPost: dataForMyPostsType
-    userProfile: any
+    userProfile: UserProfileType | null
 }
 
-export type dataForMyProfileType = {
-    userId: string
+export type UserProfileType = {
+    userId: string | number
     fullName: string
     aboutMe: string
     photos: {
@@ -94,7 +93,9 @@ export type UserType = {
 }
 
 // Auth
-export type AuthType = {
+export type AuthType = AuthTypeFull | null
+
+type AuthTypeFull = {
     id: number | null
     login: string | null
     email: string | null

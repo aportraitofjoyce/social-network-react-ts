@@ -2,10 +2,10 @@ import React from 'react'
 import s from './MyProfile.module.css'
 import {MyAvatar} from './MyAvatar/MyAvatar'
 import {MyInfo} from './MyInfo/MyInfo'
-import {dataForMyProfileType} from '../../../../types/types'
+import {UserProfileType} from '../../../../types/types'
 
 type MyProfilePropsType = {
-    dataForProfile: dataForMyProfileType
+    dataForProfile: UserProfileType
 }
 
 export const MyProfile: React.FC<MyProfilePropsType> = (props) => {

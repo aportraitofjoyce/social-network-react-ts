@@ -21,7 +21,7 @@ type MDTPType = {
 class HeaderContainer extends React.Component<HeaderPropsType> {
     componentDidMount() {
         axios
-            .all([authAPI.checkAuth(), profileAPI.getUserProfile('18964')])
+            .all([authAPI.checkAuth(), profileAPI.getUserProfile()])
             .then(axios.spread((...responses) => {
                 const {id, login, email} = responses[0].data.data
                 responses[0].data.resultCode === 0 && this.props.setAuthUserData(id, login, email)
