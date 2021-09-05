@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {StateType} from '../../../types/common-types'
+import {PATH, StateType} from '../../../types/common-types'
 import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {UserType} from '../../../types/users-types'
+import {Redirect} from 'react-router-dom'
 
 type UsersContainerPropsType = MSTPType & MDTPType
 
@@ -15,6 +16,7 @@ type MSTPType = {
     currentPage: number
     isLoading: boolean
     followLoader: string[]
+    isAuth: boolean
 }
 
 type MDTPType = {
@@ -33,6 +35,8 @@ export class UsersContainer extends React.Component<UsersContainerPropsType> {
     }
 
     render() {
+        if (!this.props.isAuth) return <Redirect to={PATH.LOGIN}/>
+
         return (
             <div>
                 {this.props.isLoading && <Loader/>}
@@ -54,7 +58,8 @@ const mapStateToProps = (state: StateType) => ({
     totalUsersCount: state.users.totalUsersCount,
     currentPage: state.users.currentPage,
     isLoading: state.users.isLoading,
-    followLoader: state.users.followLoader
+    followLoader: state.users.followLoader,
+    isAuth: state.auth.isAuth
 })
 
 const mapDispatchToProps = {

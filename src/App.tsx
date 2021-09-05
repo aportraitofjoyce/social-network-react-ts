@@ -1,13 +1,14 @@
 import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import './index.css'
-import {DialogsContainer} from './components/Content/Dialogs/DialogsContainer'
 import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import ProfileContainer from './components/Content/Profile/ProfileContainer'
 import UsersContainer from './components/Content/Users/UsersContainer'
 import HeaderContainer from './components/Content/Header/HeaderContainer'
 import {PATH} from './types/common-types'
-import {Error404} from './components/Content/Error/Error404'
+import {Error404} from './components/Content/ErrorPage/Error404'
+import {Login} from './components/Content/Login/Login'
+import DialogsContainer from './components/Content/Dialogs/DialogsContainer'
 
 export const App = () => {
     return (
@@ -18,15 +19,30 @@ export const App = () => {
                 <SidebarContainer/>
 
                 <Switch>
-                    <Route path={'/'} exact
-                           render={() => <Redirect to={PATH.PROFILE_CLEAR}/>}/>
-                    <Route path={PATH.PROFILE}
-                           render={() => <ProfileContainer/>}/>
-                    <Route path={PATH.DIALOGS}
-                           render={() => <DialogsContainer/>}/>
-                    <Route path={PATH.USERS}
-                           render={() => <UsersContainer/>}/>
-                    <Route render={() => <Error404/>}/>
+                    <Route path={'/'} exact>
+                        <Redirect to={PATH.PROFILE_CLEAR}/>
+                    </Route>
+
+                    <Route path={PATH.PROFILE}>
+                        <ProfileContainer/>
+                    </Route>
+
+                    <Route path={PATH.DIALOGS}>
+                        <DialogsContainer/>
+                    </Route>
+
+                    <Route path={PATH.USERS}>
+                        <UsersContainer/>
+                    </Route>
+
+                    <Route path={PATH.LOGIN}>
+                        <Login/>
+                    </Route>
+
+                    <Route>
+                        <Error404/>
+                    </Route>
+
                 </Switch>
             </div>
         </div>
