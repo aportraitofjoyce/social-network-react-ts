@@ -1,0 +1,17 @@
+.paginationContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.paginationContainer span {
+    padding: 4px;
+}
+
+.paginationContainer span:hover {
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+.currentPage {
+    color: var(--secondary);
+}

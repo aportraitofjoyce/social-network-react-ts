@@ -1,16 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {StateType} from '../../../types/common-types'
-import {
-    follow,
-    setCurrentPage,
-    toggleLoader,
-    setTotalUsersCount,
-    setUsers, toggleFollowLoader
-} from '../../../redux/actions/users-actions'
+import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
-import {usersAPI} from '../../../api/users-api'
 import {UserType} from '../../../types/users-types'
 
 type UsersContainerPropsType = MSTPType & MDTPType
@@ -25,35 +18,18 @@ type MSTPType = {
 }
 
 type MDTPType = {
-    follow: (id: string) => void
-    setUsers: (users: UserType[]) => void
-    setCurrentPage: (page: number) => void
-    setTotalUsersCount: (total: number) => void
-    toggleLoader: (status: boolean) => void
-    toggleFollowLoader: (status: boolean, id: string) => void
+    getUsers: (pageSize: number, currentPage: number) => void
+    changeCurrentPage: (pageSize: number, page: number) => void
+    followUser: (id: string, followed: boolean) => void
 }
 
 export class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
-        this.props.toggleLoader(true)
-
-        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
-            .then(response => {
-                this.props.toggleLoader(false)
-                this.props.setUsers(response.items)
-                this.props.setTotalUsersCount(response.totalCount)
-            })
+        this.props.getUsers(this.props.pageSize, this.props.currentPage)
     }
 
     onPaginationPageClickHandler = (page: number) => {
-        this.props.setCurrentPage(page)
-        this.props.toggleLoader(true)
-
-        usersAPI.getUsers(this.props.pageSize, page)
-            .then(response => {
-                this.props.toggleLoader(false)
-                this.props.setUsers(response.items)
-            })
+        this.props.changeCurrentPage(page, this.props.pageSize)
     }
 
     render() {
@@ -61,14 +37,12 @@ export class UsersContainer extends React.Component<UsersContainerPropsType> {
             <div>
                 {this.props.isLoading && <Loader/>}
                 <Users usersData={this.props.usersData}
-                       follow={this.props.follow}
                        pageSize={this.props.pageSize}
                        totalUsersCount={this.props.totalUsersCount}
                        currentPage={this.props.currentPage}
                        onPaginationPageClickHandler={this.onPaginationPageClickHandler}
                        followLoader={this.props.followLoader}
-                       toggleFollowLoader={this.props.toggleFollowLoader}
-                />
+                       followUser={this.props.followUser}/>
             </div>
         )
     }
@@ -84,12 +58,9 @@ const mapStateToProps = (state: StateType) => ({
 })
 
 const mapDispatchToProps = {
-    follow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleLoader,
-    toggleFollowLoader
+    getUsers,
+    changeCurrentPage,
+    followUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

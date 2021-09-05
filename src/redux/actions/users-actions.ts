@@ -1,4 +1,8 @@
 import {USERS_ACTIONS_TYPE, UserType} from '../../types/users-types'
+import {usersAPI} from '../../api/users-api'
+import {ThunkDispatch} from 'redux-thunk'
+import {ActionsType, StateType} from '../../types/common-types'
+import {followAPI} from '../../api/follow-api'
 
 export const follow = (id: string) => ({
     type: USERS_ACTIONS_TYPE.FOLLOW,
@@ -29,3 +33,53 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
     type: USERS_ACTIONS_TYPE.TOGGLE_FOLLOW_LOADER,
     payload: {status, id}
 }) as const
+
+
+// Thunk
+export const getUsers = (pageSize: number, currentPage: number) => {
+    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+        dispatch(toggleLoader(true))
+
+        usersAPI.getUsers(pageSize, currentPage)
+            .then(response => {
+                dispatch(toggleLoader(false))
+                dispatch(setUsers(response.items))
+                dispatch(setTotalUsersCount(response.totalCount))
+            })
+    }
+}
+
+export const changeCurrentPage = (page: number, pageSize: number) => {
+    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+        dispatch(setCurrentPage(page))
+        dispatch(toggleLoader(true))
+
+        usersAPI.getUsers(pageSize, page)
+            .then(response => {
+                dispatch(toggleLoader(false))
+                dispatch(setUsers(response.items))
+            })
+    }
+}
+
+export const followUser = (id: string, followed: boolean) => {
+    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+        dispatch(toggleFollowLoader(true, id))
+
+        if (!followed) {
+            followAPI.follow(id)
+                .then(() => {
+                    dispatch(follow(id))
+                    dispatch(toggleFollowLoader(false, id))
+                })
+        }
+
+        if (followed) {
+            followAPI.unfollow(id)
+                .then(() => {
+                    dispatch(follow(id))
+                    dispatch(toggleFollowLoader(false, id))
+                })
+        }
+    }
+}

@@ -2,23 +2,23 @@ import React from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
 import {UserType} from '../../../types/users-types'
+import {Pagination} from '../../UI/Pagination/Pagination'
 
 type UsersPropsType = {
     usersData: UserType[]
-    follow: (id: string) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
     onPaginationPageClickHandler: (page: number) => void
     followLoader: string[]
-    toggleFollowLoader: (status: boolean, id: string) => void
+    followUser: (id: string, followed: boolean) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) - 500
-    let pages: number[] = []
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) / 20
+    let pagesArray: number[] = []
     for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+        pagesArray.push(i)
     }
 
     return (
@@ -29,21 +29,13 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                                id={user.id}
                                                followed={user.followed}
                                                status={user.status}
-                                               follow={() => props.follow(user.id)}
                                                followLoader={props.followLoader}
-                                               toggleFollowLoader={props.toggleFollowLoader}
-                />
+                                               followUser={props.followUser}/>
             )}
 
-            <div className={s.paginationContainer}>
-                {pages.map(p => (
-                    <span className={props.currentPage === p ? s.currentPage : ''}
-                          key={p}
-                          onClick={() => props.onPaginationPageClickHandler(p)}>
-                                {p}
-                            </span>
-                ))}
-            </div>
+            <Pagination pages={pagesArray}
+                        currentPage={props.currentPage}
+                        onClick={props.onPaginationPageClickHandler}/>
         </main>
     )
 }

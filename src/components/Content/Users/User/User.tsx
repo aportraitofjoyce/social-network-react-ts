@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import s from '../Users.module.css'
-import {followAPI} from '../../../../api/follow-api'
+import {PATH} from '../../../../types/common-types'
 
 type UserPropsType = {
     name: string
@@ -9,34 +9,19 @@ type UserPropsType = {
     id: string
     followed: boolean
     status: string
-    follow: (id: string) => void
     followLoader: string[]
-    toggleFollowLoader: (status: boolean, id: string) => void
+    followUser: (id: string, followed: boolean) => void
 }
 
 export const User: React.FC<UserPropsType> = (props) => {
-    const onButtonClickHandler = () => {
-        props.toggleFollowLoader(true, props.id)
-
-        if (!props.followed) {
-            followAPI.follow(props.id).then(() => {
-                props.follow(props.id)
-                props.toggleFollowLoader(false, props.id)
-            })
-        }
-
-        if (props.followed) {
-            followAPI.unfollow(props.id).then(() => {
-                props.follow(props.id)
-                props.toggleFollowLoader(false, props.id)
-            })
-        }
+    const onFollowButtonClickHandler = () => {
+        props.followUser(props.id, props.followed)
     }
 
     return (
         <div key={props.name} className={s.userContainer}>
             <div className={s.avatarAndFollowContainer}>
-                <Link to={`/profile/${props.id}`}>
+                <Link to={`${PATH.PROFILE_CLEAR}/${props.id}`}>
                     <div className={s.avatar}>
                         <img
                             src={props.avatarSmall !== null
@@ -46,7 +31,8 @@ export const User: React.FC<UserPropsType> = (props) => {
                     </div>
                 </Link>
 
-                <button onClick={onButtonClickHandler} disabled={props.followLoader.includes(props.id)}>
+                <button onClick={onFollowButtonClickHandler}
+                        disabled={props.followLoader.includes(props.id)}>
                     {props.followed ? 'Unfollow' : 'Follow'}
                 </button>
 

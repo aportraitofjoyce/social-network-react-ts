@@ -1,11 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import {Header} from './Header'
 import {StateType} from '../../../types/common-types'
 import {connect} from 'react-redux'
-import {setAuthUserData, setAuthUserInfo} from '../../../redux/actions/auth-actions'
-import {authAPI} from '../../../api/auth-api'
-import {profileAPI} from '../../../api/profile-api'
+import {checkAuthAndGetProfile} from '../../../redux/actions/auth-actions'
 import {AuthType} from '../../../types/auth-types'
 
 export type HeaderPropsType = MSTPType & MDTPType
@@ -15,19 +12,12 @@ type MSTPType = {
 }
 
 type MDTPType = {
-    setAuthUserData: (id: number, login: string, email: string) => void
-    setAuthUserInfo: (name: string, avatar: string) => void
+    checkAuthAndGetProfile: () => void
 }
 
 class HeaderContainer extends React.Component<HeaderPropsType> {
     componentDidMount() {
-        axios
-            .all([authAPI.checkAuth(), profileAPI.getUserProfile()])
-            .then(axios.spread((...responses) => {
-                const {id, login, email} = responses[0].data.data
-                responses[0].data.resultCode === 0 && this.props.setAuthUserData(id, login, email)
-                responses[0] && this.props.setAuthUserInfo(responses[1].data.fullName, responses[1].data.photos.small)
-            }))
+        this.props.checkAuthAndGetProfile()
     }
 
     render() {
@@ -42,8 +32,7 @@ const mapStateToProps = (state: StateType) => ({
 })
 
 const mapDispatchToProps = {
-    setAuthUserData,
-    setAuthUserInfo
+    checkAuthAndGetProfile
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)

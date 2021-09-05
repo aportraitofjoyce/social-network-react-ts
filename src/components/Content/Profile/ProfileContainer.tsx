@@ -2,9 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Profile} from './Profile'
 import {StateType} from '../../../types/common-types'
-import {addPost, setUserProfile, updatePost} from '../../../redux/actions/profile-actions'
+import {addPost, getUserProfile, updatePost} from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {profileAPI} from '../../../api/profile-api'
 import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
 
 export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
@@ -18,7 +17,7 @@ type MSTPType = {
 type MDTPType = {
     addPost: () => void
     updatePost: (text: string) => void
-    setUserProfile: (userProfile: UserProfileType) => void
+    getUserProfile: (idFromURL: string) => void
 }
 
 type PathParamsType = {
@@ -27,8 +26,7 @@ type PathParamsType = {
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
     componentDidMount() {
-        profileAPI.getUserProfile(this.props.match.params.userId)
-            .then(response => this.props.setUserProfile(response.data))
+        this.props.getUserProfile(this.props.match.params.userId)
     }
 
     render() {
@@ -47,7 +45,7 @@ const mapStateToProps = (state: StateType) => ({
 const mapDispatchToProps = {
     addPost,
     updatePost,
-    setUserProfile
+    getUserProfile
 }
 
 const ProfileContainerWithRouter = withRouter(ProfileContainer)
