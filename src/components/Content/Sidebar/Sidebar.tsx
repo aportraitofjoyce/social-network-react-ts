@@ -10,7 +10,9 @@ type SidebarPropsType = {
 
 export const Sidebar: React.FC<SidebarPropsType> = (props) => {
     const mappedSidebarItems = props.dataForSidebar.map(item => {
-        return <SidebarItem key={v1()} name={item.name} link={item.link}/>
+        return <SidebarItem key={v1()}
+                            name={item.name}
+                            link={item.link}/>
     })
 
     return (

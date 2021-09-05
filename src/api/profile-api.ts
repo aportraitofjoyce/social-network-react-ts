@@ -1,8 +1,5 @@
 import {axiosInstance} from './axios-instance'
 
 export const profileAPI = {
-    getUserProfile: (id: string = '18964') => {
-        return axiosInstance
-            .get(`profile/${id}`)
-    }
+    getUserProfile: (id: string = '18964') => axiosInstance.get(`profile/${id}`)
 }

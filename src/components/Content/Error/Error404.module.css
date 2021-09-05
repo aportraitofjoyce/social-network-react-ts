@@ -1,0 +1,31 @@
+.errorPageWrapper {
+    font-size: 64px;
+    color: #FFC443;
+    background: #2f635e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.error404 {
+    font-size: 164px;
+    font-weight: bold;
+    margin-left: -200px;
+}
+
+.errorImg {
+    mix-blend-mode: multiply;
+    margin-top: -80px;
+    z-index: -1;
+}
+
+.pageNotFound {
+    margin-left: 200px;
+}

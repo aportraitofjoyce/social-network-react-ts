@@ -7,6 +7,7 @@ import ProfileContainer from './components/Content/Profile/ProfileContainer'
 import UsersContainer from './components/Content/Users/UsersContainer'
 import HeaderContainer from './components/Content/Header/HeaderContainer'
 import {PATH} from './types/common-types'
+import {Error404} from './components/Content/Error/Error404'
 
 export const App = () => {
     return (
@@ -17,8 +18,7 @@ export const App = () => {
                 <SidebarContainer/>
 
                 <Switch>
-                    <Route path={'/'}
-                           exact
+                    <Route path={'/'} exact
                            render={() => <Redirect to={PATH.PROFILE_CLEAR}/>}/>
                     <Route path={PATH.PROFILE}
                            render={() => <ProfileContainer/>}/>
@@ -26,6 +26,7 @@ export const App = () => {
                            render={() => <DialogsContainer/>}/>
                     <Route path={PATH.USERS}
                            render={() => <UsersContainer/>}/>
+                    <Route render={() => <Error404/>}/>
                 </Switch>
             </div>
         </div>

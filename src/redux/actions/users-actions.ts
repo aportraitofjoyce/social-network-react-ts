@@ -1,7 +1,6 @@
 import {USERS_ACTIONS_TYPE, UserType} from '../../types/users-types'
 import {usersAPI} from '../../api/users-api'
-import {ThunkDispatch} from 'redux-thunk'
-import {ActionsType, StateType} from '../../types/common-types'
+import {ThunkType} from '../../types/common-types'
 import {followAPI} from '../../api/follow-api'
 
 export const follow = (id: string) => ({
@@ -37,7 +36,7 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
 
 // Thunk
 export const getUsers = (pageSize: number, currentPage: number) => {
-    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+    return (dispatch: ThunkType) => {
         dispatch(toggleLoader(true))
 
         usersAPI.getUsers(pageSize, currentPage)
@@ -50,7 +49,7 @@ export const getUsers = (pageSize: number, currentPage: number) => {
 }
 
 export const changeCurrentPage = (page: number, pageSize: number) => {
-    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+    return (dispatch: ThunkType) => {
         dispatch(setCurrentPage(page))
         dispatch(toggleLoader(true))
 
@@ -63,7 +62,7 @@ export const changeCurrentPage = (page: number, pageSize: number) => {
 }
 
 export const followUser = (id: string, followed: boolean) => {
-    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+    return (dispatch: ThunkType) => {
         dispatch(toggleFollowLoader(true, id))
 
         if (!followed) {

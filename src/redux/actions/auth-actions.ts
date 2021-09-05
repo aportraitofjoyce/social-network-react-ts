@@ -2,8 +2,7 @@ import {AUTH_ACTIONS_TYPE} from '../../types/auth-types'
 import axios from 'axios'
 import {authAPI} from '../../api/auth-api'
 import {profileAPI} from '../../api/profile-api'
-import {ThunkDispatch} from 'redux-thunk'
-import {ActionsType, StateType} from '../../types/common-types'
+import {ThunkType} from '../../types/common-types'
 
 export const setAuthUserData = (id: number, login: string, email: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_USER_DATA,
@@ -16,7 +15,7 @@ export const setAuthUserInfo = (name: string, avatar: string) => ({
 }) as const
 
 export const checkAuthAndGetProfile = () => {
-    return (dispatch: ThunkDispatch<StateType, null, ActionsType>) => {
+    return (dispatch: ThunkType) => {
         axios
             .all([authAPI.checkAuth(), profileAPI.getUserProfile()])
 

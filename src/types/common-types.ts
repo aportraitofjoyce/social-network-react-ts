@@ -10,6 +10,7 @@ import {
 } from '../redux/actions/users-actions'
 import {setAuthUserData, setAuthUserInfo} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
+import {ThunkDispatch} from 'redux-thunk'
 
 // Routes
 export enum PATH {
@@ -20,8 +21,10 @@ export enum PATH {
     LOGIN = '/login'
 }
 
+// State
 export type StateType = ReturnType<typeof rootReducer>
 
+// Actions
 export type ActionsType =
     ReturnType<typeof addPost> |
     ReturnType<typeof updatePost> |
@@ -36,3 +39,6 @@ export type ActionsType =
     ReturnType<typeof setAuthUserData> |
     ReturnType<typeof setAuthUserInfo> |
     ReturnType<typeof toggleFollowLoader>
+
+// Thunk
+export type ThunkType = ThunkDispatch<StateType, null, ActionsType>
