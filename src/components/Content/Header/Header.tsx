@@ -2,8 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import s from './Header.module.css'
 import {LogoIcon} from './LogoIcon'
-import {PATH} from '../../../App'
 import {HeaderPropsType} from './HeaderContainer'
+import {PATH} from '../../../types/common-types'
 
 export const Header: React.FC<HeaderPropsType> = (props) => {
     return (

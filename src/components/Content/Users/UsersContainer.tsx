@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {StateType, UserType} from '../../../types/types'
+import {StateType} from '../../../types/common-types'
 import {
     follow,
     setCurrentPage,
@@ -11,6 +11,7 @@ import {
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {usersAPI} from '../../../api/users-api'
+import {UserType} from '../../../types/users-types'
 
 type UsersContainerPropsType = MSTPType & MDTPType
 

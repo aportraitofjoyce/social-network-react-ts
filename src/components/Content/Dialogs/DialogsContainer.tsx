@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {Dialogs} from './Dialogs'
-import {StateType} from '../../../types/types'
+import {StateType} from '../../../types/common-types'
 import {sendMessage, updateMessage} from '../../../redux/actions/dialogs-actions'
 
 

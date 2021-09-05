@@ -2,7 +2,7 @@ import React from 'react'
 import s from './Sidebar.module.css'
 import {SidebarItem} from './SidebarItem/SidebarItem'
 import {v1} from 'uuid'
-import {dataForSidebarType} from '../../../types/types'
+import {dataForSidebarType} from '../../../types/sidebar-types'
 
 type SidebarPropsType = {
     dataForSidebar: dataForSidebarType[]

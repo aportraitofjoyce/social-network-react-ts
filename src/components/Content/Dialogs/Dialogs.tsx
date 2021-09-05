@@ -2,7 +2,7 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import {FriendsToChat} from './FriendsToChat/FriendsToChat'
 import {DialogsChat} from './DialogsChat/DialogsChat'
-import {DataForFriendsType, MessagesDataType} from '../../../types/types'
+import {DataForFriendsType, MessagesDataType} from '../../../types/dialogs-types'
 
 type DialogsPropsType = {
     dataForMessages: MessagesDataType[]

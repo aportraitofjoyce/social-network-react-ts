@@ -6,21 +6,16 @@ import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import ProfileContainer from './components/Content/Profile/ProfileContainer'
 import UsersContainer from './components/Content/Users/UsersContainer'
 import HeaderContainer from './components/Content/Header/HeaderContainer'
-
-export const PATH = {
-    PROFILE: '/profile/:userId?',
-    PROFILE_CLEAR: '/profile',
-    DIALOGS: '/dialogs',
-    USERS: '/users',
-    LOGIN: '/login'
-}
+import {PATH} from './types/common-types'
 
 export const App = () => {
     return (
         <div className={'App'}>
             <HeaderContainer/>
+
             <div className={'ContentWrapper'}>
                 <SidebarContainer/>
+
                 <Switch>
                     <Route path={'/'}
                            exact

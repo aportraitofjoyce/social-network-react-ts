@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Users.module.css'
-import {UserType} from '../../../types/types'
 import {User} from './User/User'
+import {UserType} from '../../../types/users-types'
 
 type UsersPropsType = {
     usersData: UserType[]

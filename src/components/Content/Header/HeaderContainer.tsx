@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import {Header} from './Header'
-import {AuthType, StateType} from '../../../types/types'
+import {StateType} from '../../../types/common-types'
 import {connect} from 'react-redux'
 import {setAuthUserData, setAuthUserInfo} from '../../../redux/actions/auth-actions'
 import {authAPI} from '../../../api/auth-api'
 import {profileAPI} from '../../../api/profile-api'
+import {AuthType} from '../../../types/auth-types'
 
 export type HeaderPropsType = MSTPType & MDTPType
 

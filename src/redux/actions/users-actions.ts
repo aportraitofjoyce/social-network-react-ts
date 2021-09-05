@@ -1,15 +1,31 @@
-import {UserType} from '../../types/types'
+import {USERS_ACTIONS_TYPE, UserType} from '../../types/users-types'
 
-export const FOLLOW = 'FOLLOW'
-export const SET_USERS = 'SET_USERS'
-export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-export const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-export const TOGGLE_LOADER = 'TOGGLE_LOADER'
-export const TOGGLE_FOLLOW_LOADER = 'TOGGLE_FOLLOW_LOADER'
+export const follow = (id: string) => ({
+    type: USERS_ACTIONS_TYPE.FOLLOW,
+    payload: {id}
+}) as const
 
-export const follow = (id: string) => ({type: FOLLOW, id}) as const
-export const setUsers = (users: UserType[]) => ({type: SET_USERS, users}) as const
-export const setCurrentPage = (page: number) => ({type: SET_CURRENT_PAGE, page}) as const
-export const setTotalUsersCount = (total: number) => ({type: SET_TOTAL_USERS_COUNT, total}) as const
-export const toggleLoader = (status: boolean) => ({type: TOGGLE_LOADER, status}) as const
-export const toggleFollowLoader = (status: boolean, id: string) => ({type: TOGGLE_FOLLOW_LOADER, status, id}) as const
+export const setUsers = (users: UserType[]) => ({
+    type: USERS_ACTIONS_TYPE.SET_USERS,
+    payload: {users}
+}) as const
+
+export const setCurrentPage = (page: number) => ({
+    type: USERS_ACTIONS_TYPE.SET_CURRENT_PAGE,
+    payload: {page}
+}) as const
+
+export const setTotalUsersCount = (total: number) => ({
+    type: USERS_ACTIONS_TYPE.SET_TOTAL_USERS_COUNT,
+    payload: {total}
+}) as const
+
+export const toggleLoader = (status: boolean) => ({
+    type: USERS_ACTIONS_TYPE.TOGGLE_LOADER,
+    payload: {status}
+}) as const
+
+export const toggleFollowLoader = (status: boolean, id: string) => ({
+    type: USERS_ACTIONS_TYPE.TOGGLE_FOLLOW_LOADER,
+    payload: {status, id}
+}) as const

@@ -1,5 +1,5 @@
-import {ActionsType, AuthType} from '../../types/types'
-import {SET_USER_DATA, SET_USER_INFO} from '../actions/auth-actions'
+import {ActionsType} from '../../types/common-types'
+import {AUTH_ACTIONS_TYPE, AuthType} from '../../types/auth-types'
 
 const initialState: AuthType = {
     id: null,
@@ -12,10 +12,10 @@ const initialState: AuthType = {
 
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
-        case SET_USER_DATA:
+        case AUTH_ACTIONS_TYPE.SET_USER_DATA:
             return {...state, ...action.payload, isAuth: true}
 
-        case SET_USER_INFO:
+        case AUTH_ACTIONS_TYPE.SET_USER_INFO:
             return {...state, ...action.payload}
 
         default:

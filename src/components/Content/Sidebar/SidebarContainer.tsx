@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {Sidebar} from './Sidebar'
-import {StateType} from '../../../types/types'
+import {StateType} from '../../../types/common-types'
 
 const mapStateToProps = (state: StateType) => (
     {

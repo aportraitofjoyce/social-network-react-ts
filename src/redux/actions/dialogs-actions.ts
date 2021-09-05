@@ -1,5 +1,10 @@
-export const SEND_MESSAGE = 'SEND_MESSAGE'
-export const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
+import {DIALOGS_ACTIONS_TYPE} from '../../types/dialogs-types'
 
-export const sendMessage = () => ({type: SEND_MESSAGE}) as const
-export const updateMessage = (text: string) => ({type: UPDATE_MESSAGE_TEXT, text}) as const
+export const sendMessage = () => ({
+    type: DIALOGS_ACTIONS_TYPE.SEND_MESSAGE
+}) as const
+
+export const updateMessage = (text: string) => ({
+    type: DIALOGS_ACTIONS_TYPE.UPDATE_MESSAGE_TEXT,
+    payload: {text}
+}) as const

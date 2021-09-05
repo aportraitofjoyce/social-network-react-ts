@@ -1,12 +1,5 @@
-import {ActionsType, UsersType} from '../../types/types'
-import {
-    FOLLOW,
-    SET_CURRENT_PAGE,
-    SET_TOTAL_USERS_COUNT,
-    SET_USERS,
-    TOGGLE_FOLLOW_LOADER,
-    TOGGLE_LOADER
-} from '../actions/users-actions'
+import {ActionsType} from '../../types/common-types'
+import {USERS_ACTIONS_TYPE, UsersType} from '../../types/users-types'
 
 const initialState: UsersType = {
     usersData: [],
@@ -19,32 +12,32 @@ const initialState: UsersType = {
 
 export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
     switch (action.type) {
-        case FOLLOW:
+        case USERS_ACTIONS_TYPE.FOLLOW:
             return {
                 ...state,
-                usersData: state.usersData.map((user) => user.id === action.id
+                usersData: state.usersData.map((user) => user.id === action.payload.id
                     ? {...user, followed: !user.followed}
                     : user)
             }
 
-        case SET_USERS:
-            return {...state, usersData: [...action.users]}
+        case USERS_ACTIONS_TYPE.SET_USERS:
+            return {...state, usersData: [...action.payload.users]}
 
-        case SET_CURRENT_PAGE:
-            return {...state, currentPage: action.page}
+        case USERS_ACTIONS_TYPE.SET_CURRENT_PAGE:
+            return {...state, currentPage: action.payload.page}
 
-        case SET_TOTAL_USERS_COUNT:
-            return {...state, totalUsersCount: action.total}
+        case USERS_ACTIONS_TYPE.SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.payload.total}
 
-        case TOGGLE_LOADER:
-            return {...state, isLoading: action.status}
+        case USERS_ACTIONS_TYPE.TOGGLE_LOADER:
+            return {...state, isLoading: action.payload.status}
 
-        case TOGGLE_FOLLOW_LOADER:
+        case USERS_ACTIONS_TYPE.TOGGLE_FOLLOW_LOADER:
             return {
                 ...state,
-                followLoader: action.status
-                    ? [...state.followLoader, action.id]
-                    : state.followLoader.filter(u => u !== action.id)
+                followLoader: action.payload.status
+                    ? [...state.followLoader, action.payload.id]
+                    : state.followLoader.filter(u => u !== action.payload.id)
             }
 
         default:

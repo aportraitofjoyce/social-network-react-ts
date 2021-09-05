@@ -1,5 +1,5 @@
-import {ActionsType, ProfileType} from '../../types/types'
-import {ADD_POST, SET_USER_PROFILE, UPDATE_POST_TEXT} from '../actions/profile-actions'
+import {ActionsType} from '../../types/common-types'
+import {PROFILE_ACTIONS_TYPE, ProfileType} from '../../types/profile-types'
 
 const initialState: ProfileType = {
     userProfile: null,
@@ -40,21 +40,21 @@ const initialState: ProfileType = {
 
 export const profileReducer = (state: ProfileType = initialState, action: ActionsType): ProfileType => {
     switch (action.type) {
-        case ADD_POST:
+        case PROFILE_ACTIONS_TYPE.ADD_POST:
             return {
                 ...state,
                 dataForMyPosts: [{...state.newPost}, ...state.dataForMyPosts],
                 newPost: {...state.newPost, text: ''}
             }
-        case UPDATE_POST_TEXT:
+        case PROFILE_ACTIONS_TYPE.UPDATE_POST_TEXT:
             return {
                 ...state,
-                newPost: {...state.newPost, text: action.text}
+                newPost: {...state.newPost, text: action.payload.text}
             }
 
-        case SET_USER_PROFILE:
+        case PROFILE_ACTIONS_TYPE.SET_USER_PROFILE:
             return {
-                ...state, userProfile: action.userProfile
+                ...state, userProfile: action.payload.userProfile
             }
 
         default:

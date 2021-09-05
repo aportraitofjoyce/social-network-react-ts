@@ -3,7 +3,7 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {v1} from "uuid";
 import {PostsControl} from "./PostControl/PostControl";
-import {dataForMyPostsType} from "../../../../types/types";
+import {dataForMyPostsType} from '../../../../types/profile-types'
 
 type MyPostsPropsType = {
     addPost: any

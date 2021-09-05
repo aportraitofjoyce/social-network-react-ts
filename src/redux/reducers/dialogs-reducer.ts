@@ -1,6 +1,6 @@
 import {v1} from 'uuid'
-import {ActionsType, DialogsType} from '../../types/types'
-import {SEND_MESSAGE, UPDATE_MESSAGE_TEXT} from '../actions/dialogs-actions'
+import {ActionsType} from '../../types/common-types'
+import {DIALOGS_ACTIONS_TYPE, DialogsType} from '../../types/dialogs-types'
 
 const initialState: DialogsType = {
     dataForFriends: [
@@ -27,16 +27,16 @@ const initialState: DialogsType = {
 
 export const dialogsReducer = (state: DialogsType = initialState, action: ActionsType): DialogsType => {
     switch (action.type) {
-        case SEND_MESSAGE:
+        case DIALOGS_ACTIONS_TYPE.SEND_MESSAGE:
             return {
                 ...state,
                 dataForMessages: [...state.dataForMessages, {...state.newMessage}],
                 newMessage: {...state.newMessage, message: ''}
             }
-        case UPDATE_MESSAGE_TEXT:
+        case DIALOGS_ACTIONS_TYPE.UPDATE_MESSAGE_TEXT:
             return {
                 ...state,
-                newMessage: {...state.newMessage, message: action.text}
+                newMessage: {...state.newMessage, message: action.payload.text}
             }
         default:
             return state

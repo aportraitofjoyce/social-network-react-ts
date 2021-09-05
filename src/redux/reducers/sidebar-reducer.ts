@@ -1,5 +1,5 @@
-import {ActionsType, SidebarType} from '../../types/types'
-import {PATH} from '../../App'
+import {ActionsType, PATH} from '../../types/common-types'
+import {SidebarType} from '../../types/sidebar-types'
 
 const initialState: SidebarType = {
     dataForSidebar: [
