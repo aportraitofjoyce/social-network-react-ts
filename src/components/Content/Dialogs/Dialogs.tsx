@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import s from './Dialogs.module.css'
 import {FriendsToChat} from './FriendsToChat/FriendsToChat'
 import {DialogsChat} from './DialogsChat/DialogsChat'
@@ -10,7 +10,6 @@ type DialogsPropsType = {
     updateMessage: (text: string) => void
     textForNewMessage: string
     dataForFriends: DataForFriendsType[]
-    isAuth: boolean
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {

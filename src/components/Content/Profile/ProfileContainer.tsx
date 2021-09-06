@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Profile} from './Profile'
-import {PATH, StateType} from '../../../types/common-types'
+import {StateType} from '../../../types/common-types'
 import {addPost, getUserProfile, updatePost} from '../../../redux/actions/profile-actions'
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
+import {withAuthRedirectHOC} from '../../../hoc/WithAuthRedirectHOC'
 
 export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
 
@@ -12,7 +13,6 @@ type MSTPType = {
     dataForMyPosts: dataForMyPostsType[]
     textForNewPost: string
     userProfile: UserProfileType | null
-    isAuth: boolean
 }
 
 type MDTPType = {
@@ -31,8 +31,6 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
-        if (!this.props.isAuth) return <Redirect to={PATH.LOGIN}/>
-
         return (
             <Profile {...this.props}/>
         )
@@ -43,7 +41,6 @@ const mapStateToProps = (state: StateType) => ({
     dataForMyPosts: state.profile.dataForMyPosts,
     textForNewPost: state.profile.newPost.text,
     userProfile: state.profile.userProfile,
-    isAuth: state.auth.isAuth
 })
 
 const mapDispatchToProps = {
@@ -52,6 +49,6 @@ const mapDispatchToProps = {
     getUserProfile
 }
 
-const ProfileContainerWithRouter = withRouter(ProfileContainer)
+const ProfileContainerWithRouter = withRouter(withAuthRedirectHOC(ProfileContainer))
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithRouter)
