@@ -4,7 +4,7 @@ import {Dialogs} from './Dialogs'
 import {StateType} from '../../../types/common-types'
 import {sendMessage, updateMessage} from '../../../redux/actions/dialogs-actions'
 import {DataForFriendsType, MessagesDataType} from '../../../types/dialogs-types'
-import {withAuthRedirect} from '../../../hoc/WithAuthRedirect'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
 type DialogsContainerPropsType = {

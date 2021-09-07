@@ -5,7 +5,7 @@ import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/us
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {UserType} from '../../../types/users-types'
-import {withAuthRedirect} from '../../../hoc/WithAuthRedirect'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
 type UsersContainerPropsType = MSTPType & MDTPType

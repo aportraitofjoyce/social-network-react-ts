@@ -5,8 +5,8 @@ import {StateType} from '../../../types/common-types'
 import {addPost, getUserProfile, updatePost} from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
-import {withAuthRedirect} from '../../../hoc/WithAuthRedirect'
 import {compose} from 'redux'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 
 export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
 
