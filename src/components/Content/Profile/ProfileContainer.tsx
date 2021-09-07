@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {ComponentType, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Profile} from './Profile'
 import {StateType} from '../../../types/common-types'
 import {addPost, getUserProfile, updatePost} from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
-import {withAuthRedirectHOC} from '../../../hoc/WithAuthRedirectHOC'
+import {withAuthRedirect} from '../../../hoc/WithAuthRedirect'
+import {compose} from 'redux'
 
 export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
 
@@ -25,16 +26,9 @@ type PathParamsType = {
     userId: string
 }
 
-class ProfileContainer extends React.Component<ProfilePropsType> {
-    componentDidMount() {
-        this.props.getUserProfile(this.props.match.params.userId)
-    }
-
-    render() {
-        return (
-            <Profile {...this.props}/>
-        )
-    }
+const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
+    useEffect(() => props.getUserProfile(props.match.params.userId), [])
+    return <Profile {...props}/>
 }
 
 const mapStateToProps = (state: StateType) => ({
@@ -49,6 +43,6 @@ const mapDispatchToProps = {
     getUserProfile
 }
 
-const ProfileContainerWithRouter = withRouter(withAuthRedirectHOC(ProfileContainer))
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainerWithRouter)
+export default compose<ComponentType>
+(connect(mapStateToProps, mapDispatchToProps), withRouter, withAuthRedirect)
+(ProfileContainer)

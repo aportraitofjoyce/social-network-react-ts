@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {ComponentType} from 'react'
 import {connect} from 'react-redux'
 import {Dialogs} from './Dialogs'
 import {StateType} from '../../../types/common-types'
 import {sendMessage, updateMessage} from '../../../redux/actions/dialogs-actions'
 import {DataForFriendsType, MessagesDataType} from '../../../types/dialogs-types'
-import {withAuthRedirectHOC} from '../../../hoc/WithAuthRedirectHOC'
+import {withAuthRedirect} from '../../../hoc/WithAuthRedirect'
+import {compose} from 'redux'
 
 type DialogsContainerPropsType = {
     dataForMessages: MessagesDataType[]
@@ -15,9 +16,7 @@ type DialogsContainerPropsType = {
 }
 
 const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
-    return (
-        <Dialogs {...props}/>
-    )
+    return <Dialogs {...props}/>
 }
 
 const mapStateToProps = (state: StateType) => ({
@@ -31,4 +30,6 @@ const mapDispatchToProps = {
     updateMessage
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthRedirectHOC(DialogsContainer))
+export default compose<ComponentType>
+(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)
+(DialogsContainer)

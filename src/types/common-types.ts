@@ -26,19 +26,19 @@ export type StateType = ReturnType<typeof rootReducer>
 
 // Actions
 export type ActionsType =
-    ReturnType<typeof addPost> |
-    ReturnType<typeof updatePost> |
-    ReturnType<typeof setUserProfile> |
-    ReturnType<typeof sendMessage> |
-    ReturnType<typeof updateMessage> |
-    ReturnType<typeof follow> |
-    ReturnType<typeof setUsers> |
-    ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalUsersCount> |
-    ReturnType<typeof toggleLoader> |
-    ReturnType<typeof setAuthUserData> |
-    ReturnType<typeof setAuthUserInfo> |
-    ReturnType<typeof toggleFollowLoader>
+    ReturnType<typeof addPost>
+    | ReturnType<typeof updatePost>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof sendMessage>
+    | ReturnType<typeof updateMessage>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleLoader>
+    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof setAuthUserInfo>
+    | ReturnType<typeof toggleFollowLoader>
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>
