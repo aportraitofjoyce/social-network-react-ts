@@ -1,25 +1,51 @@
-import {PROFILE_ACTIONS_TYPE} from '../../types/profile-types'
+import {UserProfileType} from '../../types/profile-types'
 import {ThunkType} from '../../types/common-types'
 import {profileAPI} from '../../api/profile-api'
 
+export enum PROFILE_ACTIONS_TYPES {
+    ADD_POST = 'ADD_POST',
+    UPDATE_POST_TEXT = 'UPDATE_POST_TEXT',
+    SET_USER_PROFILE = 'SET_USER_PROFILE',
+    SET_USER_STATUS = 'SET_USER_STATUS',
+}
+
 export const addPost = () => ({
-    type: PROFILE_ACTIONS_TYPE.ADD_POST
+    type: PROFILE_ACTIONS_TYPES.ADD_POST
 }) as const
 
 export const updatePost = (text: string) => ({
-    type: PROFILE_ACTIONS_TYPE.UPDATE_POST_TEXT,
+    type: PROFILE_ACTIONS_TYPES.UPDATE_POST_TEXT,
     payload: {text}
 }) as const
 
-export const setUserProfile = (userProfile: any) => ({
-    type: PROFILE_ACTIONS_TYPE.SET_USER_PROFILE,
+export const setUserProfile = (userProfile: UserProfileType) => ({
+    type: PROFILE_ACTIONS_TYPES.SET_USER_PROFILE,
     payload: {userProfile}
 }) as const
 
+export const setUserStatus = (userStatus: string) => ({
+    type: PROFILE_ACTIONS_TYPES.SET_USER_STATUS,
+    payload: {userStatus}
+}) as const
+
 // Thunk
-export const getUserProfile = (idFromURL: string) => {
+export const getUserProfile = (idFromURL: number = 18964) => {
     return (dispatch: ThunkType) => {
         profileAPI.getUserProfile(idFromURL)
             .then(response => dispatch(setUserProfile(response.data)))
+    }
+}
+
+export const getUserStatus = (idFromURL: number = 18964) => {
+    return (dispatch: ThunkType) => {
+        profileAPI.getUserStatus(idFromURL)
+            .then(response => dispatch(setUserStatus(response.data)))
+    }
+}
+
+export const updateUserStatus = (userStatus: string) => {
+    return (dispatch: ThunkType) => {
+        profileAPI.updateUserStatus(userStatus)
+            .then(response => response.data.resultCode === 0 && dispatch(setUserStatus(userStatus)))
     }
 }

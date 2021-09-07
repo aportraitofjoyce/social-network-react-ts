@@ -21,7 +21,7 @@ export const User: React.FC<UserPropsType> = (props) => {
     return (
         <div key={props.name} className={s.userContainer}>
             <div className={s.avatarAndFollowContainer}>
-                <Link to={`${PATH.PROFILE_CLEAR}/${props.id}`}>
+                <Link to={`${PATH.PROFILE}/${props.id}`}>
                     <div className={s.avatar}>
                         <img
                             src={props.avatarSmall !== null

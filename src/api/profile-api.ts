@@ -1,5 +1,7 @@
 import {axiosInstance} from './axios-instance'
 
 export const profileAPI = {
-    getUserProfile: (id: string = '18964') => axiosInstance.get(`profile/${id}`)
+    getUserProfile: (id: number) => axiosInstance.get(`profile/${id}`),
+    getUserStatus: (id: number) => axiosInstance.get(`profile/status/${id}`),
+    updateUserStatus: (status: string) => axiosInstance.put(`profile/status`, {status})
 }

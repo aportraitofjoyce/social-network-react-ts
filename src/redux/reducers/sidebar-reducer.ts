@@ -3,7 +3,7 @@ import {SidebarType} from '../../types/sidebar-types'
 
 const initialState: SidebarType = {
     dataForSidebar: [
-        {name: 'Profile', link: PATH.PROFILE_CLEAR},
+        {name: 'Profile', link: PATH.PROFILE},
         {name: 'Dialogs', link: PATH.DIALOGS},
         {name: 'Users', link: PATH.USERS}
     ]

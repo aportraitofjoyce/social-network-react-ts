@@ -1,5 +1,5 @@
 import {sendMessage, updateMessage} from '../redux/actions/dialogs-actions'
-import {addPost, setUserProfile, updatePost} from '../redux/actions/profile-actions'
+import {addPost, setUserProfile, setUserStatus, updatePost} from '../redux/actions/profile-actions'
 import {
     follow,
     setCurrentPage,
@@ -14,8 +14,9 @@ import {ThunkDispatch} from 'redux-thunk'
 
 // Routes
 export enum PATH {
-    PROFILE = '/profile/:userId?',
-    PROFILE_CLEAR = '/profile',
+    ROOT = '/',
+    PROFILE = '/profile',
+    PROFILE_WITH_ID = '/profile/:userId?',
     DIALOGS = '/dialogs',
     USERS = '/users',
     LOGIN = '/login'
@@ -39,6 +40,7 @@ export type ActionsType =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setAuthUserInfo>
     | ReturnType<typeof toggleFollowLoader>
+    | ReturnType<typeof setUserStatus>
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>

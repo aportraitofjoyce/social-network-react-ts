@@ -1,8 +1,3 @@
-export enum DIALOGS_ACTIONS_TYPE {
-    SEND_MESSAGE = 'SEND_MESSAGE',
-    UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
-}
-
 export type DialogsType = {
     dataForFriends: DataForFriendsType[]
     dataForMessages: MessagesDataType[]

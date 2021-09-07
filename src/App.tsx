@@ -19,11 +19,11 @@ export const App = () => {
                 <SidebarContainer/>
 
                 <Switch>
-                    <Route path={'/'} exact>
-                        <Redirect to={PATH.PROFILE_CLEAR}/>
+                    <Route path={PATH.ROOT} exact>
+                        <Redirect to={PATH.PROFILE}/>
                     </Route>
 
-                    <Route path={PATH.PROFILE}>
+                    <Route path={PATH.PROFILE_WITH_ID}>
                         <ProfileContainer/>
                     </Route>
 

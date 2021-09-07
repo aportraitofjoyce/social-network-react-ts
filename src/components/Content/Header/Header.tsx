@@ -9,11 +9,10 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
     return (
         <div className={s.wrapper}>
             <div className={s.container}>
-                <Link to={'/'} className={s.logoWrapper}>
+                <Link to={PATH.ROOT} className={s.logoWrapper}>
                     <LogoIcon/>
                     <span>Social Network</span>
                 </Link>
-
                 {
                     props.auth.isAuth
                         ? <Link to={PATH.LOGIN}>

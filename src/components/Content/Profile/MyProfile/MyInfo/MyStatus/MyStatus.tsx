@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 
 type MyStatusPropsType = {
     status: string
+    updateUserStatus: (status: string) => void
 }
 
 export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
@@ -9,9 +10,14 @@ export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
     const [title, setTitle] = useState<string>(props.status)
 
     const onEditMode = () => setEditMode(true)
-    const offEditMode = () => setEditMode(false)
+    const offEditMode = () => {
+        props.updateUserStatus(title)
+        setEditMode(false)
+    }
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') offEditMode()
     }
@@ -27,7 +33,7 @@ export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
             />
 
             : <h4 onDoubleClick={onEditMode}>
-                {title}
+                {props.status}
             </h4>
     )
 }

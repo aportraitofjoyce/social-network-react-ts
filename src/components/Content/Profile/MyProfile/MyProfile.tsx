@@ -6,6 +6,8 @@ import {UserProfileType} from '../../../../types/profile-types'
 
 type MyProfilePropsType = {
     dataForProfile: UserProfileType
+    userStatus: string
+    updateUserStatus: (status: string) => void
 }
 
 export const MyProfile: React.FC<MyProfilePropsType> = (props) => {
@@ -19,7 +21,8 @@ export const MyProfile: React.FC<MyProfilePropsType> = (props) => {
                 src={avatarSRC}
                 alt={props.dataForProfile.fullName}/>
             <MyInfo title={props.dataForProfile.fullName}
-                    aboutMe={props.dataForProfile.aboutMe}
+                    userStatus={props.userStatus}
+                    updateUserStatus={props.updateUserStatus}
             />
         </section>
     )

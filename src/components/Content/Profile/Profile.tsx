@@ -7,7 +7,10 @@ import {ProfilePropsType} from './ProfileContainer'
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <main className={s.wrapper}>
-            {props.userProfile && <MyProfile dataForProfile={props.userProfile}/>}
+            {props.userProfile && <MyProfile dataForProfile={props.userProfile}
+                                             userStatus={props.userStatus}
+                                             updateUserStatus={props.updateUserStatus}
+            />}
 
             {props.userProfile && props.userProfile.userId === 18964
                 ? <MyPosts

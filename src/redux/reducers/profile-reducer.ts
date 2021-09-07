@@ -1,9 +1,10 @@
 import {ActionsType} from '../../types/common-types'
-import {PROFILE_ACTIONS_TYPE, ProfileType} from '../../types/profile-types'
+import {ProfileType} from '../../types/profile-types'
+import {PROFILE_ACTIONS_TYPES} from '../actions/profile-actions'
 
 const initialState: ProfileType = {
     userProfile: null,
-
+    userStatus: null,
     dataForMyPosts: [
         {
             src: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album',
@@ -33,28 +34,35 @@ const initialState: ProfileType = {
     newPost: {
         src: 'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album',
         alt: 'My profile',
-        text: 'Что-то чтобы не вводить для тестов',
+        text: '',
         likes: 0
     }
 }
 
 export const profileReducer = (state: ProfileType = initialState, action: ActionsType): ProfileType => {
     switch (action.type) {
-        case PROFILE_ACTIONS_TYPE.ADD_POST:
+        case PROFILE_ACTIONS_TYPES.ADD_POST:
             return {
                 ...state,
                 dataForMyPosts: [{...state.newPost}, ...state.dataForMyPosts],
                 newPost: {...state.newPost, text: ''}
             }
-        case PROFILE_ACTIONS_TYPE.UPDATE_POST_TEXT:
+        case PROFILE_ACTIONS_TYPES.UPDATE_POST_TEXT:
             return {
                 ...state,
                 newPost: {...state.newPost, text: action.payload.text}
             }
 
-        case PROFILE_ACTIONS_TYPE.SET_USER_PROFILE:
+        case PROFILE_ACTIONS_TYPES.SET_USER_PROFILE:
             return {
-                ...state, userProfile: action.payload.userProfile
+                ...state,
+                userProfile: action.payload.userProfile,
+            }
+
+        case PROFILE_ACTIONS_TYPES.SET_USER_STATUS:
+            return {
+                ...state,
+                userStatus: action.payload.userStatus
             }
 
         default:

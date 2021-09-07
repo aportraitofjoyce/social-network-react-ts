@@ -1,5 +1,6 @@
 import {ActionsType} from '../../types/common-types'
-import {USERS_ACTIONS_TYPE, UsersType} from '../../types/users-types'
+import {UsersType} from '../../types/users-types'
+import {USERS_ACTIONS_TYPES} from '../actions/users-actions'
 
 const initialState: UsersType = {
     usersData: [],
@@ -12,7 +13,7 @@ const initialState: UsersType = {
 
 export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
     switch (action.type) {
-        case USERS_ACTIONS_TYPE.FOLLOW:
+        case USERS_ACTIONS_TYPES.FOLLOW:
             return {
                 ...state,
                 usersData: state.usersData.map((user) => user.id === action.payload.id
@@ -20,19 +21,19 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
                     : user)
             }
 
-        case USERS_ACTIONS_TYPE.SET_USERS:
+        case USERS_ACTIONS_TYPES.SET_USERS:
             return {...state, usersData: [...action.payload.users]}
 
-        case USERS_ACTIONS_TYPE.SET_CURRENT_PAGE:
+        case USERS_ACTIONS_TYPES.SET_CURRENT_PAGE:
             return {...state, currentPage: action.payload.page}
 
-        case USERS_ACTIONS_TYPE.SET_TOTAL_USERS_COUNT:
+        case USERS_ACTIONS_TYPES.SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.payload.total}
 
-        case USERS_ACTIONS_TYPE.TOGGLE_LOADER:
+        case USERS_ACTIONS_TYPES.TOGGLE_LOADER:
             return {...state, isLoading: action.payload.status}
 
-        case USERS_ACTIONS_TYPE.TOGGLE_FOLLOW_LOADER:
+        case USERS_ACTIONS_TYPES.TOGGLE_FOLLOW_LOADER:
             return {
                 ...state,
                 followLoader: action.payload.status
