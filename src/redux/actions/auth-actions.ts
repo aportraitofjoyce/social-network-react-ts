@@ -30,8 +30,8 @@ export const checkAuthAndGetProfile = () => {
                 const {id, login, email} = response.data.data
                 response.data.resultCode === 0 && dispatch(setAuthUserData(id, login, email))
             })
-            /*.then(() => profileAPI.getUserProfile()
+            .then(() => profileAPI.getUserProfile()
                 .then(response => dispatch(setAuthUserInfo(response.data.fullName, response.data.photos.small)))
-            )*/
+            )
     }
 }

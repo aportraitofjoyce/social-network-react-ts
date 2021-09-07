@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
+import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react'
 
 type MyStatusPropsType = {
     status: string
@@ -8,6 +8,8 @@ type MyStatusPropsType = {
 export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setTitle] = useState<string>(props.status)
+
+    useEffect(() => setTitle(props.status), [props.status])
 
     const onEditMode = () => setEditMode(true)
     const offEditMode = () => {
@@ -29,11 +31,10 @@ export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
                      onChange={onChangeHandler}
                      onKeyPress={onKeyPressHandler}
                      autoFocus
-                     value={title}
-            />
+                     value={title}/>
 
             : <h4 onDoubleClick={onEditMode}>
-                {props.status}
+                {props.status || 'Место для статуса'}
             </h4>
     )
 }

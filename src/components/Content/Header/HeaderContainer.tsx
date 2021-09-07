@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Header} from './Header'
 import {StateType} from '../../../types/common-types'
 import {connect} from 'react-redux'
@@ -15,16 +15,9 @@ type MDTPType = {
     checkAuthAndGetProfile: () => void
 }
 
-class HeaderContainer extends React.Component<HeaderPropsType> {
-    componentDidMount() {
-        this.props.checkAuthAndGetProfile()
-    }
-
-    render() {
-        return (
-            <Header {...this.props}/>
-        )
-    }
+const HeaderContainer: React.FC<HeaderPropsType> = (props) => {
+    useEffect(() => props.checkAuthAndGetProfile(), [])
+    return <Header {...props}/>
 }
 
 const mapStateToProps = (state: StateType) => ({

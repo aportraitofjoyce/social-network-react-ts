@@ -29,14 +29,14 @@ export const setUserStatus = (userStatus: string) => ({
 }) as const
 
 // Thunk
-export const getUserProfile = (idFromURL: number = 18964) => {
+export const getUserProfile = (idFromURL: number) => {
     return (dispatch: ThunkType) => {
         profileAPI.getUserProfile(idFromURL)
             .then(response => dispatch(setUserProfile(response.data)))
     }
 }
 
-export const getUserStatus = (idFromURL: number = 18964) => {
+export const getUserStatus = (idFromURL: number) => {
     return (dispatch: ThunkType) => {
         profileAPI.getUserStatus(idFromURL)
             .then(response => dispatch(setUserStatus(response.data)))
