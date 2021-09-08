@@ -1,0 +1,17 @@
+.formField {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.formFieldCheckbox {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+}
+
+.errorMessage {
+    color: red;
+}

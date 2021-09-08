@@ -97,3 +97,9 @@ button:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-light);
 }
+
+.formikFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
