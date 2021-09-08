@@ -4,61 +4,58 @@ import * as Yup from 'yup'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
 
+type LoginFormPropsType = {
+    onSubmit: (email: string, password: string, rememberMe: boolean) => void
+}
 
-export const LoginForm = () => {
-    return <Formik
-        initialValues={{
-            login: '',
-            password: '',
-            email: '',
-            rememberMe: false,
-        }}
+export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
+    const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms))
 
-        validationSchema={Yup.object({
-            login: Yup.string()
-                .max(15, 'Must be 15 characters or less')
-                .required('Required'),
-            password: Yup.string()
-                .max(20, 'Must be 20 characters or less')
-                .required('Required'),
-            email: Yup.string()
-                .email('Invalid email address')
-                .required('Required'),
-            rememberMe: Yup.boolean()
-                .required('Required')
-                .oneOf([true], 'You must accept the terms and conditions.'),
-        })}
-        onSubmit={(values, {setSubmitting}) => {
-            setTimeout(() => {
+    return (
+        <Formik
+            initialValues={{
+                email: '',
+                password: '',
+                rememberMe: false,
+            }}
+
+            validationSchema={Yup.object({
+                email: Yup.string()
+                    .email('Invalid email address')
+                    .required('Required'),
+                password: Yup.string()
+                    .max(20, 'Must be 20 characters or less')
+                    .required('Required'),
+                rememberMe: Yup.boolean()
+                    .required('Required')
+                    .oneOf([true], 'You must accept the terms and conditions.'),
+            })}
+
+            onSubmit={async (values, {setSubmitting, resetForm}) => {
+                await sleep(100)
+                await setSubmitting(true)
+                await resetForm()
+                await props.onSubmit(values.email, values.password, values.rememberMe)
                 alert(JSON.stringify(values, null, 2))
-                setSubmitting(false)
-            }, 400)
-        }}
-    >
-        <Form className={'formikFormContainer'}>
-            <FormInput
-                label='First Name'
-                name='login'
-                type='text'
-                placeholder='Type your login...'/>
+            }}>
 
-            <FormInput
-                label='Password'
-                name='password'
-                type='password'
-                placeholder='Type your password...'/>
+            {({isSubmitting}) => <Form className={'formikFormContainer'}>
+                <FormInput
+                    label='Email'
+                    name='email'
+                    type='email'
+                    placeholder='Type your email...'/>
 
-            <FormInput
-                label='Email Address'
-                name='email'
-                type='email'
-                placeholder='Type your email...'/>
+                <FormInput
+                    label='Password'
+                    name='password'
+                    type='password'
+                    placeholder='Type your password...'/>
 
-            <FormCheckbox name='rememberMe'>
-                Remember Me
-            </FormCheckbox>
+                <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
 
-            <button type='submit'>Submit</button>
-        </Form>
-    </Formik>
+                <button type='submit' disabled={isSubmitting}>Submit</button>
+            </Form>}
+        </Formik>
+    )
 }

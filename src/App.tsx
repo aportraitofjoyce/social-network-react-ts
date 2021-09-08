@@ -7,8 +7,8 @@ import UsersContainer from './components/Content/Users/UsersContainer'
 import HeaderContainer from './components/Content/Header/HeaderContainer'
 import {PATH} from './types/common-types'
 import {Error404} from './components/Content/ErrorPage/Error404'
-import {Login} from './components/Content/Login/Login'
 import DialogsContainer from './components/Content/Dialogs/DialogsContainer'
+import {LoginContainer} from './components/Content/Login/LoginContainer'
 
 export const App = () => {
     return (
@@ -36,7 +36,7 @@ export const App = () => {
                     </Route>
 
                     <Route path={PATH.LOGIN}>
-                        <Login/>
+                        <LoginContainer/>
                     </Route>
 
                     <Route>

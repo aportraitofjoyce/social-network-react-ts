@@ -35,3 +35,7 @@ export const checkAuthAndGetProfile = () => {
             )
     }
 }
+
+export const login = async (email: string, password: string, rememberMe: boolean) => {
+    await authAPI.login(email, password, rememberMe)
+}
