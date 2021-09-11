@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {Header} from './Header'
 import {StateType} from '../../../types/common-types'
 import {connect} from 'react-redux'
-import {checkAuthAndGetProfile} from '../../../redux/actions/auth-actions'
+import {checkAuthAndGetProfile, logout} from '../../../redux/actions/auth-actions'
 import {AuthType} from '../../../types/auth-types'
 
 export type HeaderPropsType = MSTPType & MDTPType
@@ -13,6 +13,7 @@ type MSTPType = {
 
 type MDTPType = {
     checkAuthAndGetProfile: () => void
+    logout: () => void
 }
 
 const HeaderContainer: React.FC<HeaderPropsType> = (props) => {
@@ -25,7 +26,8 @@ const mapStateToProps = (state: StateType) => ({
 })
 
 const mapDispatchToProps = {
-    checkAuthAndGetProfile
+    checkAuthAndGetProfile,
+    logout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)

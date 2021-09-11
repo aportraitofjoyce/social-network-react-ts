@@ -15,12 +15,13 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
                 </Link>
                 {
                     props.auth.isAuth
-                        ? <Link to={PATH.LOGIN}>
+                        ? <div>
                             <img
                                 src={props.auth.avatar !== null ? props.auth.avatar : 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
                                 alt={props.auth.name !== null ? props.auth.name : ''}
                                 className={s.miniProfileImg}/>
-                        </Link>
+                            <button onClick={() => props.logout()}>Logout</button>
+                        </div>
                         : <Link to={PATH.LOGIN}>Login</Link>
                 }
             </div>
