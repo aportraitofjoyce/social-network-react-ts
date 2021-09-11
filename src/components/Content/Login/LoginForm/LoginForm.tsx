@@ -3,7 +3,6 @@ import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
-import {FormTextarea} from '../../../UI/Form/FormTextarea/FormTextarea'
 
 type LoginFormPropsType = {
     onSubmit: (email: string, password: string, rememberMe: boolean) => void
@@ -34,7 +33,6 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                 await setSubmitting(true)
                 await resetForm()
                 await props.onSubmit(values.email, values.password, values.rememberMe)
-                alert(JSON.stringify(values, null, 2))
             }}>
 
             {({isSubmitting}) => <Form className={'formikFormContainer'}>
@@ -49,10 +47,6 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                     name='password'
                     type='password'
                     placeholder='Type your password...'/>
-
-                <FormTextarea label='Textarea'
-                              name='textarea'
-                              placeholder='Type your message...'/>
 
                 <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
 
