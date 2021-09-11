@@ -44,13 +44,7 @@ export const profileReducer = (state: ProfileType = initialState, action: Action
         case PROFILE_ACTIONS_TYPES.ADD_POST:
             return {
                 ...state,
-                dataForMyPosts: [{...state.newPost}, ...state.dataForMyPosts],
-                newPost: {...state.newPost, text: ''}
-            }
-        case PROFILE_ACTIONS_TYPES.UPDATE_POST_TEXT:
-            return {
-                ...state,
-                newPost: {...state.newPost, text: action.payload.text}
+                dataForMyPosts: [{...state.newPost, text: action.payload.text}, ...state.dataForMyPosts],
             }
 
         case PROFILE_ACTIONS_TYPES.SET_USER_PROFILE:

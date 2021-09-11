@@ -6,7 +6,6 @@ import {
     addPost,
     getUserProfile,
     getUserStatus, setUserStatus,
-    updatePost,
     updateUserStatus
 } from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
@@ -17,14 +16,12 @@ export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathPar
 
 type MSTPType = {
     dataForMyPosts: dataForMyPostsType[]
-    textForNewPost: string
     userProfile: UserProfileType | null
     userStatus: string
 }
 
 type MDTPType = {
-    addPost: () => void
-    updatePost: (text: string) => void
+    addPost: (text: string) => void
     getUserProfile: (idFromURL: string) => void
     getUserStatus: (idFromURL: string) => void
     updateUserStatus: (status: string) => void
@@ -54,7 +51,6 @@ const mapStateToProps = (state: StateType) => ({
 
 const mapDispatchToProps = {
     addPost,
-    updatePost,
     getUserProfile,
     getUserStatus,
     updateUserStatus,

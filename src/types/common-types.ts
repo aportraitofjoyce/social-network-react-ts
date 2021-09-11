@@ -1,5 +1,5 @@
-import {sendMessage, updateMessage} from '../redux/actions/dialogs-actions'
-import {addPost, setUserProfile, setUserStatus, updatePost} from '../redux/actions/profile-actions'
+import {sendMessage} from '../redux/actions/dialogs-actions'
+import {addPost, setUserProfile, setUserStatus} from '../redux/actions/profile-actions'
 import {
     follow,
     setCurrentPage,
@@ -28,10 +28,8 @@ export type StateType = ReturnType<typeof rootReducer>
 // Actions
 export type ActionsType =
     ReturnType<typeof addPost>
-    | ReturnType<typeof updatePost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof sendMessage>
-    | ReturnType<typeof updateMessage>
     | ReturnType<typeof follow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>

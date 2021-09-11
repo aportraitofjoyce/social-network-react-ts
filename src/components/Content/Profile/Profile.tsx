@@ -15,9 +15,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
             {props.userProfile && props.userProfile.userId === 18964
                 ? <MyPosts
                     dataForMyPosts={props.dataForMyPosts}
-                    textForNewPost={props.textForNewPost}
-                    addPost={props.addPost}
-                    updatePost={props.updatePost}/>
+                    addPost={props.addPost}/>
                 : ''}
         </main>
     )

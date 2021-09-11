@@ -3,14 +3,13 @@ import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
+import {FormTextarea} from '../../../UI/Form/FormTextarea/FormTextarea'
 
 type LoginFormPropsType = {
     onSubmit: (email: string, password: string, rememberMe: boolean) => void
 }
 
 export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
-    const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms))
-
     return (
         <Formik
             initialValues={{
@@ -32,7 +31,6 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
             })}
 
             onSubmit={async (values, {setSubmitting, resetForm}) => {
-                await sleep(100)
                 await setSubmitting(true)
                 await resetForm()
                 await props.onSubmit(values.email, values.password, values.rememberMe)
@@ -51,6 +49,10 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                     name='password'
                     type='password'
                     placeholder='Type your password...'/>
+
+                <FormTextarea label='Textarea'
+                              name='textarea'
+                              placeholder='Type your message...'/>
 
                 <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
 

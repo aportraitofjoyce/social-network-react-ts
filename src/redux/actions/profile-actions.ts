@@ -4,17 +4,12 @@ import {profileAPI} from '../../api/profile-api'
 
 export enum PROFILE_ACTIONS_TYPES {
     ADD_POST = 'ADD_POST',
-    UPDATE_POST_TEXT = 'UPDATE_POST_TEXT',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     SET_USER_STATUS = 'SET_USER_STATUS',
 }
 
-export const addPost = () => ({
-    type: PROFILE_ACTIONS_TYPES.ADD_POST
-}) as const
-
-export const updatePost = (text: string) => ({
-    type: PROFILE_ACTIONS_TYPES.UPDATE_POST_TEXT,
+export const addPost = (text: string) => ({
+    type: PROFILE_ACTIONS_TYPES.ADD_POST,
     payload: {text}
 }) as const
 

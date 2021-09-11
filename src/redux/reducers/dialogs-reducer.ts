@@ -31,13 +31,7 @@ export const dialogsReducer = (state: DialogsType = initialState, action: Action
         case DIALOGS_ACTIONS_TYPES.SEND_MESSAGE:
             return {
                 ...state,
-                dataForMessages: [...state.dataForMessages, {...state.newMessage}],
-                newMessage: {...state.newMessage, message: ''}
-            }
-        case DIALOGS_ACTIONS_TYPES.UPDATE_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessage: {...state.newMessage, message: action.payload.text}
+                dataForMessages: [...state.dataForMessages, {...state.newMessage, message: action.payload.text}],
             }
         default:
             return state

@@ -6,9 +6,7 @@ import {DataForFriendsType, MessagesDataType} from '../../../types/dialogs-types
 
 type DialogsPropsType = {
     dataForMessages: MessagesDataType[]
-    sendMessage: () => void
-    updateMessage: (text: string) => void
-    textForNewMessage: string
+    sendMessage: (text: string) => void
     dataForFriends: DataForFriendsType[]
 }
 
@@ -18,10 +16,7 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             <FriendsToChat dataForFriends={props.dataForFriends}/>
             <DialogsChat
                 dataForMessages={props.dataForMessages}
-                textForNewMessage={props.textForNewMessage}
-                sendMessage={props.sendMessage}
-                updateMessage={props.updateMessage}
-            />
+                sendMessage={props.sendMessage}/>
         </main>
     )
 }

@@ -15,3 +15,7 @@
 .errorMessage {
     color: red;
 }
+
+.errorBorder {
+    border-color: red;
+}
