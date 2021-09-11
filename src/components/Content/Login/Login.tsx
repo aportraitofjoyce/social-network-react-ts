@@ -3,7 +3,7 @@ import s from './Login.module.css'
 import {LoginForm} from './LoginForm/LoginForm'
 
 type LoginPropsType = {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, setStatus: any) => void
     logout: () => void
 }
 

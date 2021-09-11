@@ -36,10 +36,11 @@ export const checkAuthAndGetProfile = () => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => {
+export const login = (email: string, password: string, rememberMe: boolean, setStatus: any) => {
     return async (dispatch: ThunkType) => {
-        await authAPI.login(email, password, rememberMe)
-        await dispatch(checkAuthAndGetProfile())
+        const loginResponse = await authAPI.login(email, password, rememberMe)
+        loginResponse.data.resultCode !== 0 && setStatus(loginResponse.data.messages)
+        await loginResponse.data.resultCode === 0 && dispatch(checkAuthAndGetProfile())
     }
 }
 

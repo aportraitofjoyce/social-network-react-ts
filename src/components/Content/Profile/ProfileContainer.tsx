@@ -11,6 +11,7 @@ import {
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
 import {compose} from 'redux'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 
 export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
 
@@ -58,5 +59,5 @@ const mapDispatchToProps = {
 }
 
 export default compose<ComponentType>
-(connect(mapStateToProps, mapDispatchToProps), withRouter)
+(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect, withRouter)
 (ProfileContainer)

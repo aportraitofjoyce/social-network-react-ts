@@ -5,7 +5,7 @@ import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
 
 type LoginFormPropsType = {
-    onSubmit: (email: string, password: string, rememberMe: boolean) => void
+    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: any) => void
 }
 
 export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
@@ -29,13 +29,13 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                     .oneOf([true], 'You must accept the terms and conditions.'),
             })}
 
-            onSubmit={async (values, {setSubmitting, resetForm}) => {
+            onSubmit={async (values, {setSubmitting, resetForm, setStatus}) => {
                 await setSubmitting(true)
-                await resetForm()
-                await props.onSubmit(values.email, values.password, values.rememberMe)
+                // await resetForm()
+                await props.onSubmit(values.email, values.password, values.rememberMe, setStatus)
             }}>
 
-            {({isSubmitting}) => <Form className={'formikFormContainer'}>
+            {({isSubmitting, status}) => <Form className={'formikFormContainer'}>
                 <FormInput
                     label='Email'
                     name='email'
@@ -49,6 +49,8 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                     placeholder='Type your password...'/>
 
                 <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
+
+                <span style={{fontSize: 24, fontWeight: 'bold'}}>{status}</span>
 
                 <button type='submit' disabled={isSubmitting}>Submit</button>
             </Form>}

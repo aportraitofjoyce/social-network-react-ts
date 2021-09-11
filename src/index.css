@@ -81,6 +81,10 @@ button:hover {
     background: var(--primary-light);
 }
 
+button:disabled {
+    opacity: 0.2;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
