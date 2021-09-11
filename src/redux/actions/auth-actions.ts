@@ -1,8 +1,13 @@
-import {AUTH_ACTIONS_TYPE} from '../../types/auth-types'
 import axios from 'axios'
 import {authAPI} from '../../api/auth-api'
 import {profileAPI} from '../../api/profile-api'
 import {ThunkType} from '../../types/common-types'
+
+export enum AUTH_ACTIONS_TYPE {
+    SET_USER_DATA = 'SET_USER_DATA',
+    SET_USER_INFO = 'SET_USER_INFO',
+    LOGOUT = 'LOGOUT'
+}
 
 export const setAuthUserData = (id: number, login: string, email: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_USER_DATA,
@@ -12,6 +17,10 @@ export const setAuthUserData = (id: number, login: string, email: string) => ({
 export const setAuthUserInfo = (name: string, avatar: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_USER_INFO,
     payload: {name, avatar}
+}) as const
+
+export const changeAuthWhenLogout = () => ({
+    type: AUTH_ACTIONS_TYPE.LOGOUT
 }) as const
 
 export const checkAuthAndGetProfile = () => {
@@ -27,6 +36,16 @@ export const checkAuthAndGetProfile = () => {
     }
 }
 
-export const login = async (email: string, password: string, rememberMe: boolean) => {
-    await authAPI.login(email, password, rememberMe)
+export const login = (email: string, password: string, rememberMe: boolean) => {
+    return async (dispatch: ThunkType) => {
+        await authAPI.login(email, password, rememberMe)
+        await dispatch(checkAuthAndGetProfile())
+    }
+}
+
+export const logout = () => {
+    return async (dispatch: ThunkType) => {
+        await authAPI.logout()
+        dispatch(changeAuthWhenLogout())
+    }
 }

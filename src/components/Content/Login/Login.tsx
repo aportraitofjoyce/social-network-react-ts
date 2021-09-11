@@ -4,6 +4,7 @@ import {LoginForm} from './LoginForm/LoginForm'
 
 type LoginPropsType = {
     onSubmit: (email: string, password: string, rememberMe: boolean) => void
+    logout: () => void
 }
 
 export const Login: React.FC<LoginPropsType> = (props) => {
@@ -11,6 +12,8 @@ export const Login: React.FC<LoginPropsType> = (props) => {
         <div className={s.fromWrapper}>
             <h1>Login page</h1>
             <LoginForm onSubmit={props.onSubmit}/>
+
+            <button onClick={props.logout}>Logout</button>
         </div>
     )
 }

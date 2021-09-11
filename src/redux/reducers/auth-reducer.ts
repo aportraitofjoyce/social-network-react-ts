@@ -1,5 +1,6 @@
 import {ActionsType} from '../../types/common-types'
-import {AUTH_ACTIONS_TYPE, AuthType} from '../../types/auth-types'
+import {AuthType} from '../../types/auth-types'
+import {AUTH_ACTIONS_TYPE} from '../actions/auth-actions'
 
 const initialState: AuthType = {
     id: null,
@@ -17,6 +18,9 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 
         case AUTH_ACTIONS_TYPE.SET_USER_INFO:
             return {...state, ...action.payload}
+
+        case AUTH_ACTIONS_TYPE.LOGOUT:
+            return {...state, isAuth: false}
 
         default:
             return state
