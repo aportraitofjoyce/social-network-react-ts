@@ -3,11 +3,11 @@ import * as Yup from 'yup'
 import {Form, Formik} from 'formik'
 import {FormTextarea} from '../FormTextarea/FormTextarea'
 
-type SingleTextareaForm = {
+type SingleTextareaFormPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const SingleTextareaForm: React.FC<SingleTextareaForm> = ({onSubmit}) => {
+export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = ({onSubmit}) => {
     return (
         <Formik
             initialValues={{textarea: ''}}

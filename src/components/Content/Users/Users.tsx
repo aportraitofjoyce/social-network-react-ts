@@ -12,6 +12,7 @@ type UsersPropsType = {
     changeCurrentPage: (page: number) => void
     followLoader: string[]
     followUser: (id: string, followed: boolean) => void
+    isAuth: boolean
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -30,7 +31,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                                followed={user.followed}
                                                status={user.status}
                                                followLoader={props.followLoader}
-                                               followUser={props.followUser}/>
+                                               followUser={props.followUser}
+                                               isAuth={props.isAuth}/>
             )}
 
             <Pagination pages={pagesArray}

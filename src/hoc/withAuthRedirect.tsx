@@ -9,10 +9,8 @@ type AuthRedirectPropsType = {
 
 export const withAuthRedirect = <T extends AuthRedirectPropsType>(Component: ComponentType<T>) => {
     const AuthRedirect: React.FC<AuthRedirectPropsType & T> = (props) => {
-
         const isAuth = useSelector<StateType>(state => state.auth.isAuth)
         if (!isAuth) return <Redirect to={PATH.LOGIN}/>
-
         return <Component {...props}/>
     }
 

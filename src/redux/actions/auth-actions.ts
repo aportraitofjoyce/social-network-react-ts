@@ -19,6 +19,7 @@ export const checkAuth = () => async (dispatch: ThunkType) => {
     const response = await authAPI.checkAuth()
     const {id, login, email} = response.data.data
     response.data.resultCode === 0 && dispatch(setAuthUserData(id, login, email))
+    return response
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, setStatus: any) => async (dispatch: ThunkType) => {

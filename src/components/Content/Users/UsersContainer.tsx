@@ -5,8 +5,8 @@ import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/us
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {UsersType} from '../../../types/users-types'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
+import {AuthType} from '../../../types/auth-types'
 
 const UsersContainer: React.FC = () => {
     const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const UsersContainer: React.FC = () => {
         isLoading,
         followLoader
     } = useSelector<StateType, UsersType>(state => state.users)
+    const {isAuth} = useSelector<StateType, AuthType>(state => state.auth)
 
     const followUserHandler = (id: string, followed: boolean) => dispatch(followUser(id, followed))
 
@@ -38,9 +39,10 @@ const UsersContainer: React.FC = () => {
                    currentPage={currentPage}
                    changeCurrentPage={changeCurrentPageHandler}
                    followLoader={followLoader}
-                   followUser={followUserHandler}/>
+                   followUser={followUserHandler}
+                   isAuth={isAuth}/>
         </div>
     )
 }
 
-export default compose<ComponentType>(withAuthRedirect)(UsersContainer)
+export default compose<ComponentType>()(UsersContainer)

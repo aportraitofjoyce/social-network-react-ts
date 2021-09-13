@@ -4,6 +4,7 @@ import {dialogsReducer} from './dialogs-reducer'
 import {sidebarReducer} from './sidebar-reducer'
 import {usersReducer} from './users-reducer'
 import {authReducer} from './auth-reducer'
+import {appReducer} from './app-reducer'
 
 export const rootReducer = combineReducers(
     {
@@ -11,6 +12,7 @@ export const rootReducer = combineReducers(
         dialogs: dialogsReducer,
         sidebar: sidebarReducer,
         users: usersReducer,
-        auth: authReducer
+        auth: authReducer,
+        app: appReducer
     }
 )

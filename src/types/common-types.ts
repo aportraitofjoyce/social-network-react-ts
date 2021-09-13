@@ -11,6 +11,7 @@ import {
 import {changeAuthWhenLogout, setAuthUserData} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
 import {ThunkDispatch} from 'redux-thunk'
+import {successInitialization} from '../redux/actions/app-actions'
 
 // Routes
 export enum PATH {
@@ -39,6 +40,7 @@ export type ActionsType =
     | ReturnType<typeof toggleFollowLoader>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof changeAuthWhenLogout>
+    | ReturnType<typeof successInitialization>
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>

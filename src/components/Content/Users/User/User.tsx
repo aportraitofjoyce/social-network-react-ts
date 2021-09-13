@@ -11,6 +11,7 @@ type UserPropsType = {
     status: string
     followLoader: string[]
     followUser: (id: string, followed: boolean) => void
+    isAuth: boolean
 }
 
 export const User: React.FC<UserPropsType> = (props) => {
@@ -31,10 +32,13 @@ export const User: React.FC<UserPropsType> = (props) => {
                     </div>
                 </Link>
 
-                <button onClick={onFollowButtonClickHandler}
-                        disabled={props.followLoader.includes(props.id)}>
-                    {props.followed ? 'Unfollow' : 'Follow'}
-                </button>
+                {!props.isAuth
+                    ? <button disabled>123</button>
+                    : <button onClick={onFollowButtonClickHandler}
+                              disabled={props.followLoader.includes(props.id)}>
+                        {props.followed ? 'Unfollow' : 'Follow'}
+                    </button>}
+
 
             </div>
 
