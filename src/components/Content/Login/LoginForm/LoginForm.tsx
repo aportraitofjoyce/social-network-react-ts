@@ -24,9 +24,6 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
                 password: Yup.string()
                     .max(20, 'Must be 20 characters or less')
                     .required('Required'),
-                rememberMe: Yup.boolean()
-                    .required('Required')
-                    .oneOf([true], 'You must accept the terms and conditions.'),
             })}
 
             onSubmit={async (values, {setSubmitting, resetForm, setStatus}) => {

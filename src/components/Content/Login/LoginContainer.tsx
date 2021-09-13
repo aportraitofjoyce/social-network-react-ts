@@ -13,5 +13,7 @@ export const LoginContainer: React.FC = () => {
     const loginOnSite = (email: string, password: string, rememberMe: boolean, setStatus: any) => dispatch(login(email, password, rememberMe, setStatus))
     const logoutFromSite = () => dispatch(logout())
 
-    return !isAuth ? <Login login={loginOnSite} logout={logoutFromSite}/> : <Redirect to={PATH.PROFILE}/>
+    return !isAuth
+        ? <Login login={loginOnSite} logout={logoutFromSite}/>
+        : <Redirect to={PATH.PROFILE}/>
 }

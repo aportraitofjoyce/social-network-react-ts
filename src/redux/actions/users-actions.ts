@@ -44,50 +44,36 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
 
 
 // Thunk
-export const getUsers = (pageSize: number, currentPage: number) => {
-    return (dispatch: ThunkType) => {
-        dispatch(toggleLoader(true))
+export const getUsers = (pageSize: number, currentPage: number) => async (dispatch: ThunkType) => {
+    dispatch(toggleLoader(true))
 
-        usersAPI.getUsers(pageSize, currentPage)
-            .then(response => {
-                dispatch(toggleLoader(false))
-                dispatch(setUsers(response.items))
-                dispatch(setTotalUsersCount(response.totalCount))
-            })
-    }
+    const response = await usersAPI.getUsers(pageSize, currentPage)
+    dispatch(toggleLoader(false))
+    dispatch(setUsers(response.items))
+    dispatch(setTotalUsersCount(response.totalCount))
 }
 
-export const changeCurrentPage = (page: number, pageSize: number) => {
-    return (dispatch: ThunkType) => {
-        dispatch(setCurrentPage(page))
-        dispatch(toggleLoader(true))
+export const changeCurrentPage = (page: number, pageSize: number) => async (dispatch: ThunkType) => {
+    dispatch(setCurrentPage(page))
+    dispatch(toggleLoader(true))
 
-        usersAPI.getUsers(pageSize, page)
-            .then(response => {
-                dispatch(toggleLoader(false))
-                dispatch(setUsers(response.items))
-            })
-    }
+    const response = await usersAPI.getUsers(pageSize, page)
+    dispatch(toggleLoader(false))
+    dispatch(setUsers(response.items))
 }
 
-export const followUser = (id: string, followed: boolean) => {
-    return (dispatch: ThunkType) => {
-        dispatch(toggleFollowLoader(true, id))
+export const followUser = (id: string, followed: boolean) => async (dispatch: ThunkType) => {
+    dispatch(toggleFollowLoader(true, id))
 
-        if (!followed) {
-            followAPI.follow(id)
-                .then(() => {
-                    dispatch(follow(id))
-                    dispatch(toggleFollowLoader(false, id))
-                })
-        }
+    if (!followed) {
+        await followAPI.follow(id)
+        dispatch(follow(id))
+        dispatch(toggleFollowLoader(false, id))
+    }
 
-        if (followed) {
-            followAPI.unfollow(id)
-                .then(() => {
-                    dispatch(follow(id))
-                    dispatch(toggleFollowLoader(false, id))
-                })
-        }
+    if (followed) {
+        await followAPI.unfollow(id)
+        dispatch(follow(id))
+        dispatch(toggleFollowLoader(false, id))
     }
 }

@@ -7,17 +7,12 @@ const initialState: AuthType = {
     login: null,
     email: null,
     isAuth: false,
-    name: null,
-    avatar: null
 }
 
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPE.SET_USER_DATA:
             return {...state, ...action.payload, isAuth: true}
-
-        case AUTH_ACTIONS_TYPE.SET_USER_INFO:
-            return {...state, ...action.payload}
 
         case AUTH_ACTIONS_TYPE.LOGOUT:
             return {...state, isAuth: false}

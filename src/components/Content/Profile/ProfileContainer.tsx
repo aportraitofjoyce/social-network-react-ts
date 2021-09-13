@@ -5,7 +5,8 @@ import {StateType} from '../../../types/common-types'
 import {
     addPost,
     getUserProfile,
-    getUserStatus, setUserStatus,
+    getUserStatus,
+    setUserStatus,
     updateUserStatus
 } from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
@@ -19,6 +20,7 @@ type MSTPType = {
     dataForMyPosts: dataForMyPostsType[]
     userProfile: UserProfileType | null
     userStatus: string
+    authID: string
 }
 
 type MDTPType = {
@@ -35,8 +37,8 @@ type PathParamsType = {
 
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
     useEffect(() => {
-        props.getUserProfile(props.match.params.userId)
-        props.getUserStatus(props.match.params.userId)
+        props.getUserProfile(props.match.params.userId || props.authID)
+        props.getUserStatus(props.match.params.userId || props.authID)
     }, [])
 
     return <Profile {...props}/>
@@ -47,7 +49,8 @@ const mapStateToProps = (state: StateType) => ({
     dataForMyPosts: state.profile.dataForMyPosts,
     textForNewPost: state.profile.newPost.text,
     userProfile: state.profile.userProfile,
-    userStatus: state.profile.userStatus
+    userStatus: state.profile.userStatus,
+    authID: state.auth.id
 })
 
 const mapDispatchToProps = {

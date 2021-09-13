@@ -8,7 +8,7 @@ import {
     toggleFollowLoader,
     toggleLoader
 } from '../redux/actions/users-actions'
-import {changeAuthWhenLogout, setAuthUserData, setAuthUserInfo} from '../redux/actions/auth-actions'
+import {changeAuthWhenLogout, setAuthUserData} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
 import {ThunkDispatch} from 'redux-thunk'
 
@@ -36,7 +36,6 @@ export type ActionsType =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleLoader>
     | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof setAuthUserInfo>
     | ReturnType<typeof toggleFollowLoader>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof changeAuthWhenLogout>

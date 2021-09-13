@@ -24,23 +24,17 @@ export const setUserStatus = (userStatus: string) => ({
 }) as const
 
 // Thunk
-export const getUserProfile = (idFromURL: number) => {
-    return (dispatch: ThunkType) => {
-        profileAPI.getUserProfile(idFromURL)
-            .then(response => dispatch(setUserProfile(response.data)))
-    }
+export const getUserProfile = (idFromURL: number) => async (dispatch: ThunkType) => {
+    const response = await profileAPI.getUserProfile(idFromURL)
+    dispatch(setUserProfile(response.data))
 }
 
-export const getUserStatus = (idFromURL: number) => {
-    return (dispatch: ThunkType) => {
-        profileAPI.getUserStatus(idFromURL)
-            .then(response => dispatch(setUserStatus(response.data)))
-    }
+export const getUserStatus = (idFromURL: number) => async (dispatch: ThunkType) => {
+    const response = await profileAPI.getUserStatus(idFromURL)
+    dispatch(setUserStatus(response.data))
 }
 
-export const updateUserStatus = (userStatus: string) => {
-    return (dispatch: ThunkType) => {
-        profileAPI.updateUserStatus(userStatus)
-            .then(response => response.data.resultCode === 0 && dispatch(setUserStatus(userStatus)))
-    }
+export const updateUserStatus = (userStatus: string) => async (dispatch: ThunkType) => {
+    const response = await profileAPI.updateUserStatus(userStatus)
+    response.data.resultCode === 0 && dispatch(setUserStatus(userStatus))
 }
