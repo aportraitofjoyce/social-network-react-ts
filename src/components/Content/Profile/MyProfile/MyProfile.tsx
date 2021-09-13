@@ -6,7 +6,7 @@ import {UserProfileType} from '../../../../types/profile-types'
 
 type MyProfilePropsType = {
     dataForProfile: UserProfileType
-    userStatus: string
+    userStatus: string | null
     updateUserStatus: (status: string) => void
 }
 

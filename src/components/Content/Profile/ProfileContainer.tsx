@@ -1,66 +1,45 @@
 import React, {ComponentType, useEffect} from 'react'
-import {connect} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {Profile} from './Profile'
 import {StateType} from '../../../types/common-types'
 import {
     addPost,
     getUserProfile,
     getUserStatus,
-    setUserStatus,
     updateUserStatus
 } from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
+import {ProfileType} from '../../../types/profile-types'
 import {compose} from 'redux'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {AuthType} from '../../../types/auth-types'
 
-export type ProfilePropsType = MSTPType & MDTPType & RouteComponentProps<PathParamsType>
-
-type MSTPType = {
-    dataForMyPosts: dataForMyPostsType[]
-    userProfile: UserProfileType | null
-    userStatus: string
-    authID: string
-}
-
-type MDTPType = {
-    addPost: (text: string) => void
-    getUserProfile: (idFromURL: string) => void
-    getUserStatus: (idFromURL: string) => void
-    updateUserStatus: (status: string) => void
-    setUserStatus: (status: string) => void
-}
+type ProfileContainerPropsType = RouteComponentProps<PathParamsType>
 
 type PathParamsType = {
-    userId: string
+    userId: any
 }
 
-const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
+const ProfileContainer: React.FC<ProfileContainerPropsType> = (props) => {
+    const {match} = props
+    const dispatch = useDispatch()
+    const {dataForMyPosts, userProfile, userStatus} = useSelector<StateType, ProfileType>(state => state.profile)
+    const {id} = useSelector<StateType, AuthType>(state => state.auth)
+
+    const addPostHandler = (text: string) => dispatch(addPost(text))
+    const updateUserStatusHandler = (status: string) => dispatch(updateUserStatus(status))
+
     useEffect(() => {
-        props.getUserProfile(props.match.params.userId || props.authID)
-        props.getUserStatus(props.match.params.userId || props.authID)
-    }, [])
+        dispatch(getUserProfile(match.params.userId || id))
+        dispatch(getUserStatus(match.params.userId || id))
+    }, [dispatch, match.params.userId, id])
 
-    return <Profile {...props}/>
+    return <Profile dataForMyPosts={dataForMyPosts}
+                    userProfile={userProfile}
+                    userStatus={userStatus}
+                    authID={id}
+                    updateUserStatus={updateUserStatusHandler}
+                    addPost={addPostHandler}/>
 }
 
-
-const mapStateToProps = (state: StateType) => ({
-    dataForMyPosts: state.profile.dataForMyPosts,
-    textForNewPost: state.profile.newPost.text,
-    userProfile: state.profile.userProfile,
-    userStatus: state.profile.userStatus,
-    authID: state.auth.id
-})
-
-const mapDispatchToProps = {
-    addPost,
-    getUserProfile,
-    getUserStatus,
-    updateUserStatus,
-    setUserStatus
-}
-
-export default compose<ComponentType>
-(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect, withRouter)
-(ProfileContainer)
+export default compose<ComponentType>(withAuthRedirect, withRouter)(ProfileContainer)

@@ -11,12 +11,14 @@ type DialogsPropsType = {
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+    const {dataForMessages, dataForFriends, sendMessage} = props
+
     return (
         <main className={s.wrapper}>
-            <FriendsToChat dataForFriends={props.dataForFriends}/>
+            <FriendsToChat dataForFriends={dataForFriends}/>
             <DialogsChat
-                dataForMessages={props.dataForMessages}
-                sendMessage={props.sendMessage}/>
+                dataForMessages={dataForMessages}
+                sendMessage={sendMessage}/>
         </main>
     )
 }

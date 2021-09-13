@@ -33,6 +33,10 @@ export const login = (email: string, password: string, rememberMe: boolean, setS
 }
 
 export const logout = () => async (dispatch: ThunkType) => {
-    await authAPI.logout()
-    dispatch(changeAuthWhenLogout())
+    try {
+        await authAPI.logout()
+        dispatch(changeAuthWhenLogout())
+    } catch (e) {
+        alert(e)
+    }
 }

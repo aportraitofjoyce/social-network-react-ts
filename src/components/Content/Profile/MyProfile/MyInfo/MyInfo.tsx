@@ -4,8 +4,8 @@ import {MyStatus} from './MyStatus/MyStatus'
 
 type MyInfoPropsType = {
     title: string
-    userStatus: string
-    updateUserStatus: (status: string) => void
+    userStatus: string | null
+    updateUserStatus: (status: any) => void
 }
 
 export const MyInfo: React.FC<MyInfoPropsType> = (props) => {

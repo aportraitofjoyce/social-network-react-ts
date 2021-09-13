@@ -1,11 +1,11 @@
-import {connect} from 'react-redux'
+import React from 'react'
+import {useSelector} from 'react-redux'
 import {Sidebar} from './Sidebar'
 import {StateType} from '../../../types/common-types'
+import {SidebarType} from '../../../types/sidebar-types'
 
-const mapStateToProps = (state: StateType) => (
-    {
-        dataForSidebar: state.sidebar.dataForSidebar
-    }
-)
+export const SidebarContainer: React.FC = () => {
+    const {dataForSidebar} = useSelector<StateType, SidebarType>(state => state.sidebar)
 
-export const SidebarContainer = connect(mapStateToProps)(Sidebar)
+    return <Sidebar dataForSidebar={dataForSidebar}/>
+}

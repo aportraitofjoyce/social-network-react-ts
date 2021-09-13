@@ -9,7 +9,7 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    onPaginationPageClickHandler: (page: number) => void
+    changeCurrentPage: (page: number) => void
     followLoader: string[]
     followUser: (id: string, followed: boolean) => void
 }
@@ -35,7 +35,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
 
             <Pagination pages={pagesArray}
                         currentPage={props.currentPage}
-                        onClick={props.onPaginationPageClickHandler}/>
+                        onClick={props.changeCurrentPage}/>
         </main>
     )
 }

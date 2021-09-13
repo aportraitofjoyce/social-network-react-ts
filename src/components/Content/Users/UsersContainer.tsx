@@ -1,65 +1,46 @@
 import React, {ComponentType, useEffect} from 'react'
-import {connect} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {StateType} from '../../../types/common-types'
 import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
-import {UserType} from '../../../types/users-types'
+import {UsersType} from '../../../types/users-types'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
 
-type UsersContainerPropsType = MSTPType & MDTPType
+const UsersContainer: React.FC = () => {
+    const dispatch = useDispatch()
+    const {
+        usersData,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        isLoading,
+        followLoader
+    } = useSelector<StateType, UsersType>(state => state.users)
 
-type MSTPType = {
-    usersData: UserType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isLoading: boolean
-    followLoader: string[]
-}
+    const followUserHandler = (id: string, followed: boolean) => dispatch(followUser(id, followed))
 
-type MDTPType = {
-    getUsers: (pageSize: number, currentPage: number) => void
-    changeCurrentPage: (pageSize: number, page: number) => void
-    followUser: (id: string, followed: boolean) => void
-}
-
-const UsersContainer: React.FC<UsersContainerPropsType> = (props) => {
-    useEffect(() => props.getUsers(props.pageSize, props.currentPage), [])
-
-    const onPaginationPageClickHandler = (page: number) => {
-        props.changeCurrentPage(page, props.pageSize)
+    const changeCurrentPageHandler = (page: number) => {
+        dispatch(changeCurrentPage(page, pageSize))
     }
+
+    useEffect(() => {
+        dispatch(getUsers(pageSize, currentPage))
+    }, [dispatch, pageSize, currentPage])
+
     return (
         <div>
-            {props.isLoading && <Loader/>}
-            <Users usersData={props.usersData}
-                   pageSize={props.pageSize}
-                   totalUsersCount={props.totalUsersCount}
-                   currentPage={props.currentPage}
-                   onPaginationPageClickHandler={onPaginationPageClickHandler}
-                   followLoader={props.followLoader}
-                   followUser={props.followUser}/>
+            {isLoading && <Loader/>}
+            <Users usersData={usersData}
+                   pageSize={pageSize}
+                   totalUsersCount={totalUsersCount}
+                   currentPage={currentPage}
+                   changeCurrentPage={changeCurrentPageHandler}
+                   followLoader={followLoader}
+                   followUser={followUserHandler}/>
         </div>
     )
 }
 
-const mapStateToProps = (state: StateType) => ({
-    usersData: state.users.usersData,
-    pageSize: state.users.pageSize,
-    totalUsersCount: state.users.totalUsersCount,
-    currentPage: state.users.currentPage,
-    isLoading: state.users.isLoading,
-    followLoader: state.users.followLoader,
-})
-
-const mapDispatchToProps = {
-    getUsers,
-    changeCurrentPage,
-    followUser
-}
-
-export default compose<ComponentType>
-(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)
-(UsersContainer)
+export default compose<ComponentType>(withAuthRedirect)(UsersContainer)

@@ -2,10 +2,17 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import s from './Header.module.css'
 import {LogoIcon} from './LogoIcon'
-import {HeaderPropsType} from './HeaderContainer'
 import {PATH} from '../../../types/common-types'
+import {AuthType} from '../../../types/auth-types'
+
+export type HeaderPropsType = {
+    auth: AuthType
+    logout: () => void
+}
 
 export const Header: React.FC<HeaderPropsType> = (props) => {
+    const {auth, logout} = props
+
     return (
         <div className={s.wrapper}>
             <div className={s.container}>
@@ -13,14 +20,13 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
                     <LogoIcon/>
                     <span>Social Network</span>
                 </Link>
-                {
-                    props.auth.isAuth
-                        ? <div>
-                            <span>{props.auth.login}</span>
-                            <button onClick={() => props.logout()}>Logout</button>
-                        </div>
-                        : <Link to={PATH.LOGIN}>Login</Link>
-                }
+
+                {auth.isAuth
+                    ? <div>
+                        <span>{auth.login}</span>
+                        <button onClick={() => logout()}>Logout</button>
+                    </div>
+                    : <Link to={PATH.LOGIN}>Login</Link>}
             </div>
         </div>
     )
