@@ -33,7 +33,7 @@ export const User: React.FC<UserPropsType> = (props) => {
                 </Link>
 
                 {!props.isAuth
-                    ? <button disabled>123</button>
+                    ? <button disabled>Need to login</button>
                     : <button onClick={onFollowButtonClickHandler}
                               disabled={props.followLoader.includes(props.id)}>
                         {props.followed ? 'Unfollow' : 'Follow'}

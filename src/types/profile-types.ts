@@ -2,7 +2,7 @@ export type ProfileType = {
     dataForMyPosts: dataForMyPostsType[]
     newPost: dataForMyPostsType
     userProfile: UserProfileType | null
-    userStatus: string | null
+    userStatus: string
 }
 export type UserProfileType = {
     userId: number

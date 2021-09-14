@@ -1,13 +1,13 @@
 import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react'
 
 type MyStatusPropsType = {
-    status: string | null
-    updateUserStatus: (status: any) => void
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
 export const MyStatus: React.FC<MyStatusPropsType> = (props) => {
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [title, setTitle] = useState<any>(props.status)
+    const [title, setTitle] = useState<string>(props.status)
 
     useEffect(() => setTitle(props.status), [props.status])
 

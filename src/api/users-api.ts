@@ -1,7 +1,7 @@
 import {axiosInstance} from './axios-instance'
 
 export const usersAPI = {
-    getUsers: (pageSize: number = 10, currentPage: number = 1) => axiosInstance
-        .get(`users?count=${pageSize}&page=${currentPage}`)
+    requestUsers: (page: number = 1, pageSize: number = 10) => axiosInstance
+        .get(`users?count=${pageSize}&page=${page}`)
         .then(response => response.data)
 }

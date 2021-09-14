@@ -44,10 +44,10 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
 
 
 // Thunk
-export const getUsers = (pageSize: number, currentPage: number) => async (dispatch: ThunkType) => {
+export const requestUsers = (page: number, pageSize: number) => async (dispatch: ThunkType) => {
     try {
         dispatch(toggleLoader(true))
-        const response = await usersAPI.getUsers(pageSize, currentPage)
+        const response = await usersAPI.requestUsers(page, pageSize)
         dispatch(toggleLoader(false))
         dispatch(setUsers(response.items))
         dispatch(setTotalUsersCount(response.totalCount))
@@ -60,7 +60,7 @@ export const changeCurrentPage = (page: number, pageSize: number) => async (disp
     dispatch(setCurrentPage(page))
     dispatch(toggleLoader(true))
 
-    const response = await usersAPI.getUsers(pageSize, page)
+    const response = await usersAPI.requestUsers(page, pageSize)
     dispatch(toggleLoader(false))
     dispatch(setUsers(response.items))
 }

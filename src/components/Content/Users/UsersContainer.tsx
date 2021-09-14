@@ -1,15 +1,15 @@
-import React, {ComponentType, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {StateType} from '../../../types/common-types'
-import {getUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
+import {requestUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {UsersType} from '../../../types/users-types'
-import {compose} from 'redux'
 import {AuthType} from '../../../types/auth-types'
 
-const UsersContainer: React.FC = () => {
+export const UsersContainer: React.FC = () => {
     const dispatch = useDispatch()
+
     const {
         usersData,
         pageSize,
@@ -18,6 +18,7 @@ const UsersContainer: React.FC = () => {
         isLoading,
         followLoader
     } = useSelector<StateType, UsersType>(state => state.users)
+
     const {isAuth} = useSelector<StateType, AuthType>(state => state.auth)
 
     const followUserHandler = (id: string, followed: boolean) => dispatch(followUser(id, followed))
@@ -27,11 +28,11 @@ const UsersContainer: React.FC = () => {
     }
 
     useEffect(() => {
-        dispatch(getUsers(pageSize, currentPage))
-    }, [dispatch, pageSize, currentPage])
+        dispatch(requestUsers(currentPage, pageSize))
+    }, [dispatch, currentPage, pageSize])
 
     return (
-        <div>
+        <>
             {isLoading && <Loader/>}
             <Users usersData={usersData}
                    pageSize={pageSize}
@@ -41,8 +42,6 @@ const UsersContainer: React.FC = () => {
                    followLoader={followLoader}
                    followUser={followUserHandler}
                    isAuth={isAuth}/>
-        </div>
+        </>
     )
 }
-
-export default compose<ComponentType>()(UsersContainer)

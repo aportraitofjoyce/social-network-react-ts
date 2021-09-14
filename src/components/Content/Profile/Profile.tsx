@@ -7,8 +7,8 @@ import {dataForMyPostsType, UserProfileType} from '../../../types/profile-types'
 type ProfilePropsType = {
     dataForMyPosts: dataForMyPostsType[]
     userProfile: UserProfileType | null
-    userStatus: string | null
-    authID: string | number | null
+    userStatus: string
+    authID: number | null
     addPost: (text: string) => void
     updateUserStatus: (status: string) => void
 }

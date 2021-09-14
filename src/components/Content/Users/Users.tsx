@@ -24,6 +24,10 @@ export const Users: React.FC<UsersPropsType> = (props) => {
 
     return (
         <main className={s.wrapper}>
+            <Pagination pages={pagesArray}
+                        currentPage={props.currentPage}
+                        onClick={props.changeCurrentPage}/>
+
             {props.usersData.map(user => <User key={user.name + user.id}
                                                name={user.name}
                                                avatarSmall={user.photos.small}
@@ -32,12 +36,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                                status={user.status}
                                                followLoader={props.followLoader}
                                                followUser={props.followUser}
-                                               isAuth={props.isAuth}/>
-            )}
-
-            <Pagination pages={pagesArray}
-                        currentPage={props.currentPage}
-                        onClick={props.changeCurrentPage}/>
+                                               isAuth={props.isAuth}/>)}
         </main>
     )
 }
