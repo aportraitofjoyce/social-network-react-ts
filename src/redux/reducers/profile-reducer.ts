@@ -4,7 +4,6 @@ import {PROFILE_ACTIONS_TYPES} from '../actions/profile-actions'
 
 const initialState: ProfileType = {
     userProfile: null,
-
     userStatus: '',
 
     dataForMyPosts: [

@@ -7,6 +7,9 @@ type SidebarItemPropsType = {
     name: string
 }
 
-export const SidebarItem: React.FC<SidebarItemPropsType> = (props) => {
-    return <NavLink to={props.link} activeClassName={s.active}>{props.name}</NavLink>
-}
+export const SidebarItem: React.FC<SidebarItemPropsType> = React.memo(props => {
+    return <NavLink to={props.link}
+                    activeClassName={s.active}>
+        {props.name}
+    </NavLink>
+})
