@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {StateType} from '../../../types/common-types'
 import {requestUsers, changeCurrentPage, followUser} from '../../../redux/actions/users-actions'
@@ -7,7 +7,7 @@ import {Loader} from '../../UI/Loader/Loader'
 import {UsersType} from '../../../types/users-types'
 import {AuthType} from '../../../types/auth-types'
 
-export const UsersContainer: React.FC = () => {
+export const UsersContainer: React.FC = React.memo(() => {
     const dispatch = useDispatch()
 
     const {
@@ -21,11 +21,13 @@ export const UsersContainer: React.FC = () => {
 
     const {isAuth} = useSelector<StateType, AuthType>(state => state.auth)
 
-    const followUserHandler = (id: string, followed: boolean) => dispatch(followUser(id, followed))
+    const followUserHandler = useCallback((id: string, followed: boolean) => {
+        dispatch(followUser(id, followed))
+    }, [dispatch])
 
-    const changeCurrentPageHandler = (page: number) => {
+    const changeCurrentPageHandler = useCallback((page: number) => {
         dispatch(changeCurrentPage(page, pageSize))
-    }
+    }, [dispatch, pageSize])
 
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize))
@@ -44,4 +46,4 @@ export const UsersContainer: React.FC = () => {
                    isAuth={isAuth}/>
         </>
     )
-}
+})

@@ -7,16 +7,16 @@ type PaginationPropsType = {
     onClick: (page: number) => void
 }
 
-export const Pagination: React.FC<PaginationPropsType> = (props) => {
+export const Pagination: React.FC<PaginationPropsType> = React.memo(props => {
+    const {pages, currentPage, onClick} = props
+
+    const pagesToRender = pages.map(p => <span className={currentPage === p ? s.currentPage : ''}
+                                               key={p}
+                                               onClick={() => onClick(p)}>{p}</span>)
+
     return (
         <div className={s.paginationContainer}>
-            {props.pages.map(p => (
-                <span className={props.currentPage === p ? s.currentPage : ''}
-                      key={p}
-                      onClick={() => props.onClick(p)}>
-                    {p}
-                </span>
-            ))}
+            {pagesToRender}
         </div>
     )
-}
+})

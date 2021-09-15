@@ -6,7 +6,7 @@ type PostControlPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const PostsForm: React.FC<PostControlPropsType> = React.memo((props) => {
+export const PostsForm: React.FC<PostControlPropsType> = React.memo(props => {
     const {onSubmit} = props
 
     return (

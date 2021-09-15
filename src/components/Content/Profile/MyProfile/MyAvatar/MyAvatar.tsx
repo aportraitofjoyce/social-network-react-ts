@@ -6,7 +6,7 @@ type MyAvatarPropsType = {
     alt: string
 }
 
-export const MyAvatar: React.FC<MyAvatarPropsType> = React.memo((props) => {
+export const MyAvatar: React.FC<MyAvatarPropsType> = React.memo(props => {
     const {src, alt} = props
 
     return (

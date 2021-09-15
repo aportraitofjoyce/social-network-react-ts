@@ -1,14 +1,20 @@
 import {NavLink} from 'react-router-dom'
 import s from '../../Dialogs.module.css'
 import React from 'react'
-import {DataForFriendsType} from '../../../../../types/dialogs-types'
+import {PATH} from '../../../../../types/common-types'
 
-export const Friend: React.FC<DataForFriendsType> = (props) => {
+type FriendPropsType = {
+    name: string
+}
+
+export const Friend: React.FC<FriendPropsType> = React.memo(props => {
+    const {name} = props
+
     return (
-        <NavLink to={'/dialogs/' + props.id}
+        <NavLink to={PATH.DIALOGS}
                  className={s.friend}
                  activeClassName={s.active}>
-            {props.name}
+            {name}
         </NavLink>
     )
-}
+})

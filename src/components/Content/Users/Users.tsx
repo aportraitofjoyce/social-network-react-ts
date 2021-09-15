@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
 import {UserType} from '../../../types/users-types'
@@ -15,28 +15,43 @@ type UsersPropsType = {
     isAuth: boolean
 }
 
-export const Users: React.FC<UsersPropsType> = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) / 20
-    let pagesArray: number[] = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pagesArray.push(i)
-    }
+export const Users: React.FC<UsersPropsType> = React.memo(props => {
+    const {
+        usersData,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        changeCurrentPage,
+        followLoader,
+        followUser,
+        isAuth
+    } = props
+
+    const paginationPages = useMemo(() => {
+        let pagesCount = Math.ceil(totalUsersCount / pageSize) / 20
+        let pagesArray: number[] = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pagesArray.push(i)
+        }
+        return pagesArray
+    }, [pageSize, totalUsersCount])
+
+    const mappedUsers = usersData.map(user => <User key={user.name + user.id}
+                                                    name={user.name}
+                                                    avatarSmall={user.photos.small}
+                                                    id={user.id}
+                                                    followed={user.followed}
+                                                    status={user.status}
+                                                    followLoader={followLoader}
+                                                    followUser={followUser}
+                                                    isAuth={isAuth}/>)
 
     return (
         <main className={s.wrapper}>
-            <Pagination pages={pagesArray}
-                        currentPage={props.currentPage}
-                        onClick={props.changeCurrentPage}/>
-
-            {props.usersData.map(user => <User key={user.name + user.id}
-                                               name={user.name}
-                                               avatarSmall={user.photos.small}
-                                               id={user.id}
-                                               followed={user.followed}
-                                               status={user.status}
-                                               followLoader={props.followLoader}
-                                               followUser={props.followUser}
-                                               isAuth={props.isAuth}/>)}
+            <Pagination pages={paginationPages}
+                        currentPage={currentPage}
+                        onClick={changeCurrentPage}/>
+            {mappedUsers}
         </main>
     )
-}
+})

@@ -7,13 +7,16 @@ type FriendsContainerPropsType = {
     dataForFriends: DataForFriendsType[]
 }
 
-export const FriendsToChat: React.FC<FriendsContainerPropsType> = (props) => {
-    const dialogWithFriend = props.dataForFriends.map((item) => <Friend key={item.id} id={item.id} name={item.name}/>)
+export const FriendsToChat: React.FC<FriendsContainerPropsType> = React.memo(props => {
+    const {dataForFriends} = props
+
+    const dialogWithFriend = dataForFriends.map(friend => <Friend key={friend.id}
+                                                                  name={friend.name}/>)
 
     return (
         <div className={s.friendsContainer}>
             {dialogWithFriend}
         </div>
     )
-}
+})
 

@@ -10,19 +10,19 @@ type DialogsContainerPropsType = {
     sendMessage: (text: string) => void
 }
 
-export const DialogsChat: React.FC<DialogsContainerPropsType> = (props) => {
-    const mappedMessages = props.dataForMessages.map(item => <Message key={v1()}
-                                                                      from={item.from}
-                                                                      message={item.message}
-                                                                      id={item.id}/>)
+export const DialogsChat: React.FC<DialogsContainerPropsType> = React.memo(props => {
+    const {dataForMessages, sendMessage} = props
+
+    const mappedMessages = dataForMessages.map(message => <Message key={v1()}
+                                                                   from={message.from}
+                                                                   message={message.message}/>)
 
     return (
         <div className={s.dialogsWrapper}>
             <div className={s.dialogsContainer}>
                 {mappedMessages}
             </div>
-            <DialogsForm
-                onSubmit={props.sendMessage}/>
+            <DialogsForm onSubmit={sendMessage}/>
         </div>
     )
-}
+})

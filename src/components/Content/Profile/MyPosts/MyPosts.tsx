@@ -10,7 +10,7 @@ type MyPostsPropsType = {
     dataForMyPosts: dataForMyPostsType[]
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = React.memo((props) => {
+export const MyPosts: React.FC<MyPostsPropsType> = React.memo(props => {
     const {addPost, dataForMyPosts} = props
 
     const mappedPosts = useMemo(() => dataForMyPosts.map(item => <Post key={v1()}

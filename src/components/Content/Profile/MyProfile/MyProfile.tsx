@@ -10,7 +10,7 @@ type MyProfilePropsType = {
     updateUserStatus: (status: string) => void
 }
 
-export const MyProfile: React.FC<MyProfilePropsType> = React.memo((props) => {
+export const MyProfile: React.FC<MyProfilePropsType> = React.memo(props => {
     const {dataForProfile, userStatus, updateUserStatus} = props
 
     const avatarSRC = useMemo(() => dataForProfile.photos.large !== null

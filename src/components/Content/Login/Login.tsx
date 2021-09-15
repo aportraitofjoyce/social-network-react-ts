@@ -7,12 +7,14 @@ type LoginPropsType = {
     logout: () => void
 }
 
-export const Login: React.FC<LoginPropsType> = (props) => {
+export const Login: React.FC<LoginPropsType> = React.memo(props => {
+    const {login, logout} = props
+
     return (
         <div className={s.fromWrapper}>
             <h1>Login page</h1>
-            <LoginForm onSubmit={props.login}/>
-            <button onClick={props.logout}>Logout</button>
+            <LoginForm onSubmit={login}/>
+            <button onClick={logout}>Logout</button>
         </div>
     )
-}
+})

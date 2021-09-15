@@ -8,7 +8,7 @@ type MyInfoPropsType = {
     updateUserStatus: (status: string) => void
 }
 
-export const MyInfo: React.FC<MyInfoPropsType> = React.memo((props) => {
+export const MyInfo: React.FC<MyInfoPropsType> = React.memo(props => {
     const {title, userStatus, updateUserStatus} = props
 
     return (

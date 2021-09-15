@@ -8,12 +8,12 @@ type SidebarPropsType = {
     dataForSidebar: dataForSidebarType[]
 }
 
-export const Sidebar: React.FC<SidebarPropsType> = (props) => {
-    const mappedSidebarItems = props.dataForSidebar.map(item => {
-        return <SidebarItem key={v1()}
-                            name={item.name}
-                            link={item.link}/>
-    })
+export const Sidebar: React.FC<SidebarPropsType> = React.memo(props => {
+    const {dataForSidebar} = props
+
+    const mappedSidebarItems = dataForSidebar.map(item => <SidebarItem key={v1()}
+                                                                       name={item.name}
+                                                                       link={item.link}/>)
 
     return (
         <aside className={s.wrapper}>
@@ -22,5 +22,5 @@ export const Sidebar: React.FC<SidebarPropsType> = (props) => {
             </nav>
         </aside>
     )
-}
+})
 

@@ -18,8 +18,7 @@ type PathParamsType = {
     userId: string
 }
 
-const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
-    console.log('ProfileContainer')
+const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = React.memo(props => {
     const {match} = props
 
     const dispatch = useDispatch()
@@ -30,9 +29,9 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = (props) 
     const updateUserStatusHandler = useCallback((status: string) => dispatch(updateUserStatus(status)), [dispatch])
 
     useEffect(() => {
-        const userID = Number(match.params.userId)
-        dispatch(getUserProfile(id || userID))
-        dispatch(getUserStatus(id || userID))
+        let userID = Number(match.params.userId) || id
+        dispatch(getUserProfile(userID))
+        dispatch(getUserStatus(userID))
     }, [dispatch, match.params.userId, id])
 
     return <Profile dataForMyPosts={dataForMyPosts}
@@ -41,6 +40,6 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = (props) 
                     authID={id}
                     updateUserStatus={updateUserStatusHandler}
                     addPost={addPostHandler}/>
-}
+})
 
 export default compose<ComponentType>(withAuthRedirect, withRouter)(ProfileContainer)

@@ -8,7 +8,9 @@ type LoginFormPropsType = {
     onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: any) => void
 }
 
-export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
+export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
+    const {onSubmit} = props
+
     return (
         <Formik
             initialValues={{
@@ -29,7 +31,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
             onSubmit={async (values, {setSubmitting, resetForm, setStatus}) => {
                 await setSubmitting(true)
                 // await resetForm()
-                await props.onSubmit(values.email, values.password, values.rememberMe, setStatus)
+                await onSubmit(values.email, values.password, values.rememberMe, setStatus)
             }}>
 
             {({isSubmitting, status}) => <Form className={'formikFormContainer'}>
@@ -53,4 +55,4 @@ export const LoginForm: React.FC<LoginFormPropsType> = (props) => {
             </Form>}
         </Formik>
     )
-}
+})

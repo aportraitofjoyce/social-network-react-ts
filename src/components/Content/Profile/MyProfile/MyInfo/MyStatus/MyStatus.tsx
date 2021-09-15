@@ -5,7 +5,7 @@ type MyStatusPropsType = {
     updateUserStatus: (status: string) => void
 }
 
-export const MyStatus: React.FC<MyStatusPropsType> = React.memo((props) => {
+export const MyStatus: React.FC<MyStatusPropsType> = React.memo(props => {
     const {status, updateUserStatus} = props
 
     const [editMode, setEditMode] = useState<boolean>(false)

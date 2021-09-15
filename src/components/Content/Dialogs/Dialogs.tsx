@@ -10,7 +10,7 @@ type DialogsPropsType = {
     dataForFriends: DataForFriendsType[]
 }
 
-export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+export const Dialogs: React.FC<DialogsPropsType> = React.memo(props => {
     const {dataForMessages, dataForFriends, sendMessage} = props
 
     return (
@@ -21,4 +21,4 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 sendMessage={sendMessage}/>
         </main>
     )
-}
+})

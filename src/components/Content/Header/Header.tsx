@@ -10,7 +10,7 @@ export type HeaderPropsType = {
     logout: () => void
 }
 
-export const Header: React.FC<HeaderPropsType> = (props) => {
+export const Header: React.FC<HeaderPropsType> = React.memo((props) => {
     const {auth, logout} = props
 
     return (
@@ -24,10 +24,10 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
                 {auth.isAuth
                     ? <div>
                         <span>{auth.login}</span>
-                        <button onClick={() => logout()}>Logout</button>
+                        <button onClick={logout}>Logout</button>
                     </div>
                     : <Link to={PATH.LOGIN}>Login</Link>}
             </div>
         </div>
     )
-}
+})

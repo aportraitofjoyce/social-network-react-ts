@@ -7,7 +7,7 @@ type SingleTextareaFormPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.memo((props) => {
+export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.memo(props => {
     const {onSubmit} = props
 
     return (

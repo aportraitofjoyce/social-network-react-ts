@@ -6,10 +6,12 @@ type DialogsControlPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const DialogsForm: React.FC<DialogsControlPropsType> = ({onSubmit}) => {
+export const DialogsForm: React.FC<DialogsControlPropsType> = React.memo(props => {
+    const {onSubmit} = props
+
     return (
         <div className={s.controlContainer}>
             <SingleTextareaForm onSubmit={onSubmit}/>
         </div>
     )
-}
+})

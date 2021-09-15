@@ -24,12 +24,12 @@ export const setUserStatus = (userStatus: string) => ({
 }) as const
 
 // Thunk
-export const getUserProfile = (id: number) => async (dispatch: ThunkType) => {
+export const getUserProfile = (id: number | null) => async (dispatch: ThunkType) => {
     const response = await profileAPI.getUserProfile(id)
     dispatch(setUserProfile(response.data))
 }
 
-export const getUserStatus = (id: number) => async (dispatch: ThunkType) => {
+export const getUserStatus = (id: number | null) => async (dispatch: ThunkType) => {
     const response = await profileAPI.getUserStatus(id)
     dispatch(setUserStatus(response.data))
 }
