@@ -9,7 +9,7 @@ type FormTextareaPropsType = {
     id?: string
 }
 
-export const FormTextarea: React.FC<FormTextareaPropsType> = ({label, ...props}) => {
+export const FormTextarea: React.FC<FormTextareaPropsType> = React.memo(({label, ...props}) => {
     const [field, meta] = useField(props)
     return (
         <div className={s.formField}>
@@ -21,4 +21,4 @@ export const FormTextarea: React.FC<FormTextareaPropsType> = ({label, ...props})
             {meta.touched && meta.error && <div className={s.errorMessage}>{meta.error}</div>}
         </div>
     )
-}
+})

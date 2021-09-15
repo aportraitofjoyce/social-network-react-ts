@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post'
 import {v1} from 'uuid'
@@ -10,18 +10,19 @@ type MyPostsPropsType = {
     dataForMyPosts: dataForMyPostsType[]
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-    const mappedPosts = props.dataForMyPosts.map(item => <Post key={v1()}
-                                                               text={item.text}
-                                                               src={item.src}
-                                                               alt={item.alt}
-                                                               likes={item.likes}/>
-    )
+export const MyPosts: React.FC<MyPostsPropsType> = React.memo((props) => {
+    const {addPost, dataForMyPosts} = props
 
+    const mappedPosts = useMemo(() => dataForMyPosts.map(item => <Post key={v1()}
+                                                                       text={item.text}
+                                                                       src={item.src}
+                                                                       alt={item.alt}
+                                                                       likes={item.likes}/>), [dataForMyPosts])
     return (
         <section className={s.wrapper}>
-            <PostsForm onSubmit={props.addPost}/>
+            <PostsForm onSubmit={addPost}/>
             {mappedPosts}
+
         </section>
     )
-}
+})

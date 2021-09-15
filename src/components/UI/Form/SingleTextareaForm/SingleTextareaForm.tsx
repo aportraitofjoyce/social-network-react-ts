@@ -7,7 +7,9 @@ type SingleTextareaFormPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = ({onSubmit}) => {
+export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.memo((props) => {
+    const {onSubmit} = props
+
     return (
         <Formik
             initialValues={{textarea: ''}}
@@ -30,4 +32,4 @@ export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = ({onSub
             </Form>}
         </Formik>
     )
-}
+})

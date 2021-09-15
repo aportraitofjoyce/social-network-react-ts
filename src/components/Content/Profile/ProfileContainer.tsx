@@ -1,4 +1,4 @@
-import React, {ComponentType, useEffect} from 'react'
+import React, {ComponentType, useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Profile} from './Profile'
 import {StateType} from '../../../types/common-types'
@@ -19,17 +19,20 @@ type PathParamsType = {
 }
 
 const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = (props) => {
+    console.log('ProfileContainer')
     const {match} = props
+
     const dispatch = useDispatch()
     const {dataForMyPosts, userProfile, userStatus} = useSelector<StateType, ProfileType>(state => state.profile)
     const {id} = useSelector<StateType, AuthType>(state => state.auth)
 
-    const addPostHandler = (text: string) => dispatch(addPost(text))
-    const updateUserStatusHandler = (status: string) => dispatch(updateUserStatus(status))
+    const addPostHandler = useCallback((text: string) => dispatch(addPost(text)), [dispatch])
+    const updateUserStatusHandler = useCallback((status: string) => dispatch(updateUserStatus(status)), [dispatch])
 
     useEffect(() => {
-        dispatch(getUserProfile(match.params.userId || String(id)))
-        dispatch(getUserStatus(match.params.userId || String(id)))
+        const userID = Number(match.params.userId)
+        dispatch(getUserProfile(id || userID))
+        dispatch(getUserStatus(id || userID))
     }, [dispatch, match.params.userId, id])
 
     return <Profile dataForMyPosts={dataForMyPosts}

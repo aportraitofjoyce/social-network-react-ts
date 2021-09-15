@@ -8,12 +8,14 @@ type MyInfoPropsType = {
     updateUserStatus: (status: string) => void
 }
 
-export const MyInfo: React.FC<MyInfoPropsType> = (props) => {
+export const MyInfo: React.FC<MyInfoPropsType> = React.memo((props) => {
+    const {title, userStatus, updateUserStatus} = props
+
     return (
         <div className={s.infoWrapper}>
-            <h2 style={{marginBottom: 24}}>{props.title}</h2>
-            <MyStatus status={props.userStatus}
-                      updateUserStatus={props.updateUserStatus}/>
+            <h2 style={{marginBottom: 24}}>{title}</h2>
+            <MyStatus status={userStatus}
+                      updateUserStatus={updateUserStatus}/>
         </div>
     )
-}
+})

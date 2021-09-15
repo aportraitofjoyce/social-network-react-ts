@@ -13,18 +13,17 @@ type ProfilePropsType = {
     updateUserStatus: (status: string) => void
 }
 
-export const Profile: React.FC<ProfilePropsType> = (props) => {
+export const Profile: React.FC<ProfilePropsType> = React.memo((props) => {
+    const {dataForMyPosts, userProfile, userStatus, authID, addPost, updateUserStatus} = props
+
     return (
         <main className={s.wrapper}>
-            {props.userProfile && <MyProfile dataForProfile={props.userProfile}
-                                             userStatus={props.userStatus}
-                                             updateUserStatus={props.updateUserStatus}/>}
+            {userProfile && <MyProfile dataForProfile={userProfile}
+                                       userStatus={userStatus}
+                                       updateUserStatus={updateUserStatus}/>}
 
-            {props.userProfile && props.userProfile.userId === props.authID
-                ? <MyPosts
-                    dataForMyPosts={props.dataForMyPosts}
-                    addPost={props.addPost}/>
-                : ''}
+            {userProfile && userProfile.userId === authID ?
+                <MyPosts dataForMyPosts={dataForMyPosts} addPost={addPost}/> : ''}
         </main>
     )
-}
+})

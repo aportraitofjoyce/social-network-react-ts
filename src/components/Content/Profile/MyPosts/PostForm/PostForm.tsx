@@ -6,10 +6,12 @@ type PostControlPropsType = {
     onSubmit: (text: string) => void
 }
 
-export const PostsForm: React.FC<PostControlPropsType> = ({onSubmit}) => {
+export const PostsForm: React.FC<PostControlPropsType> = React.memo((props) => {
+    const {onSubmit} = props
+
     return (
         <div className={s.control_wrapper}>
             <SingleTextareaForm onSubmit={onSubmit}/>
         </div>
     )
-}
+})

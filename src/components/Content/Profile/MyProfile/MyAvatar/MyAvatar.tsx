@@ -6,12 +6,14 @@ type MyAvatarPropsType = {
     alt: string
 }
 
-export const MyAvatar: React.FC<MyAvatarPropsType> = (props) => {
+export const MyAvatar: React.FC<MyAvatarPropsType> = React.memo((props) => {
+    const {src, alt} = props
+
     return (
         <div className={s.avatarWrapper}>
             <img
-                src={props.src}
-                alt={props.alt}/>
+                src={src}
+                alt={alt}/>
         </div>
     )
-}
+})

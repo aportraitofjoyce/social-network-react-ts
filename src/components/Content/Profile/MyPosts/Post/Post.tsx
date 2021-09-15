@@ -8,10 +8,9 @@ type PostPropsType = {
     likes: number
 }
 
-export const Post: React.FC<PostPropsType> = (props) => {
+export const Post: React.FC<PostPropsType> = React.memo((props) => {
     return (
         <div className={s.wrapper}>
-
             <div className={s.avatar_container}>
                 <img src={props.src} alt={props.alt}/>
             </div>
@@ -23,4 +22,4 @@ export const Post: React.FC<PostPropsType> = (props) => {
 
         </div>
     )
-}
+})

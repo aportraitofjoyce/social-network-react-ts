@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
 import {Loader} from './components/UI/Loader/Loader'
 
-export const App = () => {
+export const App = React.memo(() => {
     const dispatch = useDispatch()
     const initialized = useSelector<StateType>(state => state.app.initialized)
 
@@ -58,4 +58,4 @@ export const App = () => {
             </div>
         </div>
     )
-}
+})
