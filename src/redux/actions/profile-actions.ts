@@ -1,4 +1,4 @@
-import {UserProfileType} from '../../types/profile-types'
+import {UserProfilePhotosType, UserProfileType} from '../../types/profile-types'
 import {ThunkType} from '../../types/common-types'
 import {profileAPI} from '../../api/profile-api'
 
@@ -6,6 +6,7 @@ export enum PROFILE_ACTIONS_TYPES {
     ADD_POST = 'ADD_POST',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     SET_USER_STATUS = 'SET_USER_STATUS',
+    SET_USER_AVATAR = 'SET_USER_AVATAR'
 }
 
 export const addPost = (text: string) => ({
@@ -23,6 +24,11 @@ export const setUserStatus = (userStatus: string) => ({
     payload: {userStatus}
 }) as const
 
+export const setUserAvatar = (userAvatar: UserProfilePhotosType) => ({
+    type: PROFILE_ACTIONS_TYPES.SET_USER_AVATAR,
+    payload: {userAvatar}
+}) as const
+
 // Thunk
 export const getUserProfile = (id: number | null) => async (dispatch: ThunkType) => {
     const response = await profileAPI.getUserProfile(id)
@@ -37,4 +43,11 @@ export const getUserStatus = (id: number | null) => async (dispatch: ThunkType) 
 export const updateUserStatus = (userStatus: string) => async (dispatch: ThunkType) => {
     const response = await profileAPI.updateUserStatus(userStatus)
     response.data.resultCode === 0 && dispatch(setUserStatus(userStatus))
+}
+
+export const updateUserAvatar = (avatarFile: File) => async (dispatch: ThunkType) => {
+    const response = await profileAPI.updateUserAvatar(avatarFile)
+    response.data.resultCode === 0 && dispatch(setUserAvatar(response.data.data.photos)) && alert('Успешно!')
+    response.data.resultCode !== 0 && alert(response.data.messages)
+
 }

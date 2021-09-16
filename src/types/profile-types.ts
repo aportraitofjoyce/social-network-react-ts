@@ -7,11 +7,14 @@ export type ProfileType = {
 export type UserProfileType = {
     userId: number
     fullName: string
-    photos: {
-        small: string
-        large: string
-    }
+    photos: UserProfilePhotosType
 }
+
+export type UserProfilePhotosType = {
+    large: string | null
+    small: string | null
+}
+
 export type dataForMyPostsType = {
     src: string
     alt: string

@@ -25,9 +25,7 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
                 <Link to={`${PATH.PROFILE}/${id}`}>
                     <div className={s.avatar}>
                         <img
-                            src={avatarSmall !== null
-                                ? avatarSmall
-                                : 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
+                            src={avatarSmall || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
                             alt={name}/>
                     </div>
                 </Link>
@@ -43,7 +41,7 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
             <div className={s.userInfoContainer}>
                 <div className={s.name}>{name}</div>
                 <div>{followed ? 'Вы уже дружите' : 'Ждет дружбы'}</div>
-                <div>{status !== null ? status : 'Место для вашего статуса'}</div>
+                <div>{status || 'Место для вашего статуса'}</div>
             </div>
         </div>
     )

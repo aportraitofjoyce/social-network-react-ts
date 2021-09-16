@@ -65,6 +65,15 @@ export const profileReducer = (state: ProfileType = initialState, action: Action
                 userStatus: action.payload.userStatus
             }
 
+        case PROFILE_ACTIONS_TYPES.SET_USER_AVATAR:
+            return {
+                ...state,
+                userProfile: {
+                    ...state.userProfile,
+                    photos: action.payload.userAvatar
+                }
+            } as ProfileType
+
         default:
             return state
     }

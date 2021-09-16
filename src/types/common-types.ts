@@ -1,5 +1,5 @@
 import {sendMessage} from '../redux/actions/dialogs-actions'
-import {addPost, setUserProfile, setUserStatus} from '../redux/actions/profile-actions'
+import {addPost, setUserAvatar, setUserProfile, setUserStatus} from '../redux/actions/profile-actions'
 import {
     follow,
     setCurrentPage,
@@ -41,6 +41,7 @@ export type ActionsType =
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof changeAuthWhenLogout>
     | ReturnType<typeof successInitialization>
+    | ReturnType<typeof setUserAvatar>
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>
