@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
 import {UserType} from '../../../types/users-types'
@@ -27,15 +27,6 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
         isAuth
     } = props
 
-    const paginationPages = useMemo(() => {
-        let pagesCount = Math.ceil(totalUsersCount / pageSize) / 20
-        let pagesArray: number[] = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pagesArray.push(i)
-        }
-        return pagesArray
-    }, [pageSize, totalUsersCount])
-
     const mappedUsers = usersData.map(user => <User key={user.name + user.id}
                                                     name={user.name}
                                                     avatarSmall={user.photos.small}
@@ -48,8 +39,10 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     return (
         <main className={s.wrapper}>
-            <Pagination pages={paginationPages}
+            <Pagination totalItemsCount={totalUsersCount}
+                        pageSize={pageSize}
                         currentPage={currentPage}
+                        portionSize={20}
                         onClick={changeCurrentPage}/>
             {mappedUsers}
         </main>
