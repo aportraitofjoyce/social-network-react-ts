@@ -1,16 +1,17 @@
-import React, {useEffect} from 'react'
+import React, {lazy, Suspense, useEffect} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import './index.css'
-import ProfileContainer from './components/Content/Profile/ProfileContainer'
-import {UsersContainer} from './components/Content/Users/UsersContainer'
 import {PATH, StateType} from './types/common-types'
-import DialogsContainer from './components/Content/Dialogs/DialogsContainer'
 import {LoginContainer} from './components/Content/Login/LoginContainer'
 import {HeaderContainer} from './components/Content/Header/HeaderContainer'
 import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
 import {Loader} from './components/UI/Loader/Loader'
+
+const ProfileContainer = lazy(() => import('./components/Content/Profile/ProfileContainer'))
+const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
+const UsersContainer = lazy(() => import('./components/Content/Users/UsersContainer'))
 
 export const App = React.memo(() => {
     const dispatch = useDispatch()
@@ -29,32 +30,33 @@ export const App = React.memo(() => {
             <div className={'ContentWrapper'}>
                 <SidebarContainer/>
 
-                <Switch>
-                    <Route path={PATH.ROOT} exact>
-                        <Redirect to={PATH.PROFILE}/>
-                    </Route>
+                <Suspense fallback={<Loader/>}>
+                    <Switch>
+                        <Route path={PATH.ROOT} exact>
+                            <Redirect to={PATH.PROFILE}/>
+                        </Route>
 
-                    <Route path={PATH.PROFILE_WITH_ID}>
-                        <ProfileContainer/>
-                    </Route>
+                        <Route path={PATH.PROFILE_WITH_ID}>
+                            <ProfileContainer/>
+                        </Route>
 
-                    <Route path={PATH.DIALOGS}>
-                        <DialogsContainer/>
-                    </Route>
+                        <Route path={PATH.DIALOGS}>
+                            <DialogsContainer/>
+                        </Route>
 
-                    <Route path={PATH.USERS}>
-                        <UsersContainer/>
-                    </Route>
+                        <Route path={PATH.USERS}>
+                            <UsersContainer/>
+                        </Route>
 
-                    <Route path={PATH.LOGIN}>
-                        <LoginContainer/>
-                    </Route>
+                        <Route path={PATH.LOGIN}>
+                            <LoginContainer/>
+                        </Route>
 
-                    {/*<Route>
-                        <Error404/>
-                    </Route>*/}
-
-                </Switch>
+                        {/*<Route>
+                            <Error404/>
+                        </Route>*/}
+                    </Switch>
+                </Suspense>
             </div>
         </div>
     )

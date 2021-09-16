@@ -54,10 +54,6 @@ h3 {
     font-size: 24px;
 }
 
-b {
-    color: var(--primary);
-}
-
 button {
     font-family: "Fira Sans", sans-serif;
     border-radius: 4px;
@@ -70,19 +66,19 @@ button {
     line-height: 1;
 }
 
-input, textarea {
-    font-family: "Fira Sans", sans-serif;
-    font-size: 16px;
-    color: var(--text);
-    padding: 8px;
-}
-
 button:hover {
     background: var(--primary-light);
 }
 
 button:disabled {
     opacity: 0.2;
+}
+
+input, textarea {
+    font-family: "Fira Sans", sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    padding: 8px;
 }
 
 ::-webkit-scrollbar {

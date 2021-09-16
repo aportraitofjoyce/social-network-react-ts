@@ -7,7 +7,7 @@ import {Loader} from '../../UI/Loader/Loader'
 import {UsersType} from '../../../types/users-types'
 import {AuthType} from '../../../types/auth-types'
 
-export const UsersContainer: React.FC = React.memo(() => {
+const UsersContainer: React.FC = React.memo(() => {
     const dispatch = useDispatch()
 
     const {
@@ -47,3 +47,5 @@ export const UsersContainer: React.FC = React.memo(() => {
         </>
     )
 })
+
+export default UsersContainer
