@@ -6,7 +6,8 @@ const initialState: AuthType = {
     id: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: false,
+    captchaURL: ''
 }
 
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
@@ -16,6 +17,9 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 
         case AUTH_ACTIONS_TYPE.LOGOUT:
             return {...state, isAuth: false}
+
+        case AUTH_ACTIONS_TYPE.SET_CAPTCHA:
+            return {...state, captchaURL: action.payload.captcha}
 
         default:
             return state

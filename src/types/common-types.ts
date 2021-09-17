@@ -13,7 +13,7 @@ import {
     toggleFollowLoader,
     toggleLoader
 } from '../redux/actions/users-actions'
-import {changeAuthWhenLogout, setAuthUserData} from '../redux/actions/auth-actions'
+import {changeAuthWhenLogout, setAuthUserData, setCaptcha} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
 import {ThunkDispatch} from 'redux-thunk'
 import {successInitialization} from '../redux/actions/app-actions'
@@ -47,6 +47,7 @@ export type ActionsType =
     | ReturnType<typeof changeAuthWhenLogout>
     | ReturnType<typeof successInitialization>
     | ReturnType<typeof setUserAvatar>
+    | ReturnType<typeof setCaptcha>
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>

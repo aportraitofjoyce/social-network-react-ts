@@ -34,6 +34,7 @@ export const MyDescription: React.FC<MyProfileDescriptionType> = React.memo(prop
                                                                         title={contact}
                                                                         value={userProfile.contacts[contact as keyof UserProfileContactsType]}/>)}
             </div>
+
             {isOwner && <button onClick={onEditMode}>Edit</button>}
         </div>
     )

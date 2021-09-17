@@ -5,11 +5,12 @@ import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
 
 type LoginFormPropsType = {
-    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: any) => void
+    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: any, captcha: string) => void
+    captchaURL: string
 }
 
 export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
-    const {onSubmit} = props
+    const {onSubmit, captchaURL} = props
 
     return (
         <Formik
@@ -17,6 +18,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
                 email: '',
                 password: '',
                 rememberMe: false,
+                captcha: ''
             }}
 
             validationSchema={Yup.object({
@@ -26,12 +28,14 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
                 password: Yup.string()
                     .max(20, 'Must be 20 characters or less')
                     .required('Required'),
+                /*captcha: Yup.string()
+                    .required('Required'),*/
             })}
 
             onSubmit={async (values, {setSubmitting, resetForm, setStatus}) => {
                 await setSubmitting(true)
                 // await resetForm()
-                await onSubmit(values.email, values.password, values.rememberMe, setStatus)
+                await onSubmit(values.email, values.password, values.rememberMe, setStatus, values.captcha)
             }}>
 
             {({isSubmitting, status}) => <Form className={'formikFormContainer'}>
@@ -50,6 +54,16 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
                 <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
 
                 <span style={{fontSize: 24, fontWeight: 'bold'}}>{status}</span>
+
+                {captchaURL &&
+                <div>
+                    <img src={captchaURL} alt={captchaURL}/>
+                    <FormInput
+                        label='Captcha'
+                        name='captcha'
+                        type='text'
+                        placeholder='Type symbols...'/>
+                </div>}
 
                 <button type='submit' disabled={isSubmitting}>Submit</button>
             </Form>}

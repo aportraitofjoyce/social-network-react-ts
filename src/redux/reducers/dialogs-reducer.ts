@@ -8,15 +8,13 @@ const initialState: DialogsType = {
         {id: v1(), name: 'Me'},
         {id: v1(), name: 'Maxim'},
         {id: v1(), name: 'Andrei'},
-        {id: v1(), name: 'Yura'}
     ],
 
     dataForMessages: [
         {id: v1(), from: 'Me', message: 'Привет, как дела?'},
-        {id: v1(), from: 'Andrei', message: 'Ку-ку, отлично. А у тебя?'},
-        {id: v1(), from: 'Me', message: 'Плохо, монитор из сервисного центре не отдают!'},
-        {id: v1(), from: 'Me', message: 'Пользуются им уже дольше чем я'},
-        {id: v1(), from: 'Andrei', message: 'Козлы'},
+        {id: v1(), from: 'Andrei', message: 'Ку, отлично.'},
+        {id: v1(), from: 'Me', message: 'Посмотрим вместе аниме?'},
+        {id: v1(), from: 'Andrei', message: 'С удовольствием, прямо сейчас?'},
         {id: v1(), from: 'Me', message: 'Ага!'}
     ],
     newMessage: {
