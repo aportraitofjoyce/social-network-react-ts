@@ -17,7 +17,7 @@ export const MyAvatar: React.FC<MyAvatarPropsType> = React.memo(props => {
     }
 
     return (
-        <div className={s.avatarWrapper}>
+        <div className={s.avatarContainer}>
             <img src={src} alt={alt}/>
             {isOwner && <input type='file' onChange={changeAvatarHandler}/>}
         </div>

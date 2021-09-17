@@ -7,15 +7,28 @@
     background: white;
 }
 
-.avatarWrapper {
+.avatarContainer {
     max-width: 240px;
 }
 
-.avatarWrapper img {
+.avatarContainer img {
     max-width: inherit;
     border-radius: 4px;
 }
 
-.infoWrapper {
-    flex: 1;
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.descriptionItem {
+    display: flex;
+    flex-direction: column;
 }

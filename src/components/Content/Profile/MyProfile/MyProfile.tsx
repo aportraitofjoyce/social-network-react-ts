@@ -5,30 +5,32 @@ import {MyInfo} from './MyInfo/MyInfo'
 import {UserProfileType} from '../../../../types/profile-types'
 
 type MyProfilePropsType = {
-    dataForProfile: UserProfileType
+    userProfile: UserProfileType
     userStatus: string
     updateUserStatus: (status: string) => void
     isOwner: boolean
     updateUserAvatar: (avatarFile: File) => void
+    updateUserDescription: (userDescription: UserProfileType) => void
 }
 
 export const MyProfile: React.FC<MyProfilePropsType> = React.memo(props => {
-    const {dataForProfile, userStatus, updateUserStatus, isOwner, updateUserAvatar} = props
+    const {userProfile, userStatus, updateUserStatus, isOwner, updateUserAvatar, updateUserDescription} = props
 
-    const avatarSRC = dataForProfile.photos.large || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'
+    const avatarSRC = userProfile.photos.large || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'
 
     return (
         <section className={s.wrapper}>
             <MyAvatar
                 src={avatarSRC}
-                alt={dataForProfile.fullName}
+                alt={userProfile.fullName}
                 isOwner={isOwner}
                 updateUserAvatar={updateUserAvatar}/>
 
-            <MyInfo title={dataForProfile.fullName}
+            <MyInfo userProfile={userProfile}
                     userStatus={userStatus}
                     updateUserStatus={updateUserStatus}
-                    isOwner={isOwner}/>
+                    isOwner={isOwner}
+                    updateUserDescription={updateUserDescription}/>
         </section>
     )
 })

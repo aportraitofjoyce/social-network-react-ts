@@ -1,5 +1,10 @@
 import {sendMessage} from '../redux/actions/dialogs-actions'
-import {addPost, setUserAvatar, setUserProfile, setUserStatus} from '../redux/actions/profile-actions'
+import {
+    addPost,
+    setUserAvatar,
+    setUserProfile,
+    setUserStatus
+} from '../redux/actions/profile-actions'
 import {
     follow,
     setCurrentPage,
@@ -45,3 +50,4 @@ export type ActionsType =
 
 // Thunk
 export type ThunkType = ThunkDispatch<StateType, null, ActionsType>
+export type ThunkGetStateType = () => StateType

@@ -1,12 +1,12 @@
 import {UserProfilePhotosType, UserProfileType} from '../../types/profile-types'
-import {ThunkType} from '../../types/common-types'
+import {ThunkGetStateType, ThunkType} from '../../types/common-types'
 import {profileAPI} from '../../api/profile-api'
 
 export enum PROFILE_ACTIONS_TYPES {
     ADD_POST = 'ADD_POST',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     SET_USER_STATUS = 'SET_USER_STATUS',
-    SET_USER_AVATAR = 'SET_USER_AVATAR'
+    SET_USER_AVATAR = 'SET_USER_AVATAR',
 }
 
 export const addPost = (text: string) => ({
@@ -49,5 +49,12 @@ export const updateUserAvatar = (avatarFile: File) => async (dispatch: ThunkType
     const response = await profileAPI.updateUserAvatar(avatarFile)
     response.data.resultCode === 0 && dispatch(setUserAvatar(response.data.data.photos)) && alert('Успешно!')
     response.data.resultCode !== 0 && alert(response.data.messages)
+}
 
+export const updateUserDescription = (userDescription: UserProfileType) => async (dispatch: ThunkType, getState: ThunkGetStateType) => {
+    const response = await profileAPI.updateUserDescription(userDescription)
+    if (response.data.resultCode === 0) {
+        const id = getState().auth.id
+        await dispatch(getUserProfile(id))
+    }
 }

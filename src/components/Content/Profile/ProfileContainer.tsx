@@ -5,11 +5,11 @@ import {StateType} from '../../../types/common-types'
 import {
     addPost,
     getUserProfile,
-    getUserStatus, updateUserAvatar,
+    getUserStatus, updateUserAvatar, updateUserDescription,
     updateUserStatus
 } from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {ProfileType} from '../../../types/profile-types'
+import {ProfileType, UserProfileType} from '../../../types/profile-types'
 import {compose} from 'redux'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {AuthType} from '../../../types/auth-types'
@@ -28,6 +28,7 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = React.me
     const addPostHandler = useCallback((text: string) => dispatch(addPost(text)), [dispatch])
     const updateUserStatusHandler = useCallback((status: string) => dispatch(updateUserStatus(status)), [dispatch])
     const updateUserAvatarHandler = useCallback((avatarFile: File) => dispatch(updateUserAvatar(avatarFile)), [dispatch])
+    const updateUserDescriptionHandler = useCallback((userDescription: UserProfileType) => dispatch(updateUserDescription(userDescription)), [dispatch])
 
     useEffect(() => {
         let userID = Number(match.params.userId) || id
@@ -40,11 +41,11 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = React.me
     return <Profile dataForMyPosts={dataForMyPosts}
                     userProfile={userProfile}
                     userStatus={userStatus}
-                    authID={id}
                     updateUserStatus={updateUserStatusHandler}
                     addPost={addPostHandler}
                     isOwner={isOwner}
-                    updateUserAvatar={updateUserAvatarHandler}/>
+                    updateUserAvatar={updateUserAvatarHandler}
+                    updateUserDescription={updateUserDescriptionHandler}/>
 })
 
 export default compose<ComponentType>(withAuthRedirect, withRouter)(ProfileContainer)

@@ -1,4 +1,5 @@
 import {axiosInstance} from './axios-instance'
+import {UserProfileType} from '../types/profile-types'
 
 export const profileAPI = {
     getUserProfile: (id: number | null) => axiosInstance.get(`profile/${id}`),
@@ -8,5 +9,6 @@ export const profileAPI = {
         const formData = new FormData()
         formData.append('image', avatarFile)
         return axiosInstance.put(`profile/photo`, formData)
-    }
+    },
+    updateUserDescription: (description: UserProfileType) => axiosInstance.put(`profile`, description)
 }
