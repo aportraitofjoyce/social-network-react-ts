@@ -8,6 +8,7 @@ import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
 import {Loader} from './components/UI/Loader/Loader'
+import {Error404} from './components/Content/ErrorPage/Error404'
 
 const ProfileContainer = lazy(() => import('./components/Content/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
@@ -52,9 +53,9 @@ export const App = React.memo(() => {
                             <LoginContainer/>
                         </Route>
 
-                        {/*<Route>
+                        <Route path={PATH.ERROR}>
                             <Error404/>
-                        </Route>*/}
+                        </Route>
                     </Switch>
                 </Suspense>
             </div>

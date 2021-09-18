@@ -25,7 +25,8 @@ export enum PATH {
     PROFILE_WITH_ID = '/profile/:userId?',
     DIALOGS = '/dialogs',
     USERS = '/users',
-    LOGIN = '/login'
+    LOGIN = '/login',
+    ERROR = '*'
 }
 
 // State
