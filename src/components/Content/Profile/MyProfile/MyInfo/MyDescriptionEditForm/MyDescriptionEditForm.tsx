@@ -14,16 +14,13 @@ type MyDescriptionEditFormType = {
 export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.memo(props => {
     const {onSubmit, userProfile} = props
 
-    Object
-        .keys(userProfile.contacts)
-        .map(contact => <FormInput key={contact}
-                                   label={`${contact}`}
-                                   name={`contacts.${contact}`}
-                                   type='text'
-                                   placeholder={`${contact}`}/>)
+    const URLValidation = Yup.string()
+        .matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+            'Enter correct url!')
 
-    const URLValidation = Yup.string().matches(/((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Enter correct url!')
+    const contactsValidation = Object
+        .keys(userProfile.contacts)
+        .reduce((acc: any, value) => (acc[value] = URLValidation, acc), {})
 
     return <Formik
         initialValues={{
@@ -41,16 +38,7 @@ export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.
                 .max(300, 'Must be 300 characters or less'),
             lookingForAJobDescription: Yup.string()
                 .max(300, 'Must be 300 characters or less'),
-            contacts: Yup.object({
-                github: URLValidation,
-                vk: URLValidation,
-                facebook: URLValidation,
-                instagram: URLValidation,
-                twitter: URLValidation,
-                website: URLValidation,
-                youtube: URLValidation,
-                mainLink: URLValidation
-            })
+            contacts: Yup.object(contactsValidation)
         })}
 
         onSubmit={async (values, {setSubmitting}) => {
