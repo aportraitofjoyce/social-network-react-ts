@@ -15,7 +15,7 @@ import {
 } from '../redux/actions/users-actions'
 import {changeAuthWhenLogout, setAuthUserData, setCaptcha} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
-import {ThunkDispatch} from 'redux-thunk'
+import {ThunkAction} from 'redux-thunk'
 import {successInitialization} from '../redux/actions/app-actions'
 
 // Routes
@@ -51,5 +51,4 @@ export type ActionsType =
     | ReturnType<typeof setCaptcha>
 
 // Thunk
-export type ThunkType = ThunkDispatch<StateType, null, ActionsType>
-export type ThunkGetStateType = () => StateType
+export type ThunkType<ReturnType = void> = ThunkAction<ReturnType, StateType, unknown, ActionsType>

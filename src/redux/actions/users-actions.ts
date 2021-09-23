@@ -1,7 +1,9 @@
 import {UserType} from '../../types/users-types'
 import {usersAPI} from '../../api/users-api'
-import {ThunkType} from '../../types/common-types'
+import {ActionsType, ThunkType} from '../../types/common-types'
 import {followAPI} from '../../api/follow-api'
+import {Dispatch} from 'redux'
+import {APP_ACTIONS_TYPE} from './app-actions'
 
 export enum USERS_ACTIONS_TYPES {
     FOLLOW = 'FOLLOW',
@@ -44,7 +46,7 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
 
 
 // Thunk
-export const requestUsers = (page: number, pageSize: number) => async (dispatch: ThunkType) => {
+export const requestUsers = (page: number, pageSize: number): ThunkType => async dispatch => {
     try {
         dispatch(toggleLoader(true))
         const response = await usersAPI.requestUsers(page, pageSize)
@@ -56,7 +58,7 @@ export const requestUsers = (page: number, pageSize: number) => async (dispatch:
     }
 }
 
-export const changeCurrentPage = (page: number, pageSize: number) => async (dispatch: ThunkType) => {
+export const changeCurrentPage = (page: number, pageSize: number): ThunkType => async dispatch => {
     dispatch(setCurrentPage(page))
     dispatch(toggleLoader(true))
 
@@ -65,7 +67,7 @@ export const changeCurrentPage = (page: number, pageSize: number) => async (disp
     dispatch(setUsers(response.items))
 }
 
-export const followUser = (id: string, followed: boolean) => async (dispatch: ThunkType) => {
+export const followUser = (id: string, followed: boolean): ThunkType => async dispatch => {
     dispatch(toggleFollowLoader(true, id))
 
     if (!followed) {

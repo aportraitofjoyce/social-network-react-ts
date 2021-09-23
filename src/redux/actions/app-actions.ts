@@ -9,7 +9,7 @@ export const successInitialization = (status: boolean) => ({
     type: APP_ACTIONS_TYPE.SUCCESS_INITIALIZATION, payload: {status}
 }) as const
 
-export const initialization = () => async (dispatch: ThunkType) => {
+export const initialization = (): ThunkType => async dispatch => {
     dispatch(successInitialization(false))
     await dispatch(checkAuth())
     dispatch(successInitialization(true))
