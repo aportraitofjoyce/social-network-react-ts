@@ -9,6 +9,12 @@ export enum PROFILE_ACTIONS_TYPES {
     SET_USER_AVATAR = 'SET_USER_AVATAR',
 }
 
+export type ProfileActionsType =
+    | ReturnType<typeof addPost>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatus>
+    | ReturnType<typeof setUserAvatar>
+
 export const addPost = (text: string) => ({
     type: PROFILE_ACTIONS_TYPES.ADD_POST,
     payload: {text}

@@ -1,9 +1,7 @@
 import {UserType} from '../../types/users-types'
 import {usersAPI} from '../../api/users-api'
-import {ActionsType, ThunkType} from '../../types/common-types'
+import {ThunkType} from '../../types/common-types'
 import {followAPI} from '../../api/follow-api'
-import {Dispatch} from 'redux'
-import {APP_ACTIONS_TYPE} from './app-actions'
 
 export enum USERS_ACTIONS_TYPES {
     FOLLOW = 'FOLLOW',
@@ -13,6 +11,14 @@ export enum USERS_ACTIONS_TYPES {
     TOGGLE_LOADER = 'TOGGLE_LOADER',
     TOGGLE_FOLLOW_LOADER = 'TOGGLE_FOLLOW_LOADER'
 }
+
+export type UsersActionsType =
+    | ReturnType<typeof follow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleLoader>
+    | ReturnType<typeof toggleFollowLoader>
 
 export const follow = (id: string) => ({
     type: USERS_ACTIONS_TYPES.FOLLOW,

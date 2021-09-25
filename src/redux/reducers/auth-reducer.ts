@@ -1,6 +1,5 @@
-import {ActionsType} from '../../types/common-types'
 import {AuthType} from '../../types/auth-types'
-import {AUTH_ACTIONS_TYPE} from '../actions/auth-actions'
+import {AUTH_ACTIONS_TYPE, AuthActionsType} from '../actions/auth-actions'
 
 const initialState: AuthType = {
     id: null,
@@ -10,7 +9,7 @@ const initialState: AuthType = {
     captchaURL: ''
 }
 
-export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
+export const authReducer = (state: AuthType = initialState, action: AuthActionsType): AuthType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPE.SET_USER_DATA:
             return {...state, ...action.payload, isAuth: true}

@@ -1,6 +1,5 @@
-import {ActionsType} from '../../types/common-types'
 import {ProfileType} from '../../types/profile-types'
-import {PROFILE_ACTIONS_TYPES} from '../actions/profile-actions'
+import {PROFILE_ACTIONS_TYPES, ProfileActionsType} from '../actions/profile-actions'
 
 const initialState: ProfileType = {
     userProfile: null,
@@ -41,7 +40,7 @@ const initialState: ProfileType = {
     }
 }
 
-export const profileReducer = (state: ProfileType = initialState, action: ActionsType): ProfileType => {
+export const profileReducer = (state: ProfileType = initialState, action: ProfileActionsType): ProfileType => {
     switch (action.type) {
         case PROFILE_ACTIONS_TYPES.ADD_POST:
             return {

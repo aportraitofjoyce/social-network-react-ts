@@ -8,6 +8,11 @@ export enum AUTH_ACTIONS_TYPE {
     SET_CAPTCHA = 'SET_CAPTCHA'
 }
 
+export type AuthActionsType =
+    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof changeAuthWhenLogout>
+    | ReturnType<typeof setCaptcha>
+
 export const setAuthUserData = (id: number, login: string, email: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_USER_DATA,
     payload: {id, login, email}

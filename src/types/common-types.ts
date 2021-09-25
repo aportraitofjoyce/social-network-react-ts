@@ -1,22 +1,10 @@
-import {sendMessage} from '../redux/actions/dialogs-actions'
-import {
-    addPost,
-    setUserAvatar,
-    setUserProfile,
-    setUserStatus
-} from '../redux/actions/profile-actions'
-import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleFollowLoader,
-    toggleLoader
-} from '../redux/actions/users-actions'
-import {changeAuthWhenLogout, setAuthUserData, setCaptcha} from '../redux/actions/auth-actions'
+import {DialogsActionsType} from '../redux/actions/dialogs-actions'
+import {ProfileActionsType} from '../redux/actions/profile-actions'
+import {UsersActionsType} from '../redux/actions/users-actions'
+import {AuthActionsType} from '../redux/actions/auth-actions'
 import {rootReducer} from '../redux/reducers/root-reducer'
 import {ThunkAction} from 'redux-thunk'
-import {successInitialization} from '../redux/actions/app-actions'
+import {AppActionsType} from '../redux/actions/app-actions'
 
 // Routes
 export enum PATH {
@@ -34,21 +22,11 @@ export type StateType = ReturnType<typeof rootReducer>
 
 // Actions
 export type ActionsType =
-    ReturnType<typeof addPost>
-    | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof sendMessage>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleLoader>
-    | ReturnType<typeof setAuthUserData>
-    | ReturnType<typeof toggleFollowLoader>
-    | ReturnType<typeof setUserStatus>
-    | ReturnType<typeof changeAuthWhenLogout>
-    | ReturnType<typeof successInitialization>
-    | ReturnType<typeof setUserAvatar>
-    | ReturnType<typeof setCaptcha>
+    | UsersActionsType
+    | ProfileActionsType
+    | DialogsActionsType
+    | AuthActionsType
+    | AppActionsType
 
 // Thunk
 export type ThunkType<ReturnType = void> = ThunkAction<ReturnType, StateType, unknown, ActionsType>

@@ -1,6 +1,5 @@
-import {ActionsType} from '../../types/common-types'
 import {UsersType} from '../../types/users-types'
-import {USERS_ACTIONS_TYPES} from '../actions/users-actions'
+import {USERS_ACTIONS_TYPES, UsersActionsType} from '../actions/users-actions'
 
 const initialState: UsersType = {
     usersData: [],
@@ -11,7 +10,7 @@ const initialState: UsersType = {
     followLoader: []
 }
 
-export const usersReducer = (state: UsersType = initialState, action: ActionsType) => {
+export const usersReducer = (state: UsersType = initialState, action: UsersActionsType) => {
     switch (action.type) {
         case USERS_ACTIONS_TYPES.FOLLOW:
             return {
