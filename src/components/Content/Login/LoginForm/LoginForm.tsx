@@ -5,7 +5,7 @@ import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
 
 type LoginFormPropsType = {
-    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: any, captcha: string) => void
+    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: Function, captcha: string) => void
     captchaURL: string
 }
 

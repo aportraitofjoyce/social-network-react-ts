@@ -1,4 +1,5 @@
 import React from 'react'
+import s from '../../../MyProfile.module.css'
 
 type MyInfoContactsPropsType = {
     title: string
@@ -8,9 +9,11 @@ export const MyContacts: React.FC<MyInfoContactsPropsType> = React.memo(props =>
     const {title, value} = props
 
     return (
-        <div>
+        <div className={s.contactItem}>
             <span>{title}</span>
-            <span>{value}</span>
+            <span>
+                <a href={`${value}`} target='_blank' rel='noreferrer'>{value}</a>
+            </span>
         </div>
     )
 })
