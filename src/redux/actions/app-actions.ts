@@ -8,9 +8,10 @@ export enum APP_ACTIONS_TYPE {
 export type AppActionsType =
     | ReturnType<typeof successInitialization>
 
+// Actions
 export const successInitialization = (status: boolean) => ({
     type: APP_ACTIONS_TYPE.SUCCESS_INITIALIZATION, payload: {status}
-}) as const
+} as const)
 
 // Thunk
 export const initialization = (): ThunkType => async dispatch => {

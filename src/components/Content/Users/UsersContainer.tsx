@@ -31,7 +31,7 @@ const UsersContainer: React.FC = React.memo(() => {
 
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize))
-    }, [dispatch, currentPage, pageSize])
+    }, [dispatch])
 
     return (
         <>

@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './Sidebar.module.css'
-import {SidebarItem} from './SidebarItem/SidebarItem'
 import {v1} from 'uuid'
 import {dataForSidebarType} from '../../../types/sidebar-types'
+import {NavLink} from 'react-router-dom'
 
 type SidebarPropsType = {
     dataForSidebar: dataForSidebarType[]
@@ -11,9 +11,15 @@ type SidebarPropsType = {
 export const Sidebar: React.FC<SidebarPropsType> = React.memo(props => {
     const {dataForSidebar} = props
 
-    const mappedSidebarItems = dataForSidebar.map(item => <SidebarItem key={v1()}
-                                                                       name={item.name}
-                                                                       link={item.link}/>)
+    const mappedSidebarItems = dataForSidebar.map(item => {
+        return (
+            <NavLink key={v1()}
+                     to={item.link}
+                     activeClassName={s.active}>
+                <span>{item.name}</span>
+            </NavLink>
+        )
+    })
 
     return (
         <aside className={s.wrapper}>

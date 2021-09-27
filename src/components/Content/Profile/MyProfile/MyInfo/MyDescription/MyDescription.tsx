@@ -11,6 +11,12 @@ type MyProfileDescriptionType = {
 
 export const MyDescription: React.FC<MyProfileDescriptionType> = React.memo(props => {
     const {userProfile, isOwner, onEditMode} = props
+
+    const mappedContacts = Object.keys(userProfile.contacts)
+        .map(contact => <MyContacts key={contact}
+                                    title={contact}
+                                    value={userProfile.contacts[contact as keyof UserProfileContactsType]}/>)
+
     return (
         <div className={s.descriptionContainer}>
             <div className={s.descriptionItem}>
@@ -30,9 +36,7 @@ export const MyDescription: React.FC<MyProfileDescriptionType> = React.memo(prop
 
             <div className={s.descriptionItem}>
                 <strong>Contacts</strong>
-                {Object.keys(userProfile.contacts).map(contact => <MyContacts key={contact}
-                                                                        title={contact}
-                                                                        value={userProfile.contacts[contact as keyof UserProfileContactsType]}/>)}
+                {mappedContacts}
             </div>
 
             {isOwner && <button onClick={onEditMode}>Edit</button>}

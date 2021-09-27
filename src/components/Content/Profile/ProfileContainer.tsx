@@ -33,7 +33,8 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = React.me
     const updateUserDescriptionHandler = useCallback((userDescription: UserProfileType) => dispatch(updateUserDescription(userDescription)), [dispatch])
 
     useEffect(() => {
-        let userID = Number(match.params.userId) || id
+        const userID: number | null = Number(match.params.userId) || id
+
         dispatch(getUserProfile(userID))
         dispatch(getUserStatus(userID))
     }, [dispatch, match.params.userId, id])

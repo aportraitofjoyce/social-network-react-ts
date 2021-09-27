@@ -20,37 +20,40 @@ export type UsersActionsType =
     | ReturnType<typeof toggleLoader>
     | ReturnType<typeof toggleFollowLoader>
 
+
+// Actions
 export const follow = (id: string) => ({
     type: USERS_ACTIONS_TYPES.FOLLOW,
     payload: {id}
-}) as const
+} as const)
 
 export const setUsers = (users: UserType[]) => ({
     type: USERS_ACTIONS_TYPES.SET_USERS,
     payload: {users}
-}) as const
+} as const)
 
 export const setCurrentPage = (page: number) => ({
     type: USERS_ACTIONS_TYPES.SET_CURRENT_PAGE,
     payload: {page}
-}) as const
+} as const)
 
 export const setTotalUsersCount = (total: number) => ({
     type: USERS_ACTIONS_TYPES.SET_TOTAL_USERS_COUNT,
     payload: {total}
-}) as const
+} as const)
 
 export const toggleLoader = (status: boolean) => ({
     type: USERS_ACTIONS_TYPES.TOGGLE_LOADER,
     payload: {status}
-}) as const
+} as const)
 
 export const toggleFollowLoader = (status: boolean, id: string) => ({
     type: USERS_ACTIONS_TYPES.TOGGLE_FOLLOW_LOADER,
     payload: {status, id}
-}) as const
+} as const)
 
-// Thunk
+
+// Thunks
 export const requestUsers = (page: number, pageSize: number): ThunkType => async dispatch => {
     try {
         dispatch(toggleLoader(true))
@@ -63,7 +66,6 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => async
     }
 }
 
-// TODO: Double get request when clicking pagination
 export const changeCurrentPage = (page: number, pageSize: number): ThunkType => async dispatch => {
     dispatch(setCurrentPage(page))
     dispatch(requestUsers(page, pageSize))

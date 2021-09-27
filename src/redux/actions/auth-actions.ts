@@ -1,7 +1,7 @@
 import {authAPI} from '../../api/auth-api'
 import {ThunkType} from '../../types/common-types'
 import {securityAPI} from '../../api/security-api'
-import {ResultCodeTypes} from '../../types/api-types'
+import {ResultCodeForCaptchaType, ResultCodesTypes} from '../../types/api-types'
 
 export enum AUTH_ACTIONS_TYPE {
     SET_USER_DATA = 'SET_USER_DATA',
@@ -14,32 +14,34 @@ export type AuthActionsType =
     | ReturnType<typeof changeAuthWhenLogout>
     | ReturnType<typeof setCaptcha>
 
+// Actions
 export const setAuthUserData = (id: number, login: string, email: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_USER_DATA,
     payload: {id, login, email}
-}) as const
+} as const)
 
 export const changeAuthWhenLogout = () => ({
     type: AUTH_ACTIONS_TYPE.LOGOUT
-}) as const
+} as const)
 
 export const setCaptcha = (captcha: string) => ({
     type: AUTH_ACTIONS_TYPE.SET_CAPTCHA,
     payload: {captcha}
-}) as const
+} as const)
 
-// Thunk
+// Thunks
 export const checkAuth = (): ThunkType => async dispatch => {
     const response = await authAPI.checkAuth()
     const {id, login, email} = response.data
-    response.resultCode === ResultCodeTypes.Success && dispatch(setAuthUserData(id, login, email))
+    response.resultCode === ResultCodesTypes.Success && dispatch(setAuthUserData(id, login, email))
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, setStatus: Function, captcha: string): ThunkType => async dispatch => {
+export const login = (email: string, password: string, rememberMe: boolean,
+                      setStatus: (status: string[]) => void, captcha: string): ThunkType => async dispatch => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.resultCode === ResultCodeTypes.Success) {
+    if (response.resultCode === ResultCodesTypes.Success) {
         await dispatch(checkAuth())
-    } else if (response.resultCode === ResultCodeTypes.Captcha) {
+    } else if (response.resultCode === ResultCodeForCaptchaType.Captcha) {
         setStatus(response.messages)
         await dispatch(getCaptchaURL())
     } else {

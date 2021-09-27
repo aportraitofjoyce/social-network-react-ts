@@ -14,7 +14,7 @@ export enum PATH {
     DIALOGS = '/dialogs',
     USERS = '/users',
     LOGIN = '/login',
-    ERROR = '*'
+    ERROR = ''
 }
 
 // State

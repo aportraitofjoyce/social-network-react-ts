@@ -29,7 +29,7 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     const mappedUsers = usersData.map(user => <User key={user.name + user.id}
                                                     name={user.name}
-                                                    avatarSmall={user.photos.small}
+                                                    avatar={user.photos.large}
                                                     id={user.id}
                                                     followed={user.followed}
                                                     status={user.status}

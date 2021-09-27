@@ -3,17 +3,16 @@ import {Redirect} from 'react-router-dom'
 import {PATH, StateType} from '../types/common-types'
 import {useSelector} from 'react-redux'
 
-type AuthRedirectPropsType = {
+type WithAuthRedirectPropsType = {
     isAuth: boolean
 }
 
-export const withAuthRedirect = <T extends AuthRedirectPropsType>(Component: ComponentType<T>) => {
+export const withAuthRedirect = <ComponentProps extends WithAuthRedirectPropsType>(Component: ComponentType<ComponentProps>) => {
 
-    const AuthRedirect: React.FC<AuthRedirectPropsType & T> = props => {
-
+    const AuthRedirect: React.FC<WithAuthRedirectPropsType & ComponentProps> = props => {
         const isAuth = useSelector<StateType>(state => state.auth.isAuth)
-        if (!isAuth) return <Redirect to={PATH.LOGIN}/>
 
+        if (!isAuth) return <Redirect to={PATH.LOGIN}/>
         return <Component {...props}/>
     }
 

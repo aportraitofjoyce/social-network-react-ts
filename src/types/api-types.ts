@@ -1,11 +1,14 @@
-export type ResponseType<T = {}> = {
-    resultCode: ResultCodeTypes
+export type ResponseType<Data = {}, RC = ResultCodesTypes> = {
+    resultCode: RC
     messages: string[]
-    data: T
+    data: Data
 }
 
-export enum ResultCodeTypes {
+export enum ResultCodesTypes {
     Success = 0,
     Error = 1,
+}
+
+export enum ResultCodeForCaptchaType {
     Captcha = 10
 }

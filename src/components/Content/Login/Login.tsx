@@ -3,7 +3,8 @@ import s from './Login.module.css'
 import {LoginForm} from './LoginForm/LoginForm'
 
 type LoginPropsType = {
-    login: (email: string, password: string, rememberMe: boolean, setStatus: Function, captcha: string) => void
+    login: (email: string, password: string, rememberMe: boolean,
+            setStatus: (status: string[]) => void, captcha: string) => void
     logout: () => void
     captchaURL: string
 }

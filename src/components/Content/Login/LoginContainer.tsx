@@ -10,7 +10,8 @@ export const LoginContainer: React.FC = React.memo(() => {
     const dispatch = useDispatch()
     const {isAuth, captchaURL} = useSelector<StateType, AuthType>(state => state.auth)
 
-    const loginOnSite = useCallback((email: string, password: string, rememberMe: boolean, setStatus: Function, captcha: string) => {
+    const loginOnSite = useCallback((email: string, password: string, rememberMe: boolean,
+                                     setStatus: (status: string[]) => void, captcha: string) => {
         dispatch(login(email, password, rememberMe, setStatus, captcha))
     }, [dispatch])
 

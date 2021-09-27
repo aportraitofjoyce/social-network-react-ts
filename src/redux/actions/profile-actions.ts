@@ -1,7 +1,7 @@
 import {UserProfilePhotosType, UserProfileType} from '../../types/profile-types'
 import {ThunkType} from '../../types/common-types'
 import {profileAPI} from '../../api/profile-api'
-import {ResultCodeTypes} from '../../types/api-types'
+import {ResultCodesTypes} from '../../types/api-types'
 
 export enum PROFILE_ACTIONS_TYPES {
     ADD_POST = 'ADD_POST',
@@ -16,27 +16,30 @@ export type ProfileActionsType =
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof setUserAvatar>
 
+
+// Actions
 export const addPost = (text: string) => ({
     type: PROFILE_ACTIONS_TYPES.ADD_POST,
     payload: {text}
-}) as const
+} as const)
 
 export const setUserProfile = (userProfile: UserProfileType) => ({
     type: PROFILE_ACTIONS_TYPES.SET_USER_PROFILE,
     payload: {userProfile}
-}) as const
+} as const)
 
 export const setUserStatus = (userStatus: string) => ({
     type: PROFILE_ACTIONS_TYPES.SET_USER_STATUS,
     payload: {userStatus}
-}) as const
+} as const)
 
 export const setUserAvatar = (userAvatar: UserProfilePhotosType) => ({
     type: PROFILE_ACTIONS_TYPES.SET_USER_AVATAR,
     payload: {userAvatar}
-}) as const
+} as const)
 
-// Thunk
+
+// Thunks
 export const getUserProfile = (id: number | null): ThunkType => async dispatch => {
     const response = await profileAPI.getUserProfile(id)
     dispatch(setUserProfile(response))
@@ -49,19 +52,19 @@ export const getUserStatus = (id: number | null): ThunkType => async dispatch =>
 
 export const updateUserStatus = (userStatus: string): ThunkType => async dispatch => {
     const response = await profileAPI.updateUserStatus(userStatus)
-    response.resultCode === ResultCodeTypes.Success && dispatch(setUserStatus(userStatus))
+    response.resultCode === ResultCodesTypes.Success && dispatch(setUserStatus(userStatus))
 }
 
 export const updateUserAvatar = (avatarFile: File): ThunkType => async dispatch => {
     const response = await profileAPI.updateUserAvatar(avatarFile)
-    response.resultCode === ResultCodeTypes.Success && dispatch(setUserAvatar(response.data.photos)) && alert('Успешно!')
-    response.resultCode !== ResultCodeTypes.Success && alert(response.messages)
+    response.resultCode === ResultCodesTypes.Success && dispatch(setUserAvatar(response.data.photos)) && alert('Успешно!')
+    response.resultCode !== ResultCodesTypes.Success && alert(response.messages)
 }
 
 export const updateUserDescription = (userDescription: UserProfileType): ThunkType =>
     async (dispatch, getState) => {
         const response = await profileAPI.updateUserDescription(userDescription)
-        if (response.resultCode === ResultCodeTypes.Success) {
+        if (response.resultCode === ResultCodesTypes.Success) {
             const id = getState().auth.id
             await dispatch(getUserProfile(id))
         }

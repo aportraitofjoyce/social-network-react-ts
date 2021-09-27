@@ -5,7 +5,7 @@ import {PATH} from '../../../../types/common-types'
 
 type UserPropsType = {
     name: string
-    avatarSmall: string
+    avatar: string
     id: string
     followed: boolean
     status: string
@@ -15,7 +15,7 @@ type UserPropsType = {
 }
 
 export const User: React.FC<UserPropsType> = React.memo(props => {
-    const {name, avatarSmall, id, followed, status, followLoader, followUser, isAuth} = props
+    const {name, avatar, id, followed, status, followLoader, followUser, isAuth} = props
 
     const onFollowButtonClickHandler = useCallback(() => followUser(id, followed), [followUser, id, followed])
 
@@ -25,7 +25,7 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
                 <Link to={`${PATH.PROFILE}/${id}`}>
                     <div className={s.avatar}>
                         <img
-                            src={avatarSmall || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
+                            src={avatar || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
                             alt={name}/>
                     </div>
                 </Link>

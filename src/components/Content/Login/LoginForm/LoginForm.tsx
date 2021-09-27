@@ -5,7 +5,8 @@ import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
 
 type LoginFormPropsType = {
-    onSubmit: (email: string, password: string, rememberMe: boolean, setStatus: Function, captcha: string) => void
+    onSubmit: (email: string, password: string, rememberMe: boolean,
+               setStatus: (status: string[]) => void, captcha: string) => void
     captchaURL: string
 }
 
@@ -56,14 +57,14 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
                 <span style={{fontSize: 24, fontWeight: 'bold'}}>{status}</span>
 
                 {captchaURL &&
-                <div>
-                    <img src={captchaURL} alt={captchaURL}/>
-                    <FormInput
-                        label='Captcha'
-                        name='captcha'
-                        type='text'
-                        placeholder='Type symbols...'/>
-                </div>}
+				<div>
+					<img src={captchaURL} alt={captchaURL}/>
+					<FormInput
+						label='Captcha'
+						name='captcha'
+						type='text'
+						placeholder='Type symbols...'/>
+				</div>}
 
                 <button type='submit' disabled={isSubmitting}>Submit</button>
             </Form>}
