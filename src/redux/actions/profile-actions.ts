@@ -1,6 +1,7 @@
 import {UserProfilePhotosType, UserProfileType} from '../../types/profile-types'
 import {ThunkType} from '../../types/common-types'
 import {profileAPI} from '../../api/profile-api'
+import {ResultCodeTypes} from '../../types/api-types'
 
 export enum PROFILE_ACTIONS_TYPES {
     ADD_POST = 'ADD_POST',
@@ -38,29 +39,29 @@ export const setUserAvatar = (userAvatar: UserProfilePhotosType) => ({
 // Thunk
 export const getUserProfile = (id: number | null): ThunkType => async dispatch => {
     const response = await profileAPI.getUserProfile(id)
-    dispatch(setUserProfile(response.data))
+    dispatch(setUserProfile(response))
 }
 
 export const getUserStatus = (id: number | null): ThunkType => async dispatch => {
     const response = await profileAPI.getUserStatus(id)
-    dispatch(setUserStatus(response.data))
+    dispatch(setUserStatus(response))
 }
 
 export const updateUserStatus = (userStatus: string): ThunkType => async dispatch => {
     const response = await profileAPI.updateUserStatus(userStatus)
-    response.data.resultCode === 0 && dispatch(setUserStatus(userStatus))
+    response.resultCode === ResultCodeTypes.Success && dispatch(setUserStatus(userStatus))
 }
 
 export const updateUserAvatar = (avatarFile: File): ThunkType => async dispatch => {
     const response = await profileAPI.updateUserAvatar(avatarFile)
-    response.data.resultCode === 0 && dispatch(setUserAvatar(response.data.data.photos)) && alert('Успешно!')
-    response.data.resultCode !== 0 && alert(response.data.messages)
+    response.resultCode === ResultCodeTypes.Success && dispatch(setUserAvatar(response.data.photos)) && alert('Успешно!')
+    response.resultCode !== ResultCodeTypes.Success && alert(response.messages)
 }
 
 export const updateUserDescription = (userDescription: UserProfileType): ThunkType =>
     async (dispatch, getState) => {
         const response = await profileAPI.updateUserDescription(userDescription)
-        if (response.data.resultCode === 0) {
+        if (response.resultCode === ResultCodeTypes.Success) {
             const id = getState().auth.id
             await dispatch(getUserProfile(id))
         }

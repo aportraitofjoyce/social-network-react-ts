@@ -40,7 +40,7 @@ const initialState: ProfileType = {
     }
 }
 
-export const profileReducer = (state: ProfileType = initialState, action: ProfileActionsType): ProfileType => {
+export const profileReducer = (state = initialState, action: ProfileActionsType): ProfileType => {
     switch (action.type) {
         case PROFILE_ACTIONS_TYPES.ADD_POST:
             return {

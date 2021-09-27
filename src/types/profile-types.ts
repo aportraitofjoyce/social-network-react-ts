@@ -4,14 +4,15 @@ export type ProfileType = {
     userProfile: UserProfileType | null
     userStatus: string
 }
+
 export type UserProfileType = {
     userId: number
-    fullName: string
-    photos: UserProfilePhotosType
     lookingForAJob: boolean
     lookingForAJobDescription: string
-    contacts: UserProfileContactsType
+    fullName: string
     aboutMe: string
+    contacts: UserProfileContactsType
+    photos: UserProfilePhotosType
 }
 
 export type UserProfilePhotosType = {
@@ -20,13 +21,13 @@ export type UserProfilePhotosType = {
 }
 
 export type UserProfileContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
+    github: string,
+    vk: string,
+    facebook: string,
+    instagram: string,
+    twitter: string,
+    website: string,
+    youtube: string,
     mainLink: string
 }
 

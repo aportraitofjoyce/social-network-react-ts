@@ -1,9 +1,9 @@
 import s from '../MyProfile.module.css'
 import React, {useState} from 'react'
 import {MyStatus} from './MyStatus/MyStatus'
-import {UserProfileType} from '../../../../../types/profile-types'
 import {MyDescription} from './MyDescription/MyDescription'
 import {MyDescriptionEditForm} from './MyDescriptionEditForm/MyDescriptionEditForm'
+import {UserProfileType} from '../../../../../types/profile-types'
 
 type MyInfoPropsType = {
     userProfile: UserProfileType

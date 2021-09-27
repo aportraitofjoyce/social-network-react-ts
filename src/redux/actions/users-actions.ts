@@ -50,7 +50,6 @@ export const toggleFollowLoader = (status: boolean, id: string) => ({
     payload: {status, id}
 }) as const
 
-
 // Thunk
 export const requestUsers = (page: number, pageSize: number): ThunkType => async dispatch => {
     try {
@@ -64,13 +63,10 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => async
     }
 }
 
+// TODO: Double get request when clicking pagination
 export const changeCurrentPage = (page: number, pageSize: number): ThunkType => async dispatch => {
     dispatch(setCurrentPage(page))
-    dispatch(toggleLoader(true))
-
-    const response = await usersAPI.requestUsers(page, pageSize)
-    dispatch(toggleLoader(false))
-    dispatch(setUsers(response.items))
+    dispatch(requestUsers(page, pageSize))
 }
 
 export const followUser = (id: string, followed: boolean): ThunkType => async dispatch => {

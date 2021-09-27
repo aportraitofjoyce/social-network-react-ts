@@ -10,14 +10,14 @@ const initialState: UsersType = {
     followLoader: []
 }
 
-export const usersReducer = (state: UsersType = initialState, action: UsersActionsType) => {
+export const usersReducer = (state = initialState, action: UsersActionsType): UsersType => {
     switch (action.type) {
         case USERS_ACTIONS_TYPES.FOLLOW:
             return {
                 ...state,
                 usersData: state.usersData.map((user) => user.id === action.payload.id
                     ? {...user, followed: !user.followed}
-                    : user)
+                    : user),
             }
 
         case USERS_ACTIONS_TYPES.SET_USERS:

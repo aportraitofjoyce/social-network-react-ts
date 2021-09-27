@@ -1,6 +1,7 @@
 import {authAPI} from '../../api/auth-api'
 import {ThunkType} from '../../types/common-types'
 import {securityAPI} from '../../api/security-api'
+import {ResultCodeTypes} from '../../types/api-types'
 
 export enum AUTH_ACTIONS_TYPE {
     SET_USER_DATA = 'SET_USER_DATA',
@@ -30,20 +31,19 @@ export const setCaptcha = (captcha: string) => ({
 // Thunk
 export const checkAuth = (): ThunkType => async dispatch => {
     const response = await authAPI.checkAuth()
-    const {id, login, email} = response.data.data
-    response.data.resultCode === 0 && dispatch(setAuthUserData(id, login, email))
-    // return response
+    const {id, login, email} = response.data
+    response.resultCode === ResultCodeTypes.Success && dispatch(setAuthUserData(id, login, email))
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, setStatus: any, captcha: string): ThunkType => async dispatch => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === ResultCodeTypes.Success) {
         await dispatch(checkAuth())
-    } else if (response.data.resultCode === 10) {
-        setStatus(response.data.messages)
+    } else if (response.resultCode === ResultCodeTypes.Captcha) {
+        setStatus(response.messages)
         await dispatch(getCaptchaURL())
     } else {
-        setStatus(response.data.messages)
+        setStatus(response.messages)
     }
 }
 
@@ -58,5 +58,5 @@ export const logout = (): ThunkType => async dispatch => {
 
 export const getCaptchaURL = (): ThunkType => async dispatch => {
     const response = await securityAPI.getCaptchaURL()
-    dispatch(setCaptcha(response.data.url))
+    dispatch(setCaptcha(response))
 }

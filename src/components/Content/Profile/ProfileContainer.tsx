@@ -5,7 +5,9 @@ import {StateType} from '../../../types/common-types'
 import {
     addPost,
     getUserProfile,
-    getUserStatus, updateUserAvatar, updateUserDescription,
+    getUserStatus,
+    updateUserAvatar,
+    updateUserDescription,
     updateUserStatus
 } from '../../../redux/actions/profile-actions'
 import {RouteComponentProps, withRouter} from 'react-router-dom'

@@ -1,17 +1,12 @@
 import {axiosInstance} from './axios-instance'
+import {ResponseType} from '../types/api-types'
 
 export const followAPI = {
     follow: (id: string) => axiosInstance
-        .post(`follow/${id}`)
-        .then(response => {
-                return response.data.responseCode === 0 ? response.data : null
-            }
-        ),
+        .post<ResponseType>(`follow/${id}`)
+        .then(response => response.data),
 
     unfollow: (id: string) => axiosInstance
-        .delete(`follow/${id}`)
-        .then(response => {
-                return response.data.responseCode === 0 ? response.data : null
-            }
-        )
+        .delete<ResponseType>(`follow/${id}`)
+        .then(response => response.data)
 }

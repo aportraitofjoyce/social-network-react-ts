@@ -14,7 +14,7 @@ const ProfileContainer = lazy(() => import('./components/Content/Profile/Profile
 const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
 const UsersContainer = lazy(() => import('./components/Content/Users/UsersContainer'))
 
-export const App = React.memo(() => {
+export const App = () => {
     const dispatch = useDispatch()
     const initialized = useSelector<StateType>(state => state.app.initialized)
 
@@ -61,4 +61,4 @@ export const App = React.memo(() => {
             </div>
         </div>
     )
-})
+}

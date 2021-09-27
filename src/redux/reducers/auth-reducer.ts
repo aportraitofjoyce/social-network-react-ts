@@ -9,7 +9,7 @@ const initialState: AuthType = {
     captchaURL: ''
 }
 
-export const authReducer = (state: AuthType = initialState, action: AuthActionsType): AuthType => {
+export const authReducer = (state = initialState, action: AuthActionsType): AuthType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPE.SET_USER_DATA:
             return {...state, ...action.payload, isAuth: true}

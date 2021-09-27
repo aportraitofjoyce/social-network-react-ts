@@ -6,6 +6,7 @@ export type UsersType = {
     isLoading: boolean
     followLoader: string[]
 }
+
 export type UserType = {
     id: string
     name: string

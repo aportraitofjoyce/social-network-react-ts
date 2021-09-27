@@ -1,14 +1,12 @@
 import {APP_ACTIONS_TYPE, AppActionsType} from '../actions/app-actions'
 
-type InitialStateType = {
-    initialized: boolean
-}
-
-const initialState: InitialStateType = {
+const initialState = {
     initialized: false
 }
 
-export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
+type InitialStateType = typeof initialState
+
+export const appReducer = (state = initialState, action: AppActionsType): InitialStateType => {
     switch (action.type) {
         case APP_ACTIONS_TYPE.SUCCESS_INITIALIZATION:
             return {
