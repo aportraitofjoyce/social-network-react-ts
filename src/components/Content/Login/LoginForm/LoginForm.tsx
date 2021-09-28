@@ -33,13 +33,12 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
                     .required('Required'),*/
             })}
 
-            onSubmit={async (values, {setSubmitting, resetForm, setStatus}) => {
-                await setSubmitting(true)
+            onSubmit={(values, {resetForm, setStatus}) => {
                 // await resetForm()
-                await onSubmit(values.email, values.password, values.rememberMe, setStatus, values.captcha)
+                onSubmit(values.email, values.password, values.rememberMe, setStatus, values.captcha)
             }}>
 
-            {({isSubmitting, status}) => <Form className={'formikFormContainer'}>
+            {({status}) => <Form className={'formikFormContainer'}>
                 <FormInput
                     label='Email'
                     name='email'
@@ -66,7 +65,7 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
 						placeholder='Type symbols...'/>
 				</div>}
 
-                <button type='submit' disabled={isSubmitting}>Submit</button>
+                <button type='submit'>Submit</button>
             </Form>}
         </Formik>
     )

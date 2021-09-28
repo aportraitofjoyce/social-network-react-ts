@@ -8,7 +8,7 @@ type UsersResponseType = {
 }
 
 export const usersAPI = {
-    requestUsers: (page: number = 1, pageSize: number = 10) => axiosInstance
-        .get<UsersResponseType>(`users?count=${pageSize}&page=${page}`)
+    requestUsers: (page: number, pageSize: number, term: string, followers: boolean | null) => axiosInstance
+        .get<UsersResponseType>(`users?count=${pageSize}&page=${page}&term=${term}` + (followers === null ? '' : `&friend=${followers}`))
         .then(response => response.data)
 }

@@ -6,11 +6,11 @@ import {PATH} from '../../../../types/common-types'
 type UserPropsType = {
     name: string
     avatar: string
-    id: string
+    id: number
     followed: boolean
     status: string
-    followLoader: string[]
-    followUser: (id: string, followed: boolean) => void
+    followLoader: number[]
+    followUser: (id: number, followed: boolean) => void
     isAuth: boolean
 }
 

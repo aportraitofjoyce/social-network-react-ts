@@ -4,11 +4,15 @@ export type UsersType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
-    followLoader: string[]
+    followLoader: number[]
+    search: {
+        term: string
+        followers: boolean | null
+    }
 }
 
 export type UserType = {
-    id: string
+    id: number
     name: string
     photos: {
         small: string

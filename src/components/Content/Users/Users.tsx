@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import {User} from './User/User'
 import {UserType} from '../../../types/users-types'
 import {Pagination} from '../../UI/Pagination/Pagination'
+import {UsersSearchForm} from './UsersSearchForm/UsersSearchForm'
 
 type UsersPropsType = {
     usersData: UserType[]
@@ -10,9 +11,10 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     changeCurrentPage: (page: number) => void
-    followLoader: string[]
-    followUser: (id: string, followed: boolean) => void
+    followLoader: number[]
+    followUser: (id: number, followed: boolean) => void
     isAuth: boolean
+    searchUsers: (term: string, followers: boolean | null) => void
 }
 
 export const Users: React.FC<UsersPropsType> = React.memo(props => {
@@ -24,7 +26,8 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
         changeCurrentPage,
         followLoader,
         followUser,
-        isAuth
+        isAuth,
+        searchUsers
     } = props
 
     const mappedUsers = usersData.map(user => <User key={user.name + user.id}
@@ -39,10 +42,11 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     return (
         <main className={s.wrapper}>
+            <UsersSearchForm onSubmit={searchUsers}/>
             <Pagination totalItemsCount={totalUsersCount}
                         pageSize={pageSize}
                         currentPage={currentPage}
-                        portionSize={20}
+                        portionSize={25}
                         onClick={changeCurrentPage}/>
             {mappedUsers}
         </main>

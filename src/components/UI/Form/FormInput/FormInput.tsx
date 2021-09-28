@@ -5,7 +5,7 @@ import s from '../Form.module.css'
 type FormInputPropsType = {
     label: string
     name: string
-    type: string
+    type: 'text' | 'email' | 'password'
     placeholder: string
     id?: string
 }

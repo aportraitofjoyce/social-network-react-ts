@@ -41,12 +41,11 @@ export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.
             contacts: Yup.object(contactsValidation)
         })}
 
-        onSubmit={async (values, {setSubmitting}) => {
-            await setSubmitting(true)
-            await onSubmit(values)
+        onSubmit={(values) => {
+            onSubmit(values)
         }}>
 
-        {({isSubmitting}) => <Form className={'formikFormContainer'}>
+        {() => <Form className={'formikFormContainer'}>
             <h4>Main info</h4>
 
             <FormInput
@@ -75,7 +74,7 @@ export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.
                                            type='text'
                                            placeholder={`${contact}`}/>)}
 
-            <button type='submit' disabled={isSubmitting}>Save</button>
+            <button type='submit'>Save</button>
         </Form>}
     </Formik>
 })

@@ -7,7 +7,11 @@ const initialState: UsersType = {
     totalUsersCount: 0,
     currentPage: 1,
     isLoading: false,
-    followLoader: []
+    followLoader: [],
+    search: {
+        term: '',
+        followers: null
+    }
 }
 
 export const usersReducer = (state = initialState, action: UsersActionsType): UsersType => {
@@ -38,6 +42,12 @@ export const usersReducer = (state = initialState, action: UsersActionsType): Us
                 followLoader: action.payload.status
                     ? [...state.followLoader, action.payload.id]
                     : state.followLoader.filter(u => u !== action.payload.id)
+            }
+
+        case USERS_ACTIONS_TYPES.SET_SEARCH_PARAMS:
+            return {
+                ...state,
+                search: {...action.payload}
             }
 
         default:
