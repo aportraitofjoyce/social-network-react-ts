@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
 import {Login} from './Login'
 import {useDispatch, useSelector} from 'react-redux'
-import {login, logout} from '../../../redux/actions/auth-actions'
+import {login} from '../../../redux/actions/auth-actions'
 import {PATH, StateType} from '../../../types/common-types'
 import {AuthType} from '../../../types/auth-types'
 import {Redirect} from 'react-router-dom'
@@ -15,9 +15,7 @@ export const LoginContainer: React.FC = React.memo(() => {
         dispatch(login(email, password, rememberMe, setStatus, captcha))
     }, [dispatch])
 
-    const logoutFromSite = useCallback(() => dispatch(logout()), [dispatch])
-
     return !isAuth
-        ? <Login login={loginOnSite} logout={logoutFromSite} captchaURL={captchaURL}/>
+        ? <Login login={loginOnSite} captchaURL={captchaURL}/>
         : <Redirect to={PATH.PROFILE}/>
 })

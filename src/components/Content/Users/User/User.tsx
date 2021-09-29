@@ -2,6 +2,7 @@ import React, {useCallback} from 'react'
 import {Link} from 'react-router-dom'
 import s from '../Users.module.css'
 import {PATH} from '../../../../types/common-types'
+import {Button} from '@mui/material'
 
 type UserPropsType = {
     name: string
@@ -31,13 +32,17 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
                 </Link>
 
                 {!isAuth
-                    ? <button disabled>Need to login</button>
-                    : <button onClick={onFollowButtonClickHandler}
-                              disabled={followLoader.includes(id)}>
-                        {followed ? 'Unfollow' : 'Follow'}
-                    </button>}
+                    ? <Button disabled variant={'outlined'}>
+                        Need to login
+                    </Button>
 
+                    : <Button onClick={onFollowButtonClickHandler}
+                              disabled={followLoader.includes(id)}
+                              variant={'outlined'}>
+                        {followed ? 'Unfollow' : 'Follow'}
+                    </Button>}
             </div>
+
             <div className={s.userInfoContainer}>
                 <div className={s.name}>{name}</div>
                 <div>{followed ? 'Вы уже дружите' : 'Ждет дружбы'}</div>

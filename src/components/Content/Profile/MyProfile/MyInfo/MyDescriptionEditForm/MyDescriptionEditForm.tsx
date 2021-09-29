@@ -5,6 +5,7 @@ import {FormCheckbox} from '../../../../../UI/Form/FormCheckbox/FormCheckbox'
 import {FormTextarea} from '../../../../../UI/Form/FormTextarea/FormTextarea'
 import {UserProfileType} from '../../../../../../types/profile-types'
 import * as Yup from 'yup'
+import {Button} from '@mui/material'
 
 type MyDescriptionEditFormType = {
     onSubmit: (userDescription: any) => void
@@ -48,22 +49,13 @@ export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.
         {() => <Form className={'formikFormContainer'}>
             <h4>Main info</h4>
 
-            <FormInput
-                label='Full Name'
-                name='fullName'
-                type='text'
-                placeholder='Type your full name...'/>
+            <FormInput label='Full Name' name='fullName' type='text'/>
 
-            <FormTextarea label={'About'}
-                          name={'aboutMe'}
-                          placeholder={'Say something about you...'}/>
+            <FormTextarea label={'About'} name={'aboutMe'}/>
 
-            <FormCheckbox name='lookingForAJob'>Looking For A Job</FormCheckbox>
+            <FormCheckbox name='lookingForAJob' label={'Looking For A Job'}/>
 
-
-            <FormTextarea label={'Looking For A Job Description'}
-                          name={'lookingForAJobDescription'}
-                          placeholder={'lookingForAJobDescription'}/>
+            <FormTextarea label={'Looking For A Job Description'} name={'lookingForAJobDescription'}/>
 
             <h4>Contacts</h4>
             {Object
@@ -71,10 +63,9 @@ export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.
                 .map(contact => <FormInput key={contact}
                                            label={`${contact}`}
                                            name={`contacts.${contact}`}
-                                           type='text'
-                                           placeholder={`${contact}`}/>)}
+                                           type='text'/>)}
 
-            <button type='submit'>Save</button>
+            <Button type='submit' variant={'contained'}>Save</Button>
         </Form>}
     </Formik>
 })

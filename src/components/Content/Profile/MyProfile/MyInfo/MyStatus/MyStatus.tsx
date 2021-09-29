@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useCallback, useEffect, useState} from 'react'
+import {TextField} from '@mui/material'
 
 type MyStatusPropsType = {
     status: string
@@ -30,11 +31,11 @@ export const MyStatus: React.FC<MyStatusPropsType> = React.memo(props => {
     }, [offEditMode])
 
     return isOwner && editMode
-        ? <input type='text'
-                 onBlur={offEditMode}
-                 onChange={onChangeHandler}
-                 onKeyPress={onKeyPressHandler}
-                 autoFocus
-                 value={title}/>
+        ? <TextField type='text'
+                     onBlur={offEditMode}
+                     onChange={onChangeHandler}
+                     onKeyPress={onKeyPressHandler}
+                     autoFocus
+                     value={title}/>
         : <h4 onDoubleClick={onEditMode}>{status || 'Место для статуса'}</h4>
 })

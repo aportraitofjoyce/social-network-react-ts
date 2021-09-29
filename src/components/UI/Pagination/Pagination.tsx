@@ -1,5 +1,6 @@
 import React, {useMemo, useState} from 'react'
 import s from './Pagination.module.css'
+import {Button} from '@mui/material'
 
 type PaginationPropsType = {
     totalItemsCount: number
@@ -42,9 +43,13 @@ export const Pagination: React.FC<PaginationPropsType> = React.memo(props => {
 
     return (
         <div className={s.paginationContainer}>
-            <button onClick={prevPageHandler} disabled={portionNumber <= 1}>Prev</button>
+            <Button onClick={prevPageHandler} disabled={portionNumber <= 1} variant={'outlined'}>
+                Prev
+            </Button>
             {pagesToRender}
-            <button onClick={nextPageHandler} disabled={totalPortionsCount <= portionNumber}>Next</button>
+            <Button onClick={nextPageHandler} disabled={totalPortionsCount <= portionNumber} variant={'outlined'}>
+                Next
+            </Button>
         </div>
     )
 })

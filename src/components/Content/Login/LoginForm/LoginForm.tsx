@@ -3,6 +3,7 @@ import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../UI/Form/FormCheckbox/FormCheckbox'
+import {Button} from '@mui/material'
 
 type LoginFormPropsType = {
     onSubmit: (email: string, password: string, rememberMe: boolean,
@@ -34,38 +35,26 @@ export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
             })}
 
             onSubmit={(values, {resetForm, setStatus}) => {
-                // await resetForm()
+                // resetForm()
                 onSubmit(values.email, values.password, values.rememberMe, setStatus, values.captcha)
             }}>
 
             {({status}) => <Form className={'formikFormContainer'}>
-                <FormInput
-                    label='Email'
-                    name='email'
-                    type='email'
-                    placeholder='Type your email...'/>
+                <FormInput label='Email' name='email' type={'email'}/>
 
-                <FormInput
-                    label='Password'
-                    name='password'
-                    type='password'
-                    placeholder='Type your password...'/>
+                <FormInput label='Password' name='password' type='password'/>
 
-                <FormCheckbox name='rememberMe'>Remember Me</FormCheckbox>
+                <FormCheckbox name='rememberMe' label={'Remember me'}/>
 
                 <span style={{fontSize: 24, fontWeight: 'bold'}}>{status}</span>
 
                 {captchaURL &&
 				<div>
 					<img src={captchaURL} alt={captchaURL}/>
-					<FormInput
-						label='Captcha'
-						name='captcha'
-						type='text'
-						placeholder='Type symbols...'/>
+					<FormInput label='Captcha' name='captcha' type='text'/>
 				</div>}
 
-                <button type='submit'>Submit</button>
+                <Button type='submit' variant={'contained'}>Submit</Button>
             </Form>}
         </Formik>
     )

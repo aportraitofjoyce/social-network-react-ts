@@ -2,6 +2,7 @@ import React from 'react'
 import s from '../../MyProfile.module.css'
 import {UserProfileContactsType, UserProfileType} from '../../../../../../types/profile-types'
 import {MyContacts} from './MyContacts/MyContacts'
+import {Button} from '@mui/material'
 
 type MyProfileDescriptionType = {
     userProfile: UserProfileType
@@ -39,7 +40,7 @@ export const MyDescription: React.FC<MyProfileDescriptionType> = React.memo(prop
                 {mappedContacts}
             </div>
 
-            {isOwner && <button onClick={onEditMode}>Edit</button>}
+            {isOwner && <Button onClick={onEditMode} variant='contained'>Edit</Button>}
         </div>
     )
 })

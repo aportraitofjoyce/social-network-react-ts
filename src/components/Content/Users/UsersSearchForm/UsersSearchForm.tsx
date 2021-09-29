@@ -1,17 +1,25 @@
 import React from 'react'
 import {Form, Formik} from 'formik'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
-import {FormSelect} from '../../../UI/Form/FormSelect/FormSelect'
+import {FormSelect, OptionsForSelectType} from '../../../UI/Form/FormSelect/FormSelect'
 import {SearchParamsType} from '../../../../types/users-types'
+import {Button} from '@mui/material'
 
 type UsersSearchFormPropsType = {
     onSubmit: (term: string, followers: boolean | null) => void
     searchParams: SearchParamsType
 }
 
+
 // TODO: Form Submission
 export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(props => {
     const {onSubmit, searchParams} = props
+
+    const optionsForSelect: OptionsForSelectType[] = [
+        {value: 'null', name: 'All'},
+        {value: 'true', name: 'Followed'},
+        {value: 'false', name: 'Unfollowed'}
+    ]
 
     const selectConverter = (value: string) => {
         switch (value) {
@@ -37,20 +45,11 @@ export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(pr
             }}>
 
             {() => <Form className={'formikFormContainer'}>
-                <FormInput
-                    label='Search by Name'
-                    name='term'
-                    type='text'
-                    placeholder='Type users name...'/>
+                <FormInput label='Search by Name' name='term' type='text'/>
 
-                <FormSelect label={'Followers'}
-                            name={'followers'}>
-                    <option value='null'>All</option>
-                    <option value='true'>Followed</option>
-                    <option value='false'>Unfollowed</option>
-                </FormSelect>
+                <FormSelect label={'Followers'} name={'followers'} options={optionsForSelect}/>
 
-                <button type='submit'>Search</button>
+                <Button type='submit' variant={'contained'}>Search</Button>
             </Form>}
         </Formik>
     )

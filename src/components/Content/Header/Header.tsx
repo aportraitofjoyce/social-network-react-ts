@@ -4,6 +4,7 @@ import s from './Header.module.css'
 import {LogoIcon} from './LogoIcon'
 import {PATH} from '../../../types/common-types'
 import {AuthType} from '../../../types/auth-types'
+import {Button} from '@mui/material'
 
 export type HeaderPropsType = {
     auth: AuthType
@@ -24,9 +25,9 @@ export const Header: React.FC<HeaderPropsType> = React.memo((props) => {
                 {auth.isAuth
                     ? <div>
                         <span>{auth.login}</span>
-                        <button onClick={logout}>Logout</button>
+                        <Button onClick={logout} variant={'contained'}>Logout</Button>
                     </div>
-                    : <Link to={PATH.LOGIN}>Login</Link>}
+                    : <Link to={PATH.LOGIN}>Login Page</Link>}
             </div>
         </div>
     )
