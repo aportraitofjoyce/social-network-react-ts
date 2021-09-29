@@ -1,32 +1,29 @@
 import React from 'react'
-import s from './Sidebar.module.css'
-import {v1} from 'uuid'
 import {dataForSidebarType} from '../../../types/sidebar-types'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {List, ListItem, ListItemButton, ListItemText} from '@mui/material'
 
 type SidebarPropsType = {
     dataForSidebar: dataForSidebarType[]
 }
 
+// TODO: Need to fix active Link
 export const Sidebar: React.FC<SidebarPropsType> = React.memo(props => {
     const {dataForSidebar} = props
 
-    const mappedSidebarItems = dataForSidebar.map(item => {
-        return (
-            <NavLink key={v1()}
-                     to={item.link}
-                     activeClassName={s.active}>
-                <span>{item.name}</span>
-            </NavLink>
-        )
-    })
-
     return (
-        <aside className={s.wrapper}>
-            <nav className={s.container}>
-                {mappedSidebarItems}
+        <aside>
+            <nav aria-label='mainSidebar'>
+                <List style={{padding: 0}}>
+                    {dataForSidebar.map(item =>
+                        <ListItem disablePadding key={item.name} component={Link} to={item.link}
+                                  style={{textDecoration: 'none', color: 'unset'}}>
+                            <ListItemButton>
+                                <ListItemText primary={item.name}/>
+                            </ListItemButton>
+                        </ListItem>)}
+                </List>
             </nav>
         </aside>
     )
 })
-

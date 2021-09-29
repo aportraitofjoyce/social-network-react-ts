@@ -17,18 +17,18 @@ export type OptionsForSelectType = {
 
 export const FormSelect: React.FC<FormSelectPropsType> = React.memo(({label, options, ...props}) => {
     const [field, meta] = useField(props)
+    const mappedOptions = options.map(i => <MenuItem key={i.value} value={i.value}>{i.name}</MenuItem>)
 
     return (
         <div className={s.formField}>
             <FormControl fullWidth>
-                <InputLabel id='demo-simple-select-label'>{label}</InputLabel>
+                <InputLabel id={`${label}LabelName`}>{label}</InputLabel>
 
                 <Select {...field} {...props}
-                        labelId='demo-simple-select-label'
-                        id='demo-simple-select'
+                        labelId={`${label}LabelName`}
+                        id={`${label}SelectForm`}
                         label={label}>
-
-                    {options.map(i => <MenuItem key={i.value} value={i.value}>{i.name}</MenuItem>)}
+                    {mappedOptions}
                 </Select>
 
                 {meta.touched && meta.error && <div className='error'>{meta.error}</div>}

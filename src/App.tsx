@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
 import {Loader} from './components/UI/Loader/Loader'
 import {Error404} from './components/Content/ErrorPage/Error404'
+import {defaultTheme} from './components/UI/MUI/theme'
+import {Container, CssBaseline, Grid, ThemeProvider} from '@mui/material'
 
 const ProfileContainer = lazy(() => import('./components/Content/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
@@ -25,40 +27,49 @@ export const App: React.FC = () => {
     if (!initialized) return <Loader/>
 
     return (
-        <div className={'App'}>
-            <HeaderContainer/>
+        <ThemeProvider theme={defaultTheme}>
+            <>
+                <CssBaseline/>
+                <HeaderContainer/>
 
-            <div className={'ContentWrapper'}>
-                <SidebarContainer/>
+                <Container maxWidth='lg' style={{marginTop: 24, marginBottom: 24}}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={2}>
+                            <SidebarContainer/>
+                        </Grid>
 
-                <Suspense fallback={<Loader/>}>
-                    <Switch>
-                        <Route path={PATH.ROOT} exact>
-                            <Redirect to={PATH.PROFILE}/>
-                        </Route>
+                        <Grid item xs={10}>
+                            <Suspense fallback={<Loader/>}>
+                                <Switch>
+                                    <Route path={PATH.ROOT} exact>
+                                        <Redirect to={PATH.PROFILE}/>
+                                    </Route>
 
-                        <Route path={PATH.PROFILE_WITH_ID}>
-                            <ProfileContainer/>
-                        </Route>
+                                    <Route path={PATH.PROFILE_WITH_ID}>
+                                        <ProfileContainer/>
+                                    </Route>
 
-                        <Route path={PATH.DIALOGS}>
-                            <DialogsContainer/>
-                        </Route>
+                                    <Route path={PATH.DIALOGS}>
+                                        <DialogsContainer/>
+                                    </Route>
 
-                        <Route path={PATH.USERS}>
-                            <UsersContainer/>
-                        </Route>
+                                    <Route path={PATH.USERS}>
+                                        <UsersContainer/>
+                                    </Route>
 
-                        <Route path={PATH.LOGIN}>
-                            <LoginContainer/>
-                        </Route>
+                                    <Route path={PATH.LOGIN}>
+                                        <LoginContainer/>
+                                    </Route>
 
-                        <Route path={PATH.ERROR}>
-                            <Error404/>
-                        </Route>
-                    </Switch>
-                </Suspense>
-            </div>
-        </div>
+                                    <Route path={PATH.ERROR}>
+                                        <Error404/>
+                                    </Route>
+                                </Switch>
+                            </Suspense>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </>
+        </ThemeProvider>
     )
 }

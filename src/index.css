@@ -4,96 +4,15 @@
     --primary-light: rgba(77, 88, 119, 0.75);
     --secondary: #f5a417;
 
-    --border: 1px solid lightgrey;
-    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    --border: 4px solid lightgrey;
+    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     --border-radius: 4px;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Roboto', sans-serif;
-    color: var(--text);
-    background-color: #f5f5f5;
-
-}
-
-.App {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    min-height: 100vh;
-}
-
-.ContentWrapper {
-    display: flex;
-    flex-direction: row;
-    margin: 40px auto;
-    max-width: 1280px;
-    width: 100%;
-    gap: 40px;
-}
-
-h1 {
-    font-size: 56px;
-}
-
-h2 {
-    font-size: 32px;
-}
-
-h3 {
-    font-size: 24px;
-}
-
-button {
-    font-family: 'Roboto', sans-serif;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    padding: 12px 16px;
-    background: var(--primary);
-    color: white;
-    font-size: 16px;
-    line-height: 1;
-}
-
-button:hover {
-    background: var(--primary-light);
-}
-
-button:disabled {
-    opacity: 0.2;
-}
-
-input, textarea {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: var(--text);
-    padding: 8px;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #FAFAFA;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-light);
 }
 
 .formikFormContainer {
