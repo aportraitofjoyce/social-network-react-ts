@@ -5,10 +5,12 @@ export type UsersType = {
     currentPage: number
     isLoading: boolean
     followLoader: number[]
-    search: {
-        term: string
-        followers: boolean | null
-    }
+    search: SearchParamsType
+}
+
+export type SearchParamsType = {
+    term: string
+    followers: boolean | null
 }
 
 export type UserType = {

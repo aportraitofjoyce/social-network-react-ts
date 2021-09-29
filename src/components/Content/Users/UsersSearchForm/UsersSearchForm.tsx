@@ -2,20 +2,22 @@ import React from 'react'
 import {Form, Formik} from 'formik'
 import {FormInput} from '../../../UI/Form/FormInput/FormInput'
 import {FormSelect} from '../../../UI/Form/FormSelect/FormSelect'
+import {SearchParamsType} from '../../../../types/users-types'
 
 type UsersSearchFormPropsType = {
     onSubmit: (term: string, followers: boolean | null) => void
+    searchParams: SearchParamsType
 }
 
 // TODO: Form Submission
 export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(props => {
-    const {onSubmit} = props
+    const {onSubmit, searchParams} = props
 
     const selectConverter = (value: string) => {
         switch (value) {
-            case 'followed':
+            case 'true':
                 return true
-            case 'unfollowed':
+            case 'false':
                 return false
             default:
                 return null
@@ -24,9 +26,10 @@ export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(pr
 
     return (
         <Formik
+            enableReinitialize
             initialValues={{
-                term: '',
-                followers: '',
+                term: searchParams.term,
+                followers: String(searchParams.followers),
             }}
 
             onSubmit={(values) => {
@@ -42,9 +45,9 @@ export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(pr
 
                 <FormSelect label={'Followers'}
                             name={'followers'}>
-                    <option value=''>All</option>
-                    <option value='followed'>Followed</option>
-                    <option value='unfollowed'>Unfollowed</option>
+                    <option value='null'>All</option>
+                    <option value='true'>Followed</option>
+                    <option value='false'>Unfollowed</option>
                 </FormSelect>
 
                 <button type='submit'>Search</button>

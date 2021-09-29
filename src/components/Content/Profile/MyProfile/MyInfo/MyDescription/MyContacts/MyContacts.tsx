@@ -10,10 +10,11 @@ export const MyContacts: React.FC<MyInfoContactsPropsType> = React.memo(props =>
 
     return (
         <div className={s.contactItem}>
-            <span>{title}</span>
-            <span>
-                <a href={`${value}`} target='_blank' rel='noreferrer'>{value}</a>
-            </span>
+            {value &&
+			<>
+				<span>{title}</span>
+				<span><a href={`${value}`} target='_blank' rel='noreferrer'>{value}</a></span>
+			</>}
         </div>
     )
 })

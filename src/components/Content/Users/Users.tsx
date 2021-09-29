@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
-import {UserType} from '../../../types/users-types'
+import {SearchParamsType, UserType} from '../../../types/users-types'
 import {Pagination} from '../../UI/Pagination/Pagination'
 import {UsersSearchForm} from './UsersSearchForm/UsersSearchForm'
 
@@ -15,6 +15,7 @@ type UsersPropsType = {
     followUser: (id: number, followed: boolean) => void
     isAuth: boolean
     searchUsers: (term: string, followers: boolean | null) => void
+    searchParams: SearchParamsType
 }
 
 export const Users: React.FC<UsersPropsType> = React.memo(props => {
@@ -27,7 +28,8 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
         followLoader,
         followUser,
         isAuth,
-        searchUsers
+        searchUsers,
+        searchParams
     } = props
 
     const mappedUsers = usersData.map(user => <User key={user.name + user.id}
@@ -42,12 +44,15 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
 
     return (
         <main className={s.wrapper}>
-            <UsersSearchForm onSubmit={searchUsers}/>
+            <UsersSearchForm onSubmit={searchUsers}
+                             searchParams={searchParams}/>
+
             <Pagination totalItemsCount={totalUsersCount}
                         pageSize={pageSize}
                         currentPage={currentPage}
                         portionSize={25}
                         onClick={changeCurrentPage}/>
+
             {mappedUsers}
         </main>
     )
