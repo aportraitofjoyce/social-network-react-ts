@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import {Avatar, Box, Divider} from '@mui/material'
 import {Link} from 'react-router-dom'
 import {PATH} from '../../../../../types/common-types'
@@ -10,7 +10,8 @@ type MessagePropsType = {
     userID: number
 }
 
-export const Message: React.FC<MessagePropsType> = React.memo(props => {
+export const Message: React.FC<MessagePropsType> = memo(props => {
+    console.log('Message')
     const {userName, message, photo, userID} = props
 
     return (
