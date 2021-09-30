@@ -12,11 +12,11 @@ export const Messages: React.FC<MessagesPropsType> = React.memo(props => {
 
     const bottomOfMessages = useRef<HTMLDivElement>(null)
 
-    const mappedMessages = messages.map((message, index) => <Message key={index}
-                                                                     userName={message.userName}
-                                                                     message={message.message}
-                                                                     photo={message.photo}
-                                                                     userID={message.userId}/>)
+    const mappedMessages = messages.map((message) => <Message key={message.messageID}
+                                                              userName={message.userName}
+                                                              message={message.message}
+                                                              photo={message.photo}
+                                                              userID={message.userId}/>)
 
     useEffect(() => {
         bottomOfMessages.current?.scrollIntoView({behavior: 'smooth'})

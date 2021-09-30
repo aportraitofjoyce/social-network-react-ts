@@ -11,7 +11,6 @@ type MessagePropsType = {
 }
 
 export const Message: React.FC<MessagePropsType> = memo(props => {
-    console.log('Message')
     const {userName, message, photo, userID} = props
 
     return (
