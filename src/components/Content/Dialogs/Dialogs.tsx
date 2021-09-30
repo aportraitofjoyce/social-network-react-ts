@@ -1,24 +1,20 @@
 import React from 'react'
-import s from './Dialogs.module.css'
-import {FriendsToChat} from './FriendsToChat/FriendsToChat'
-import {DialogsChat} from './DialogsChat/DialogsChat'
-import {DataForFriendsType, MessagesDataType} from '../../../types/dialogs-types'
+import {ChatMessageType} from '../../../types/dialogs-types'
+import {DialogsForm} from './DialogsForm/DialogsForm'
+import {Messages} from './Messages/Messages'
 
 type DialogsPropsType = {
-    dataForMessages: MessagesDataType[]
-    sendMessage: (text: string) => void
-    dataForFriends: DataForFriendsType[]
+    messages: ChatMessageType[]
+    sendMessage: (message: string) => void
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = React.memo(props => {
-    const {dataForMessages, dataForFriends, sendMessage} = props
+    const {messages, sendMessage} = props
 
     return (
-        <main className={s.wrapper}>
-            <FriendsToChat dataForFriends={dataForFriends}/>
-            <DialogsChat
-                dataForMessages={dataForMessages}
-                sendMessage={sendMessage}/>
+        <main>
+            <Messages messages={messages}/>
+            <DialogsForm onSubmit={sendMessage}/>
         </main>
     )
 })

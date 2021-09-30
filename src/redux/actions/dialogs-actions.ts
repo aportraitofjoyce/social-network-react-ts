@@ -1,12 +1,14 @@
+import {ChatMessageType} from '../../types/dialogs-types'
+
 export enum DIALOGS_ACTIONS_TYPES {
-    SEND_MESSAGE = 'SEND_MESSAGE',
+    SET_MESSAGES = 'SET_MESSAGES',
 }
 
 export type DialogsActionsType =
-    | ReturnType<typeof sendMessage>
+    | ReturnType<typeof setMessages>
 
 // Actions
-export const sendMessage = (text: string) => ({
-    type: DIALOGS_ACTIONS_TYPES.SEND_MESSAGE,
-    payload: {text}
+export const setMessages = (messages: ChatMessageType[]) => ({
+    type: DIALOGS_ACTIONS_TYPES.SET_MESSAGES,
+    payload: {messages}
 } as const)

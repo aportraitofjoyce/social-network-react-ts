@@ -1,20 +1,27 @@
-import React, {ComponentType, useCallback} from 'react'
+import React, {ComponentType, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Dialogs} from './Dialogs'
 import {StateType} from '../../../types/common-types'
-import {sendMessage} from '../../../redux/actions/dialogs-actions'
+import {setMessages} from '../../../redux/actions/dialogs-actions'
 import {DialogsType} from '../../../types/dialogs-types'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
+import {webSocket} from '../../../api/web-socket'
 
 const DialogsContainer: React.FC = React.memo(() => {
-    const {dataForMessages, dataForFriends} = useSelector<StateType, DialogsType>(state => state.dialogs)
+    const {messages} = useSelector<StateType, DialogsType>(state => state.dialogs)
     const dispatch = useDispatch()
 
-    const sendMessageHandler = useCallback((text: string) => dispatch(sendMessage(text)), [dispatch])
+    useEffect(() => {
+        webSocket.addEventListener('message', (e) => {
+            dispatch(setMessages(JSON.parse(e.data)))
+        })
 
-    return <Dialogs dataForMessages={dataForMessages}
-                    dataForFriends={dataForFriends}
+    }, [dispatch])
+
+    const sendMessageHandler = (message: string) => webSocket.send(message)
+
+    return <Dialogs messages={messages}
                     sendMessage={sendMessageHandler}/>
 })
 

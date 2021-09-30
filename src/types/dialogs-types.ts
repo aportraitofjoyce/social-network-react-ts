@@ -1,14 +1,10 @@
 export type DialogsType = {
-    dataForFriends: DataForFriendsType[]
-    dataForMessages: MessagesDataType[]
-    newMessage: MessagesDataType
+    messages: ChatMessageType[]
 }
-export type DataForFriendsType = {
-    id: string
-    name: string
-}
-export type MessagesDataType = {
-    id: string
-    from: string
-    message: string
+
+export type ChatMessageType = {
+    message: string,
+    photo: string,
+    userId: number,
+    userName: string
 }

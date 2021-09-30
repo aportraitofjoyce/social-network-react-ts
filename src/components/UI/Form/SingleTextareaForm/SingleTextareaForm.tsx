@@ -5,7 +5,7 @@ import {FormTextarea} from '../FormTextarea/FormTextarea'
 import {Button} from '@mui/material'
 
 type SingleTextareaFormPropsType = {
-    onSubmit: (text: string) => void
+    onSubmit: (message: string) => void
 }
 
 export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.memo(props => {
@@ -20,15 +20,19 @@ export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.m
                     .required('Required'),
             })}
 
-            onSubmit={async (values, {resetForm}) => {
-                await resetForm()
-                await onSubmit(values.textarea)
+            onSubmit={(values, {resetForm, setSubmitting}) => {
+                resetForm()
+                onSubmit(values.textarea)
             }}>
 
-            {() => <Form>
+            {({isSubmitting}) => <Form>
                 <FormTextarea name='textarea' label={'Type your message'}/>
 
-                <Button type={'submit'} variant={'contained'}>Send</Button>
+                <Button type={'submit'}
+                        variant={'contained'}
+                        disabled={isSubmitting}>
+                    Send
+                </Button>
             </Form>}
         </Formik>
     )

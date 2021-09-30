@@ -3,7 +3,6 @@ import {Redirect, Route, Switch} from 'react-router-dom'
 import './index.css'
 import {PATH, StateType} from './types/common-types'
 import {LoginContainer} from './components/Content/Login/LoginContainer'
-import {HeaderContainer} from './components/Content/Header/HeaderContainer'
 import {SidebarContainer} from './components/Content/Sidebar/SidebarContainer'
 import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
@@ -11,6 +10,7 @@ import {Loader} from './components/UI/Loader/Loader'
 import {Error404} from './components/Content/ErrorPage/Error404'
 import {defaultTheme} from './components/UI/MUI/theme'
 import {Container, CssBaseline, Grid, ThemeProvider} from '@mui/material'
+import {Header} from './components/Content/Header/Header'
 
 const ProfileContainer = lazy(() => import('./components/Content/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
@@ -28,9 +28,9 @@ export const App: React.FC = () => {
 
     return (
         <ThemeProvider theme={defaultTheme}>
+            <CssBaseline/>
             <>
-                <CssBaseline/>
-                <HeaderContainer/>
+                <Header/>
 
                 <Container maxWidth='lg' style={{marginTop: 24, marginBottom: 24}}>
                     <Grid container spacing={3}>
