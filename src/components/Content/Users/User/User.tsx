@@ -25,9 +25,8 @@ export const User: React.FC<UserPropsType> = React.memo(props => {
             <div className={s.avatarAndFollowContainer}>
                 <Link to={`${PATH.PROFILE}/${id}`}>
                     <div className={s.avatar}>
-                        <img
-                            src={avatar || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
-                            alt={name}/>
+                        <img src={avatar || 'https://pbs.twimg.com/profile_images/1368235617243426820/L0m5gTDB.jpg'}
+                             alt={name}/>
                     </div>
                 </Link>
 

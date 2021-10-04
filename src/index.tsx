@@ -5,12 +5,16 @@ import './index.css'
 import {store} from './redux/store'
 import {App} from './App'
 import {Provider} from 'react-redux'
+import {defaultTheme} from './components/UI/MUI/theme'
+import {ThemeProvider} from '@mui/material'
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <ThemeProvider theme={defaultTheme}>
+                    <App/>
+                </ThemeProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>, document.getElementById('root'))
