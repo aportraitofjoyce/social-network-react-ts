@@ -8,8 +8,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {initialization} from './redux/actions/app-actions'
 import {Loader} from './components/UI/Loader/Loader'
 import {Error404} from './components/Content/ErrorPage/Error404'
-import {Container, CssBaseline, Grid} from '@mui/material'
+import {Box, Container, CssBaseline, Fab, Grid} from '@mui/material'
 import {Header} from './components/Content/Header/Header'
+import {ScrollTop} from './components/UI/ScrollTop/ScrollTop'
 
 const ProfileContainer = lazy(() => import('./components/Content/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('./components/Content/Dialogs/DialogsContainer'))
@@ -28,6 +29,7 @@ export const App: React.FC = () => {
     return (
         <>
             <CssBaseline/>
+            <Box id='back-to-top-anchor'/>
             <Header/>
 
             <Container maxWidth='lg' style={{marginTop: 24, marginBottom: 24}}>
@@ -67,6 +69,10 @@ export const App: React.FC = () => {
                     </Grid>
                 </Grid>
             </Container>
+
+            <ScrollTop>
+                <Fab color='primary' aria-label='scroll back to top'>Up</Fab>
+            </ScrollTop>
         </>
     )
 }

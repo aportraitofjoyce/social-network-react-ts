@@ -39,10 +39,8 @@ const UsersContainer: React.FC = React.memo(() => {
         dispatch(changeCurrentPage(page, pageSize, search.term, search.followers))
     }, [dispatch, pageSize, search.term, search.followers])
 
-
-    // useCallback keeps the page #1 in memory and back user to page #1 after search. W/o useCallback need to replace currentPage with 1.
     const searchUsersHandler = useCallback((term: string, followers: boolean | null) => {
-        dispatch(requestUsers(currentPage, pageSize, term, followers))
+        dispatch(requestUsers(1, pageSize, term, followers))
     }, [dispatch])
 
 

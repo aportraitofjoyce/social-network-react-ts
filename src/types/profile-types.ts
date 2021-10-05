@@ -1,6 +1,4 @@
 export type ProfileType = {
-    dataForMyPosts: dataForMyPostsType[]
-    newPost: dataForMyPostsType
     userProfile: UserProfileType | null
     userStatus: string
 }
@@ -29,11 +27,4 @@ export type UserProfileContactsType = {
     website: string,
     youtube: string,
     mainLink: string
-}
-
-export type dataForMyPostsType = {
-    src: string
-    alt: string
-    text: string
-    likes: number
 }

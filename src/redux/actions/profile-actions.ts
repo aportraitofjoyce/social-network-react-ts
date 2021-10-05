@@ -4,25 +4,18 @@ import {profileAPI} from '../../api/profile-api'
 import {ResultCodesTypes} from '../../types/api-types'
 
 export enum PROFILE_ACTIONS_TYPES {
-    ADD_POST = 'ADD_POST',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     SET_USER_STATUS = 'SET_USER_STATUS',
     SET_USER_AVATAR = 'SET_USER_AVATAR',
 }
 
 export type ProfileActionsType =
-    | ReturnType<typeof addPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof setUserAvatar>
 
 
 // Actions
-export const addPost = (text: string) => ({
-    type: PROFILE_ACTIONS_TYPES.ADD_POST,
-    payload: {text}
-} as const)
-
 export const setUserProfile = (userProfile: UserProfileType) => ({
     type: PROFILE_ACTIONS_TYPES.SET_USER_PROFILE,
     payload: {userProfile}

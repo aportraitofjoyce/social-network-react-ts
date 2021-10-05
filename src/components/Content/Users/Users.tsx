@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect, useMemo} from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
 import {SearchParamsType, UserType} from '../../../types/users-types'
-import {Pagination} from '../../UI/Pagination/Pagination'
 import {UsersSearchForm} from './UsersSearchForm/UsersSearchForm'
+import {PaginationControlled} from '../../UI/Pagination/PaginationControlled'
 
 type UsersPropsType = {
     usersData: UserType[]
@@ -32,6 +32,8 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
         searchParams
     } = props
 
+    let pagesCount = useMemo(() => Math.ceil(totalUsersCount / pageSize), [totalUsersCount, pageSize])
+
     const mappedUsers = usersData.map(user => <User key={user.name + user.id}
                                                     name={user.name}
                                                     avatar={user.photos.large}
@@ -47,12 +49,9 @@ export const Users: React.FC<UsersPropsType> = React.memo(props => {
             <UsersSearchForm onSubmit={searchUsers}
                              searchParams={searchParams}/>
 
-            <Pagination totalItemsCount={totalUsersCount}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        portionSize={25}
-                        onClick={changeCurrentPage}/>
-
+            <PaginationControlled pagesCount={pagesCount}
+                                  currentPage={currentPage}
+                                  onClick={changeCurrentPage}/>
             {mappedUsers}
         </main>
     )

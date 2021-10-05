@@ -10,7 +10,7 @@ type PaginationPropsType = {
     onClick: (page: number) => void
 }
 
-export const Pagination: React.FC<PaginationPropsType> = React.memo(props => {
+export const PaginationOld: React.FC<PaginationPropsType> = React.memo(props => {
     const {totalItemsCount, pageSize, currentPage, onClick, portionSize = 10} = props
 
     const totalPagesCount = useMemo(() => {

@@ -5,8 +5,7 @@ export enum APP_ACTIONS_TYPE {
     SUCCESS_INITIALIZATION = 'SUCCESS_INITIALIZATION'
 }
 
-export type AppActionsType =
-    | ReturnType<typeof successInitialization>
+export type AppActionsType = ReturnType<typeof successInitialization>
 
 // Actions
 export const successInitialization = (status: boolean) => ({
