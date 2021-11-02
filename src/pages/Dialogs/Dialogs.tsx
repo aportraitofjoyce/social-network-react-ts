@@ -1,21 +1,31 @@
-import React from 'react'
-
+import React, {useEffect} from 'react'
 import {Messages} from './Messages/Messages'
 import {DialogsForm} from './DialogsForm/DialogsForm'
-import {ChatMessageType} from '../../redux/reducers/dialogs-reducer'
+import {setMessages} from '../../redux/reducers/dialogs-reducer'
+import {useDispatch} from 'react-redux'
+import {webSocket} from '../../api/web-socket'
+import {useAppSelector} from '../../hooks/hooks'
+import {Redirect} from 'react-router-dom'
+import {PATH} from '../../routes/routes'
 
-type DialogsPropsType = {
-    messages: ChatMessageType[]
-    sendMessage: (message: string) => void
-}
+const Dialogs: React.FC = React.memo(() => {
+    const dispatch = useDispatch()
+    const isAuth = useAppSelector(state => state.auth.isAuth)
 
-export const Dialogs: React.FC<DialogsPropsType> = React.memo(props => {
-    const {messages, sendMessage} = props
+    useEffect(() => {
+        webSocket.addEventListener('message', (e) => {
+            dispatch(setMessages(JSON.parse(e.data)))
+        })
+    }, [dispatch])
+
+    if (!isAuth) return <Redirect to={PATH.LOGIN}/>
 
     return (
         <main>
-            <Messages messages={messages}/>
-            <DialogsForm onSubmit={sendMessage}/>
+            <Messages/>
+            <DialogsForm/>
         </main>
     )
 })
+
+export default Dialogs

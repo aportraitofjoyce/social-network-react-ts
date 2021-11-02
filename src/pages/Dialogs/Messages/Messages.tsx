@@ -1,22 +1,11 @@
-import React, {useEffect, useRef} from 'react'
+import React, {FC, memo, useEffect, useRef} from 'react'
 import {Message} from './Message/Message'
 import {Box} from '@mui/material'
-import {ChatMessageType} from '../../../redux/reducers/dialogs-reducer'
+import {useAppSelector} from '../../../hooks/hooks'
 
-type MessagesPropsType = {
-    messages: ChatMessageType[]
-}
-
-export const Messages: React.FC<MessagesPropsType> = React.memo(props => {
-    const {messages} = props
-
+export const Messages: FC = memo(() => {
+    const {messages} = useAppSelector(state => state.dialogs)
     const bottomOfMessages = useRef<HTMLDivElement>(null)
-
-    const mappedMessages = messages.map((message) => <Message key={message.messageID}
-                                                              userName={message.userName}
-                                                              message={message.message}
-                                                              photo={message.photo}
-                                                              userID={message.userId}/>)
 
     useEffect(() => {
         bottomOfMessages.current?.scrollIntoView({behavior: 'smooth'})
@@ -24,7 +13,7 @@ export const Messages: React.FC<MessagesPropsType> = React.memo(props => {
 
     return (
         <Box sx={{maxHeight: 512, overflowY: 'auto'}}>
-            {mappedMessages}
+            {messages.map((message) => <Message key={message.messageID} message={message}/>)}
             <div ref={bottomOfMessages}/>
         </Box>
     )
