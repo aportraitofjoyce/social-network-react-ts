@@ -1,6 +1,11 @@
-import {DialogsType} from '../../types/dialogs-types'
-import {DIALOGS_ACTIONS_TYPES, DialogsActionsType} from '../actions/dialogs-actions'
+import {ChatMessageType, DialogsType} from '../../types/dialogs-types'
 import {v1} from 'uuid'
+
+export enum DIALOGS_ACTIONS_TYPES {
+    SET_MESSAGES = 'SET_MESSAGES',
+}
+
+export type DialogsActionsType = ReturnType<typeof setMessages>
 
 const initialState: DialogsType = {
     messages: []
@@ -23,3 +28,8 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
             return state
     }
 }
+
+export const setMessages = (messages: ChatMessageType[]) => ({
+    type: DIALOGS_ACTIONS_TYPES.SET_MESSAGES,
+    payload: {messages}
+} as const)

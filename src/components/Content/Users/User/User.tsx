@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react'
 import {Link} from 'react-router-dom'
 import s from '../Users.module.css'
-import {PATH} from '../../../../types/common-types'
 import {Button} from '@mui/material'
+import {PATH} from '../../../../routes/routes'
 
 type UserPropsType = {
     name: string

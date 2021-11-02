@@ -1,15 +1,15 @@
 import React, {ComponentType, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Dialogs} from './Dialogs'
-import {StateType} from '../../../types/common-types'
-import {setMessages} from '../../../redux/actions/dialogs-actions'
 import {DialogsType} from '../../../types/dialogs-types'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from 'redux'
 import {webSocket} from '../../../api/web-socket'
+import {RootState} from '../../../redux/store'
+import {setMessages} from '../../../redux/reducers/dialogs-reducer'
 
 const DialogsContainer: React.FC = React.memo(() => {
-    const {messages} = useSelector<StateType, DialogsType>(state => state.dialogs)
+    const {messages} = useSelector<RootState, DialogsType>(state => state.dialogs)
     const dispatch = useDispatch()
 
     useEffect(() => {

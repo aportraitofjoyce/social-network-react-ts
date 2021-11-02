@@ -1,17 +1,14 @@
 import React, {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {PATH, StateType} from '../../../types/common-types'
-import {
-    requestUsers,
-    changeCurrentPage,
-    followUser,
-} from '../../../redux/actions/users-actions'
 import {Users} from './Users'
 import {Loader} from '../../UI/Loader/Loader'
 import {UsersType} from '../../../types/users-types'
 import {AuthType} from '../../../types/auth-types'
 import {useHistory} from 'react-router-dom'
 import * as queryString from 'querystring'
+import {PATH} from '../../../routes/routes'
+import {RootState} from '../../../redux/store'
+import {changeCurrentPage, followUser, requestUsers} from '../../../redux/reducers/users-reducer'
 
 type QueryParamsType = { term?: string; page?: string; friend?: string }
 
@@ -27,9 +24,9 @@ const UsersContainer: React.FC = React.memo(() => {
         isLoading,
         followLoader,
         search
-    } = useSelector<StateType, UsersType>(state => state.users)
+    } = useSelector<RootState, UsersType>(state => state.users)
 
-    const {isAuth} = useSelector<StateType, AuthType>(state => state.auth)
+    const {isAuth} = useSelector<RootState, AuthType>(state => state.auth)
 
     const followUserHandler = useCallback((id: number, followed: boolean) => {
         dispatch(followUser(id, followed))

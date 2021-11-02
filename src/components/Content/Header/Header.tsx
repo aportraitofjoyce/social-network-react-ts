@@ -1,14 +1,15 @@
 import React, {useCallback} from 'react'
 import {Link} from 'react-router-dom'
 import {LogoIcon} from './LogoIcon'
-import {PATH, StateType} from '../../../types/common-types'
 import {AuthType} from '../../../types/auth-types'
 import {AppBar, Avatar, Box, Button, IconButton, Toolbar, Typography} from '@mui/material'
 import {useDispatch, useSelector} from 'react-redux'
-import {logout} from '../../../redux/actions/auth-actions'
+import {PATH} from '../../../routes/routes'
+import {RootState} from '../../../redux/store'
+import {logout} from '../../../redux/reducers/auth-reducer'
 
 export const Header: React.FC = React.memo(() => {
-    const auth = useSelector<StateType, AuthType>(state => state.auth)
+    const auth = useSelector<RootState, AuthType>(state => state.auth)
     const dispatch = useDispatch()
 
     const logoutHandler = useCallback(() => dispatch(logout()), [dispatch])

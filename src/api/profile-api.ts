@@ -1,6 +1,6 @@
 import {axiosInstance} from './axios-instance'
 import {UserProfilePhotosType, UserProfileType} from '../types/profile-types'
-import {ResponseType} from '../types/api-types'
+import {ServerResponse} from '../types/api-types'
 
 export const profileAPI = {
     getUserProfile: (id: number | null) => axiosInstance
@@ -12,7 +12,7 @@ export const profileAPI = {
         .then(response => response.data),
 
     updateUserStatus: (status: string) => axiosInstance
-        .put<ResponseType>(`profile/status`, {status})
+        .put<ServerResponse>(`profile/status`, {status})
         .then(response => response.data),
 
     updateUserAvatar: (avatarFile: File) => {
@@ -20,11 +20,11 @@ export const profileAPI = {
         formData.append('image', avatarFile)
 
         return axiosInstance
-            .put<ResponseType<{ photos: UserProfilePhotosType }>>(`profile/photo`, formData)
+            .put<ServerResponse<{ photos: UserProfilePhotosType }>>(`profile/photo`, formData)
             .then(response => response.data)
     },
 
     updateUserDescription: (description: UserProfileType) => axiosInstance
-        .put<ResponseType>(`profile`, description)
+        .put<ServerResponse>(`profile`, description)
         .then(response => response.data)
 }

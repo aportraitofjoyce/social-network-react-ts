@@ -1,5 +1,6 @@
-import {ActionsType, PATH} from '../../types/common-types'
 import {SidebarType} from '../../types/sidebar-types'
+import {PATH} from '../../routes/routes'
+import {ActionsType} from '../store'
 
 const initialState: SidebarType = {
     dataForSidebar: [

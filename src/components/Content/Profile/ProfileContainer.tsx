@@ -1,19 +1,19 @@
 import React, {ComponentType, useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Profile} from './Profile'
-import {StateType} from '../../../types/common-types'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
+import {ProfileType, UserProfileType} from '../../../types/profile-types'
+import {compose} from 'redux'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {AuthType} from '../../../types/auth-types'
+import {RootState} from '../../../redux/store'
 import {
     getUserProfile,
     getUserStatus,
     updateUserAvatar,
     updateUserDescription,
     updateUserStatus
-} from '../../../redux/actions/profile-actions'
-import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {ProfileType, UserProfileType} from '../../../types/profile-types'
-import {compose} from 'redux'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
-import {AuthType} from '../../../types/auth-types'
+} from '../../../redux/reducers/profile-reducer'
 
 type PathParamsType = {
     userId: string
@@ -23,8 +23,8 @@ const ProfileContainer: React.FC<RouteComponentProps<PathParamsType>> = React.me
     const {match} = props
 
     const dispatch = useDispatch()
-    const {userProfile, userStatus} = useSelector<StateType, ProfileType>(state => state.profile)
-    const {id} = useSelector<StateType, AuthType>(state => state.auth)
+    const {userProfile, userStatus} = useSelector<RootState, ProfileType>(state => state.profile)
+    const {id} = useSelector<RootState, AuthType>(state => state.auth)
 
     const updateUserStatusHandler = useCallback((status: string) => dispatch(updateUserStatus(status)), [dispatch])
     const updateUserAvatarHandler = useCallback((avatarFile: File) => dispatch(updateUserAvatar(avatarFile)), [dispatch])

@@ -1,5 +1,5 @@
 import {axiosInstance} from './axios-instance'
-import {ResponseType, ResultCodeForCaptchaType, ResultCodesTypes} from '../types/api-types'
+import {ServerResponse, ResultCodeForCaptcha, ResultCodes} from '../types/api-types'
 
 type CheckAuthDataResponseType = {
     id: number
@@ -13,11 +13,11 @@ type LoginDataResponseType = {
 
 export const authAPI = {
     checkAuth: () => axiosInstance
-        .get<ResponseType<CheckAuthDataResponseType>>('auth/me')
+        .get<ServerResponse<CheckAuthDataResponseType>>('auth/me')
         .then(response => response.data),
 
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => axiosInstance
-        .post<ResponseType<LoginDataResponseType, ResultCodesTypes & ResultCodeForCaptchaType>>('auth/login', {
+        .post<ServerResponse<LoginDataResponseType, ResultCodes & ResultCodeForCaptcha>>('auth/login', {
             email,
             password,
             rememberMe,
@@ -26,6 +26,6 @@ export const authAPI = {
         .then(response => response.data),
 
     logout: () => axiosInstance
-        .delete<ResponseType>('auth/login')
+        .delete<ServerResponse>('auth/login')
         .then(response => response.data)
 }

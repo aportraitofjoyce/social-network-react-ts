@@ -1,7 +1,7 @@
 import React, {memo} from 'react'
 import {Avatar, Box, Divider} from '@mui/material'
 import {Link} from 'react-router-dom'
-import {PATH} from '../../../../../types/common-types'
+import {PATH} from '../../../../../routes/routes'
 
 type MessagePropsType = {
     userName: string
