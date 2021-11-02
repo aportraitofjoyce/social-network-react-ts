@@ -1,14 +1,14 @@
-import React, {ChangeEvent} from 'react'
+import React, {ChangeEvent, FC} from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-type PaginationPropsType = {
+type PaginationProps = {
     pagesCount: number
     currentPage: number
     onClick: (page: number) => void
 }
 
-export const PaginationControlled: React.FC<PaginationPropsType> = props => {
+export const PaginationControlled: FC<PaginationProps> = props => {
     const {pagesCount, currentPage, onClick} = props
 
     const handleChange = (e: ChangeEvent<unknown>, value: number) => {

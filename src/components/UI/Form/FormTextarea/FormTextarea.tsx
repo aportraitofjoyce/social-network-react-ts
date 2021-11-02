@@ -1,16 +1,16 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import {useField} from 'formik'
 import s from '../Form.module.css'
 import {TextField} from '@mui/material'
 
-type FormTextareaPropsType = {
+type FormTextareaProps = {
     label?: string
     name: string
     placeholder?: string
     id?: string
 }
 
-export const FormTextarea: React.FC<FormTextareaPropsType> = React.memo(({...props}) => {
+export const FormTextarea: FC<FormTextareaProps> = memo(({...props}) => {
     const [field, meta] = useField(props)
 
     return (

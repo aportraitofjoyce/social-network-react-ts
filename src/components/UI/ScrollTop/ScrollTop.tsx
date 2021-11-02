@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {Box, useScrollTrigger, Zoom} from '@mui/material'
 
-export const ScrollTop: React.FC = ({children}) => {
+export const ScrollTop: FC = ({children}) => {
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 100,

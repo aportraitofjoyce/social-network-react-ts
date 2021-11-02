@@ -10,7 +10,6 @@ import {useDispatch} from 'react-redux'
 export const Header: FC = memo(() => {
     const auth = useAppSelector(state => state.auth)
     const dispatch = useDispatch()
-
     const logoutHandler = useCallback(() => dispatch(logout()), [dispatch])
 
     return (

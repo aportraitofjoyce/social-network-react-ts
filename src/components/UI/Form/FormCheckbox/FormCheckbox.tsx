@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import {useField} from 'formik'
 import s from '../Form.module.css'
 import {Checkbox, FormControlLabel} from '@mui/material'
 
-type FormCheckboxPropsType = {
+type FormCheckboxProps = {
     name: string
     label?: string
 }
 
-export const FormCheckbox: React.FC<FormCheckboxPropsType> = React.memo(({label, ...props}) => {
+export const FormCheckbox: FC<FormCheckboxProps> = memo(({label, ...props}) => {
     const [field, meta] = useField({...props, type: 'checkbox'})
 
     return (

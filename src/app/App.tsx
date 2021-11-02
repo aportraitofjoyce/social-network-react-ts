@@ -3,7 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom'
 import '../index.css'
 import {LoginContainer} from '../pages/Login/LoginContainer'
 import {Sidebar} from '../components/Sidebar/Sidebar'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {Loader} from '../components/UI/Loader/Loader'
 import {Error404} from '../pages/ErrorPage/Error404'
 import {Box, Container, CssBaseline, Fab, Grid} from '@mui/material'
@@ -11,7 +11,7 @@ import {Header} from '../components/Header/Header'
 import {ScrollTop} from '../components/UI/ScrollTop/ScrollTop'
 import {initialization} from '../redux/reducers/app-reducer'
 import {PATH} from '../routes/routes'
-import {RootState} from '../redux/store'
+import {useAppSelector} from '../hooks/hooks'
 
 const ProfileContainer = lazy(() => import('../pages/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('../pages/Dialogs/DialogsContainer'))
@@ -19,7 +19,7 @@ const UsersContainer = lazy(() => import('../pages/Users/UsersContainer'))
 
 export const App: React.FC = () => {
     const dispatch = useDispatch()
-    const isInitialized = useSelector<RootState>(state => state.app.isInitialized)
+    const isInitialized = useAppSelector(state => state.app.isInitialized)
 
     useEffect(() => {
         dispatch(initialization())

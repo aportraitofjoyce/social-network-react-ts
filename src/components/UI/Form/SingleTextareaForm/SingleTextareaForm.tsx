@@ -1,16 +1,14 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import * as Yup from 'yup'
 import {Form, Formik} from 'formik'
 import {FormTextarea} from '../FormTextarea/FormTextarea'
 import {Button} from '@mui/material'
 
-type SingleTextareaFormPropsType = {
+type SingleTextareaFormProps = {
     onSubmit: (message: string) => void
 }
 
-export const SingleTextareaForm: React.FC<SingleTextareaFormPropsType> = React.memo(props => {
-    const {onSubmit} = props
-
+export const SingleTextareaForm: FC<SingleTextareaFormProps> = memo(({onSubmit}) => {
     return (
         <Formik
             initialValues={{textarea: ''}}
