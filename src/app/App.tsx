@@ -15,7 +15,7 @@ import {Login} from '../pages/Login/Login'
 
 const Profile = lazy(() => import('../pages/Profile/Profile'))
 const Dialogs = lazy(() => import('../pages/Dialogs/Dialogs'))
-const UsersContainer = lazy(() => import('../pages/Users/UsersContainer'))
+const Users = lazy(() => import('../pages/Users/Users'))
 
 export const App: React.FC = () => {
     const dispatch = useDispatch()
@@ -55,7 +55,7 @@ export const App: React.FC = () => {
                                 </Route>
 
                                 <Route path={PATH.USERS}>
-                                    <UsersContainer/>
+                                    <Users/>
                                 </Route>
 
                                 <Route path={PATH.LOGIN}>

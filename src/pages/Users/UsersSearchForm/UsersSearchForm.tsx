@@ -1,20 +1,16 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import {Form, Formik} from 'formik'
 import {FormInput} from '../../../components/UI/Form/FormInput/FormInput'
 import {FormSelect, OptionsForSelect} from '../../../components/UI/Form/FormSelect/FormSelect'
 import {Button} from '@mui/material'
 import {SearchParamsType} from '../../../redux/reducers/users-reducer'
 
-type UsersSearchFormPropsType = {
+type UsersSearchFormProps = {
     onSubmit: (term: string, followers: boolean | null) => void
     searchParams: SearchParamsType
 }
 
-
-// TODO: Form Submission
-export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(props => {
-    const {onSubmit, searchParams} = props
-
+export const UsersSearchForm: FC<UsersSearchFormProps> = memo(({onSubmit, searchParams}) => {
     const optionsForSelect: OptionsForSelect[] = [
         {value: 'null', name: 'All'},
         {value: 'true', name: 'Followed'},
