@@ -1,18 +1,16 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import s from '../../MyProfile.module.css'
 import {MyContacts} from './MyContacts/MyContacts'
 import {Button} from '@mui/material'
 import {UserProfileContactsType, UserProfileType} from '../../../../../redux/reducers/profile-reducer'
 
-type MyProfileDescriptionType = {
+type MyProfileDescriptionProps = {
     userProfile: UserProfileType
     isOwner: boolean
     onEditMode: () => void
 }
 
-export const MyDescription: React.FC<MyProfileDescriptionType> = React.memo(props => {
-    const {userProfile, isOwner, onEditMode} = props
-
+export const MyDescription: FC<MyProfileDescriptionProps> = memo(({userProfile, isOwner, onEditMode}) => {
     const mappedContacts = Object.keys(userProfile.contacts)
         .map(contact => <MyContacts key={contact}
                                     title={contact}

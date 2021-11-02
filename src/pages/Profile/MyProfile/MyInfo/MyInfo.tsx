@@ -1,26 +1,28 @@
 import s from '../MyProfile.module.css'
-import React, {useState} from 'react'
+import React, {FC, memo, useCallback, useState} from 'react'
 import {MyStatus} from './MyStatus/MyStatus'
 import {MyDescription} from './MyDescription/MyDescription'
 import {MyDescriptionEditForm} from './MyDescriptionEditForm/MyDescriptionEditForm'
-import {UserProfileType} from '../../../../redux/reducers/profile-reducer'
+import {updateUserDescription, UserProfileType} from '../../../../redux/reducers/profile-reducer'
+import {useDispatch} from 'react-redux'
 
-type MyInfoPropsType = {
+type MyInfoProps = {
     userProfile: UserProfileType
     userStatus: string
-    updateUserStatus: (status: string) => void
     isOwner: boolean
-    updateUserDescription: (userDescription: UserProfileType) => void
 }
 
-export const MyInfo: React.FC<MyInfoPropsType> = React.memo(props => {
-    const {userProfile, userStatus, updateUserStatus, isOwner, updateUserDescription} = props
+export const MyInfo: FC<MyInfoProps> = memo(({userProfile, userStatus, isOwner}) => {
+    const dispatch = useDispatch()
     const [editMode, setEditMode] = useState<boolean>(false)
+
+    const updateUserDescriptionHandler = useCallback((userDescription: UserProfileType) =>
+        dispatch(updateUserDescription(userDescription)), [dispatch])
 
     const onEditMode = () => setEditMode(true)
 
     const offEditMode = async (userDescription: UserProfileType) => {
-        await updateUserDescription(userDescription)
+        await updateUserDescriptionHandler(userDescription)
         setEditMode(false)
     }
 
@@ -28,9 +30,7 @@ export const MyInfo: React.FC<MyInfoPropsType> = React.memo(props => {
         <div className={s.infoContainer}>
             <h2>{userProfile.fullName}</h2>
 
-            <MyStatus status={userStatus}
-                      updateUserStatus={updateUserStatus}
-                      isOwner={isOwner}/>
+            <MyStatus status={userStatus} isOwner={isOwner}/>
 
             {!editMode
                 ? <MyDescription userProfile={userProfile}

@@ -13,7 +13,7 @@ import {PATH} from '../routes/routes'
 import {useAppSelector} from '../hooks/hooks'
 import {Login} from '../pages/Login/Login'
 
-const ProfileContainer = lazy(() => import('../pages/Profile/ProfileContainer'))
+const Profile = lazy(() => import('../pages/Profile/Profile'))
 const DialogsContainer = lazy(() => import('../pages/Dialogs/DialogsContainer'))
 const UsersContainer = lazy(() => import('../pages/Users/UsersContainer'))
 
@@ -47,7 +47,7 @@ export const App: React.FC = () => {
                                 </Route>
 
                                 <Route path={PATH.PROFILE_WITH_ID}>
-                                    <ProfileContainer/>
+                                    <Profile/>
                                 </Route>
 
                                 <Route path={PATH.DIALOGS}>

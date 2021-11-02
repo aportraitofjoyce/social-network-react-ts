@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC, memo} from 'react'
 import {Form, Formik} from 'formik'
 import {FormInput} from '../../../../../components/UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../../../components/UI/Form/FormCheckbox/FormCheckbox'
@@ -7,12 +7,12 @@ import * as Yup from 'yup'
 import {Button} from '@mui/material'
 import {UserProfileType} from '../../../../../redux/reducers/profile-reducer'
 
-type MyDescriptionEditFormType = {
+type MyDescriptionEditFormProps = {
     onSubmit: (userDescription: any) => void
     userProfile: UserProfileType
 }
 
-export const MyDescriptionEditForm: React.FC<MyDescriptionEditFormType> = React.memo(props => {
+export const MyDescriptionEditForm: FC<MyDescriptionEditFormProps> = memo(props => {
     const {onSubmit, userProfile} = props
 
     const URLValidation = Yup.string()

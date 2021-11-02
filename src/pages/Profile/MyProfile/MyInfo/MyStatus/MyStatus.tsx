@@ -1,24 +1,24 @@
-import React, {ChangeEvent, KeyboardEvent, useCallback, useEffect, useState} from 'react'
+import React, {ChangeEvent, FC, KeyboardEvent, memo, useCallback, useEffect, useState} from 'react'
 import {TextField} from '@mui/material'
+import {updateUserStatus} from '../../../../../redux/reducers/profile-reducer'
+import {useDispatch} from 'react-redux'
 
-type MyStatusPropsType = {
+type MyStatusProps = {
     status: string
-    updateUserStatus: (status: string) => void
     isOwner: boolean
 }
 
-export const MyStatus: React.FC<MyStatusPropsType> = React.memo(props => {
-    const {status, updateUserStatus, isOwner} = props
-
+export const MyStatus: FC<MyStatusProps> = memo(({status, isOwner}) => {
+    const dispatch = useDispatch()
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [title, setTitle] = useState<string>(props.status)
+    const [title, setTitle] = useState<string>(status)
 
-    useEffect(() => setTitle(status), [status])
+    const updateUserStatusHandler = useCallback((status: string) => dispatch(updateUserStatus(status)), [dispatch])
 
     const onEditMode = useCallback(() => setEditMode(true), [])
 
     const offEditMode = useCallback(() => {
-        updateUserStatus(title)
+        updateUserStatusHandler(title)
         setEditMode(false)
     }, [title, updateUserStatus])
 
@@ -30,7 +30,10 @@ export const MyStatus: React.FC<MyStatusPropsType> = React.memo(props => {
         if (e.key === 'Enter') offEditMode()
     }, [offEditMode])
 
-    return isOwner && editMode
+    useEffect(() => setTitle(status), [status])
+
+    return (
+        isOwner && editMode
         ? <TextField type='text'
                      onBlur={offEditMode}
                      onChange={onChangeHandler}
@@ -38,4 +41,5 @@ export const MyStatus: React.FC<MyStatusPropsType> = React.memo(props => {
                      autoFocus
                      value={title}/>
         : <h4 onDoubleClick={onEditMode}>{status || 'Место для статуса'}</h4>
+    )
 })

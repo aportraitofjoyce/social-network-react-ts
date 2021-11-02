@@ -1,26 +1,29 @@
+import React, {ChangeEvent, FC, memo, useCallback} from 'react'
 import s from '../MyProfile.module.css'
-import React, {ChangeEvent} from 'react'
 import {Button, styled} from '@mui/material'
+import {updateUserAvatar} from '../../../../redux/reducers/profile-reducer'
+import {useDispatch} from 'react-redux'
 
-type MyAvatarPropsType = {
+type MyAvatarProps = {
     src: string
     alt: string
     isOwner: boolean
-    updateUserAvatar: (avatarFile: File) => void
 }
 
-export const MyAvatar: React.FC<MyAvatarPropsType> = React.memo(props => {
-    const {src, alt, isOwner, updateUserAvatar} = props
+export const MyAvatar: FC<MyAvatarProps> = memo(({src, alt, isOwner}) => {
+    const dispatch = useDispatch()
 
     const Input = styled('input')({
         display: 'none',
     })
 
+    const updateUserAvatarHandler = useCallback((avatarFile: File) =>
+        dispatch(updateUserAvatar(avatarFile)), [dispatch])
+
     const changeAvatarHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        e.currentTarget.files && updateUserAvatar(e.currentTarget.files[0])
+        e.currentTarget.files && updateUserAvatarHandler(e.currentTarget.files[0])
         e.currentTarget.value = ''
     }
-
 
     return (
         <div className={s.avatarContainer}>
