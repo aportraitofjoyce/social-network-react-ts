@@ -1,4 +1,3 @@
-import {ChatMessageType, DialogsType} from '../../types/dialogs-types'
 import {v1} from 'uuid'
 
 export enum DIALOGS_ACTIONS_TYPES {
@@ -6,6 +5,18 @@ export enum DIALOGS_ACTIONS_TYPES {
 }
 
 export type DialogsActionsType = ReturnType<typeof setMessages>
+
+export type DialogsType = {
+    messages: ChatMessageType[]
+}
+
+export type ChatMessageType = {
+    message: string,
+    photo: string,
+    userId: number,
+    userName: string
+    messageID: string
+}
 
 const initialState: DialogsType = {
     messages: []

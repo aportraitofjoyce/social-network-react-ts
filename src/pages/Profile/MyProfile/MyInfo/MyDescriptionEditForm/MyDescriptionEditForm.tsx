@@ -3,9 +3,9 @@ import {Form, Formik} from 'formik'
 import {FormInput} from '../../../../../components/UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../../../components/UI/Form/FormCheckbox/FormCheckbox'
 import {FormTextarea} from '../../../../../components/UI/Form/FormTextarea/FormTextarea'
-import {UserProfileType} from '../../../../../types/profile-types'
 import * as Yup from 'yup'
 import {Button} from '@mui/material'
+import {UserProfileType} from '../../../../../redux/reducers/profile-reducer'
 
 type MyDescriptionEditFormType = {
     onSubmit: (userDescription: any) => void

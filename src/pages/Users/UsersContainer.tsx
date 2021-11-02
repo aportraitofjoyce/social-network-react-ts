@@ -2,13 +2,12 @@ import React, {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Users} from './Users'
 import {Loader} from '../../components/UI/Loader/Loader'
-import {UsersType} from '../../types/users-types'
-import {AuthType} from '../../types/auth-types'
 import {useHistory} from 'react-router-dom'
 import * as queryString from 'querystring'
 import {PATH} from '../../routes/routes'
 import {RootState} from '../../redux/store'
-import {changeCurrentPage, followUser, requestUsers} from '../../redux/reducers/users-reducer'
+import {changeCurrentPage, followUser, requestUsers, UsersType} from '../../redux/reducers/users-reducer'
+import {AuthType} from '../../redux/reducers/auth-reducer'
 
 type QueryParamsType = { term?: string; page?: string; friend?: string }
 

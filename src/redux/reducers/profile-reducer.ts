@@ -1,4 +1,3 @@
-import {ProfileType, UserProfilePhotosType, UserProfileType} from '../../types/profile-types'
 import {ThunkType} from '../store'
 import {profileAPI} from '../../api/profile-api'
 import {ResultCodes} from '../../types/api-types'
@@ -13,6 +12,37 @@ export type ProfileActionsType =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof setUserAvatar>
+
+export type ProfileType = {
+    userProfile: UserProfileType | null
+    userStatus: string
+}
+
+export type UserProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    aboutMe: string
+    contacts: UserProfileContactsType
+    photos: UserProfilePhotosType
+}
+
+export type UserProfilePhotosType = {
+    large: string | null
+    small: string | null
+}
+
+export type UserProfileContactsType = {
+    github: string,
+    vk: string,
+    facebook: string,
+    instagram: string,
+    twitter: string,
+    website: string,
+    youtube: string,
+    mainLink: string
+}
 
 const initialState: ProfileType = {
     userProfile: null,

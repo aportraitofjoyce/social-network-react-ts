@@ -1,6 +1,6 @@
 import {axiosInstance} from './axios-instance'
-import {UserProfilePhotosType, UserProfileType} from '../types/profile-types'
 import {ServerResponse} from '../types/api-types'
+import {UserProfilePhotosType, UserProfileType} from '../redux/reducers/profile-reducer'
 
 export const profileAPI = {
     getUserProfile: (id: number | null) => axiosInstance

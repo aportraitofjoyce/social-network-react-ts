@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Profile.module.css'
 import {MyProfile} from './MyProfile/MyProfile'
-import {UserProfileType} from '../../types/profile-types'
+import {UserProfileType} from '../../redux/reducers/profile-reducer'
 
 type ProfilePropsType = {
     userProfile: UserProfileType | null

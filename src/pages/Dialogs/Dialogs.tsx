@@ -1,8 +1,8 @@
 import React from 'react'
-import {ChatMessageType} from '../../types/dialogs-types'
 
 import {Messages} from './Messages/Messages'
 import {DialogsForm} from './DialogsForm/DialogsForm'
+import {ChatMessageType} from '../../redux/reducers/dialogs-reducer'
 
 type DialogsPropsType = {
     messages: ChatMessageType[]

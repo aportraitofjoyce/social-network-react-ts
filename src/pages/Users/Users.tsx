@@ -1,9 +1,9 @@
 import React, {useEffect, useMemo} from 'react'
 import s from './Users.module.css'
 import {User} from './User/User'
-import {SearchParamsType, UserType} from '../../types/users-types'
 import {UsersSearchForm} from './UsersSearchForm/UsersSearchForm'
 import {PaginationControlled} from '../../components/UI/Pagination/PaginationControlled'
+import {SearchParamsType, UserType} from '../../redux/reducers/users-reducer'
 
 type UsersPropsType = {
     usersData: UserType[]

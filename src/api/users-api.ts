@@ -1,5 +1,5 @@
 import {axiosInstance} from './axios-instance'
-import {UserType} from '../types/users-types'
+import {UserType} from '../redux/reducers/users-reducer'
 
 type UsersResponseType = {
     totalCount: number

@@ -2,8 +2,8 @@ import React from 'react'
 import {Form, Formik} from 'formik'
 import {FormInput} from '../../../components/UI/Form/FormInput/FormInput'
 import {FormSelect, OptionsForSelectType} from '../../../components/UI/Form/FormSelect/FormSelect'
-import {SearchParamsType} from '../../../types/users-types'
 import {Button} from '@mui/material'
+import {SearchParamsType} from '../../../redux/reducers/users-reducer'
 
 type UsersSearchFormPropsType = {
     onSubmit: (term: string, followers: boolean | null) => void

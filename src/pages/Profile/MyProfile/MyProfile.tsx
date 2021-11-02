@@ -2,7 +2,7 @@ import React from 'react'
 import s from './MyProfile.module.css'
 import {MyAvatar} from './MyAvatar/MyAvatar'
 import {MyInfo} from './MyInfo/MyInfo'
-import {UserProfileType} from '../../../types/profile-types'
+import {UserProfileType} from '../../../redux/reducers/profile-reducer'
 
 type MyProfilePropsType = {
     userProfile: UserProfileType

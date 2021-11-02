@@ -1,8 +1,8 @@
 import React from 'react'
 import s from '../../MyProfile.module.css'
-import {UserProfileContactsType, UserProfileType} from '../../../../../types/profile-types'
 import {MyContacts} from './MyContacts/MyContacts'
 import {Button} from '@mui/material'
+import {UserProfileContactsType, UserProfileType} from '../../../../../redux/reducers/profile-reducer'
 
 type MyProfileDescriptionType = {
     userProfile: UserProfileType

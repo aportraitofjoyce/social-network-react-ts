@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {MyStatus} from './MyStatus/MyStatus'
 import {MyDescription} from './MyDescription/MyDescription'
 import {MyDescriptionEditForm} from './MyDescriptionEditForm/MyDescriptionEditForm'
-import {UserProfileType} from '../../../../types/profile-types'
+import {UserProfileType} from '../../../../redux/reducers/profile-reducer'
 
 type MyInfoPropsType = {
     userProfile: UserProfileType

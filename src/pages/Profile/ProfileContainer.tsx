@@ -2,18 +2,17 @@ import React, {ComponentType, useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Profile} from './Profile'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {ProfileType, UserProfileType} from '../../types/profile-types'
 import {compose} from 'redux'
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
-import {AuthType} from '../../types/auth-types'
 import {RootState} from '../../redux/store'
 import {
     getUserProfile,
-    getUserStatus,
+    getUserStatus, ProfileType,
     updateUserAvatar,
     updateUserDescription,
-    updateUserStatus
+    updateUserStatus, UserProfileType
 } from '../../redux/reducers/profile-reducer'
+import {AuthType} from '../../redux/reducers/auth-reducer'
 
 type PathParamsType = {
     userId: string

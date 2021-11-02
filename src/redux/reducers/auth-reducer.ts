@@ -1,4 +1,3 @@
-import {AuthType} from '../../types/auth-types'
 import {ThunkType} from '../store'
 import {securityAPI} from '../../api/security-api'
 import {authAPI} from '../../api/auth-api'
@@ -14,6 +13,14 @@ export type AuthActionsType =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof changeAuthWhenLogout>
     | ReturnType<typeof setCaptcha>
+
+export type AuthType = {
+    id: number | null
+    login: string | null
+    email: string | null
+    isAuth: boolean,
+    captchaURL: string
+}
 
 const initialState: AuthType = {
     id: null,

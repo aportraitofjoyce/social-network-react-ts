@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import {Message} from './Message/Message'
-import {ChatMessageType} from '../../../types/dialogs-types'
 import {Box} from '@mui/material'
+import {ChatMessageType} from '../../../redux/reducers/dialogs-reducer'
 
 type MessagesPropsType = {
     messages: ChatMessageType[]
