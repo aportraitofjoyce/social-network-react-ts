@@ -1,23 +1,6 @@
-.errorPageWrapper {
-    font-size: 64px;
-    color: #FFC443;
-    background: whitesmoke;
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.error404 {
-    font-size: 164px;
-    font-weight: bold;
-    margin-left: -200px;
-}
-
-.errorImg {
-    mix-blend-mode: multiply;
-}
-
-.pageNotFound {
-    margin-left: 200px;
 }

@@ -1,18 +1,24 @@
-import React from 'react'
+import React, {FC, memo, useCallback} from 'react'
 import {Form, Formik} from 'formik'
 import * as Yup from 'yup'
 import {FormInput} from '../../../components/UI/Form/FormInput/FormInput'
 import {FormCheckbox} from '../../../components/UI/Form/FormCheckbox/FormCheckbox'
 import {Button} from '@mui/material'
+import {login} from '../../../redux/reducers/auth-reducer'
+import {useDispatch} from 'react-redux'
+import {useAppSelector} from '../../../hooks/hooks'
 
-type LoginFormPropsType = {
-    onSubmit: (email: string, password: string, rememberMe: boolean,
-               setStatus: (status: string[]) => void, captcha: string) => void
-    captchaURL: string
-}
+export const LoginForm: FC = memo(() => {
+    const dispatch = useDispatch()
+    const captchaURL = useAppSelector(state => state.auth.captchaURL)
 
-export const LoginForm: React.FC<LoginFormPropsType> = React.memo(props => {
-    const {onSubmit, captchaURL} = props
+    const onSubmit = useCallback((email: string,
+                                  password: string,
+                                  rememberMe: boolean,
+                                  setStatus: (status: string[]) => void,
+                                  captcha: string) => {
+        dispatch(login(email, password, rememberMe, setStatus, captcha))
+    }, [dispatch])
 
     return (
         <Formik

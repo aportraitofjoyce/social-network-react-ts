@@ -1,7 +1,6 @@
 import React, {lazy, Suspense, useEffect} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import '../index.css'
-import {LoginContainer} from '../pages/Login/LoginContainer'
 import {Sidebar} from '../components/Sidebar/Sidebar'
 import {useDispatch} from 'react-redux'
 import {Loader} from '../components/UI/Loader/Loader'
@@ -12,6 +11,7 @@ import {ScrollTop} from '../components/UI/ScrollTop/ScrollTop'
 import {initialization} from '../redux/reducers/app-reducer'
 import {PATH} from '../routes/routes'
 import {useAppSelector} from '../hooks/hooks'
+import {Login} from '../pages/Login/Login'
 
 const ProfileContainer = lazy(() => import('../pages/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('../pages/Dialogs/DialogsContainer'))
@@ -59,7 +59,7 @@ export const App: React.FC = () => {
                                 </Route>
 
                                 <Route path={PATH.LOGIN}>
-                                    <LoginContainer/>
+                                    <Login/>
                                 </Route>
 
                                 <Route path={PATH.ERROR}>
