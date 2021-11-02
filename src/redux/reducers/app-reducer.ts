@@ -5,13 +5,13 @@ enum APP_ACTIONS_TYPES {
     SET_APP_INITIALIZED = 'APP/SET_APP_INITIALIZED'
 }
 
-export type AppActionsType = ReturnType<typeof setAppInitialized>
+export type AppActions = ReturnType<typeof setAppInitialized>
 
 const initialState = {
     isInitialized: false
 }
 
-export const appReducer = (state = initialState, action: AppActionsType): typeof initialState => {
+export const appReducer = (state = initialState, action: AppActions): typeof initialState => {
     switch (action.type) {
         case APP_ACTIONS_TYPES.SET_APP_INITIALIZED:
             return {...state, isInitialized: action.payload.status}

@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react'
+import React, {FC, Suspense, useEffect} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import '../index.css'
 import {Sidebar} from '../components/Sidebar/Sidebar'
@@ -11,7 +11,7 @@ import {initialization} from '../redux/reducers/app-reducer'
 import {PATH, publicRoutes} from '../routes/routes'
 import {useAppSelector} from '../hooks/hooks'
 
-export const App: React.FC = () => {
+export const App: FC = () => {
     const dispatch = useDispatch()
     const isInitialized = useAppSelector(state => state.app.isInitialized)
 

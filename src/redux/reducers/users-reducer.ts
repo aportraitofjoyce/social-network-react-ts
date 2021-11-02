@@ -12,7 +12,7 @@ enum USERS_ACTIONS_TYPES {
     SET_SEARCH_PARAMS = 'SET_SEARCH_PARAMS'
 }
 
-export type UsersActionsType =
+export type UsersActions =
     | ReturnType<typeof follow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
@@ -60,7 +60,7 @@ const initialState: UsersType = {
     }
 }
 
-export const usersReducer = (state = initialState, action: UsersActionsType): UsersType => {
+export const usersReducer = (state = initialState, action: UsersActions): UsersType => {
     switch (action.type) {
         case USERS_ACTIONS_TYPES.FOLLOW:
             return {

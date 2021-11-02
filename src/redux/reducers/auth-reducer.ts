@@ -9,7 +9,7 @@ enum AUTH_ACTIONS_TYPES {
     SET_CAPTCHA = 'AUTH/SET_CAPTCHA'
 }
 
-export type AuthActionsType =
+export type AuthActions =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof changeAuthWhenLogout>
     | ReturnType<typeof setCaptcha>
@@ -30,7 +30,7 @@ const initialState: AuthType = {
     captchaURL: ''
 }
 
-export const authReducer = (state = initialState, action: AuthActionsType): AuthType => {
+export const authReducer = (state = initialState, action: AuthActions): AuthType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPES.SET_USER_DATA:
             return {...state, ...action.payload, isAuth: true}

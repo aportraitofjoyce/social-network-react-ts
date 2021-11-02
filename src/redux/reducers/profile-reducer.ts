@@ -8,7 +8,7 @@ enum PROFILE_ACTIONS_TYPES {
     SET_USER_AVATAR = 'SET_USER_AVATAR',
 }
 
-export type ProfileActionsType =
+export type ProfileActions =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof setUserAvatar>
@@ -49,7 +49,7 @@ const initialState: ProfileType = {
     userStatus: '',
 }
 
-export const profileReducer = (state = initialState, action: ProfileActionsType): ProfileType => {
+export const profileReducer = (state = initialState, action: ProfileActions): ProfileType => {
     switch (action.type) {
         case PROFILE_ACTIONS_TYPES.SET_USER_PROFILE:
             return {...state, userProfile: action.payload.userProfile,}

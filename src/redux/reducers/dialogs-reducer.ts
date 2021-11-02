@@ -4,7 +4,7 @@ export enum DIALOGS_ACTIONS_TYPES {
     SET_MESSAGES = 'SET_MESSAGES',
 }
 
-export type DialogsActionsType = ReturnType<typeof setMessages>
+export type DialogsActions = ReturnType<typeof setMessages>
 
 export type DialogsType = {
     messages: ChatMessageType[]
@@ -22,7 +22,7 @@ const initialState: DialogsType = {
     messages: []
 }
 
-export const dialogsReducer = (state = initialState, action: DialogsActionsType): DialogsType => {
+export const dialogsReducer = (state = initialState, action: DialogsActions): DialogsType => {
     switch (action.type) {
         case DIALOGS_ACTIONS_TYPES.SET_MESSAGES:
             return {
