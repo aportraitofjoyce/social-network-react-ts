@@ -14,6 +14,16 @@ export const Login: FC = memo(() => {
         <div className={s.container}>
             <h1>Login page</h1>
             <LoginForm/>
+            <div>
+                <p>To login, you can register <a href={'https://social-network.samuraijs.com/'}
+                                                 rel={'noreferrer'}
+                                                 target={'_blank'}>here</a></p>
+            </div>
+            <div>
+                <p>Or use next data to login:</p>
+                <p>aportraitofjoyce@gmail.com</p>
+                <p>123456789</p>
+            </div>
         </div>
     )
 })
