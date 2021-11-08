@@ -35,7 +35,7 @@ export const Header: FC = memo(() => {
                                 src={'https://sun9-5.userapi.com/impf/c836635/v836635330/314ed/9md97EBkSPg.jpg?size=600x600&quality=96&sign=302798ae13b76abf476b1e71420b702f&type=album'}/>
                         <Button onClick={logoutHandler} variant={'contained'} sx={{ml: 2}}>Logout</Button>
                     </Box>
-                    : <Link to={PATH.LOGIN}>Login Page</Link>}
+                    : <Link to={PATH.LOGIN} style={{color: 'white', textDecoration: 'none'}}>Login Page</Link>}
             </Toolbar>
         </AppBar>
     )
